@@ -6,7 +6,7 @@ alias ll='ls -l'             # Preferred 'ls' implementation
 
 alias grep='grep -n --color=always'
 
-alias vimb='vim ~/.bashrc;  source ~/.bashrc'
+alias bashrc='vim ~/.bashrc;  source ~/.bashrc'
 alias vimrc='vim ~/.vimrc'
 
 alias cdd='cd $HOME/Desktop/'

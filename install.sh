@@ -1,11 +1,14 @@
 #! /usr/bin/env bash
 
 rm -rf ~/.vimrc 
-ln -sv vim/vimrc ~/.vimrc
+src=`realpath vim/.vimrc`
+ln -sv $src ~/.vimrc
 
 rm -rf ~/.oh-my-bash/custom 
-ln -sv oh.my.bash/custom  ~/.oh-my-bash/custom
+src=`realpath oh.my.bash/custom`
+ln -sv $src ~/.oh-my-bash/custom
 
 rm -rf ~/.bashrc 
-ln -sv oh.my.bash/.bashrc  ~/.bashrc
+src=`realpath oh.my.bash/.bashrc`
+ln -sv $src ~/.bashrc
 
