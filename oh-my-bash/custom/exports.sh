@@ -36,3 +36,7 @@ if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
   export XDG_CACHE_HOME=$HOME/.cache
 fi
 
+
+if [[ $HOST_NAME == *"panda.ethz.ch"* ]]; then
+  export PATH="$HOME/.local/bin:${PATH}"
+fi
