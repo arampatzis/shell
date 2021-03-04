@@ -1,5 +1,6 @@
 "----------------------------------------------------------------------------
-" vim-plug plugin manager 
+" vim-plug plugin manager
+" run :PlugInstall after adding a new plugin
 "----------------------------------------------------------------------------
 
 " Plugins will be downloaded under the specified directory.
@@ -10,16 +11,16 @@ call plug#begin('~/.vim/plugged')
 " https://github.com/morhetz/gruvbox
 Plug 'morhetz/gruvbox'
 
-Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+
+Plug 'tomtom/tcomment_vim'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
-
-
-let g:gruvbox_contrast_dark = 'hard'  " hard, medium, soft
-autocmd vimenter * colorscheme gruvbox
-
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -27,68 +28,60 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
-
-
+"----------------------------------------------------------------------------
+"----------------------------------------------------------------------------
+let g:gruvbox_contrast_dark = 'hard'  " hard, medium, soft
+autocmd vimenter * colorscheme gruvbox
 
 "----------------------------------------------------------------------------
-" 
 "----------------------------------------------------------------------------
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
 
-"set mouse=a
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+"----------------------------------------------------------------------------
+"----------------------------------------------------------------------------
+filetype plugin indent on
 
 syntax on
 
+augroup python
+    autocmd!
+    " Add shiftwidth and/or softtabstop if you want to override those too.
+    autocmd FileType python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+augroup end
 
 " Uncomment the following to have Vim jump to the last position when                                                       
 " reopening a file
-  if has("autocmd")
-     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
 
-
-
-filetype plugin indent on
-set tabstop=4 shiftwidth=4 expandtab
-set tabstop=2 expandtab shiftwidth=2 softtabstop=2
-
-
+set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 set hlsearch
 
 set number
-" Two times Ctrl+N to set numbers On/Off
-nmap <C-N><C-N> :set invnumber<CR>
 
 
-set background=dark
-
-
-
-set nosmartindent
-set cindent
-filetype plugin indent on
-set cinkeys-=0#
-set indentkeys-=0#
-autocmd FileType * set cindent "some file types override it
-
-
-
-if has("autocmd")
-    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-    au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' | 
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-
-    autocmd BufNewFile,BufRead *._cpp,*._hpp set syntax=cpp
-
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
+set ruler
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+
+"----------------------------------------------------------------------------
+"----------------------------------------------------------------------------
+" https://bluz71.github.io/2018/12/04/fuzzy-finding-in-vim-with-fzf.html
 let mapleader = " "
 nnoremap <silent> <Leader><Space> :Files<CR>
 nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
+
+" Two times Ctrl+N to set numbers On/Off
+nmap <C-N><C-N> :set invnumber<CR>

@@ -34,3 +34,15 @@ alias panda='ssh -Y panda.ethz.ch'
 alias barry='ssh -Y barry.ethz.ch'
 
 alias pythonpath='echo -e ${PYTHONPATH//:/\\n}'
+
+HOST=`hostname -d`
+if [[ $HOST == "euler.ethz.ch" ]]; then
+  echo "Setting aliases on $HOST"
+
+  alias cds='cd /cluster/scratch/garampat'
+
+  alias bjob='bjobs' #'bjobs -w'
+  alias running_users='busers `bugroup | grep "^es_koumo"`'
+  alias allocate='bsub -n 4  -Is bash'
+  alias quota='/cluster/apps/local/lquota'
+fi
