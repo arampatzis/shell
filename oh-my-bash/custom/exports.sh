@@ -34,3 +34,19 @@ export LIBRARY_PATH="$LIBRARY_PATH:`brew --prefix llvm`/lib"
 
 export FZF_DEFAULT_COMMAND='find .'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+HOST=`hostname -d`
+if [[ $HOST == "euler.ethz.ch" ]]; then
+
+  export PATH=$PATH:$HOME/bin
+  export PATH=$HOME/usr/bin:$PATH
+  export PATH=$HOME/usr/ctags/bin:$PATH
+  export PATH=$HOME/usr/valgrind/bin:$PATH
+  export PATH=$HOME/.local/bin:$PATH
+
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/usr/lib
+  export XDG_CACHE_HOME=$HOME/.cache
+
+fi
+
