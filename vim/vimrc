@@ -1,0 +1,94 @@
+"----------------------------------------------------------------------------
+" vim-plug plugin manager 
+"----------------------------------------------------------------------------
+
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+
+" https://github.com/morhetz/gruvbox
+Plug 'morhetz/gruvbox'
+
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+
+let g:gruvbox_contrast_dark = 'hard'  " hard, medium, soft
+autocmd vimenter * colorscheme gruvbox
+
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+
+
+
+"----------------------------------------------------------------------------
+" 
+"----------------------------------------------------------------------------
+
+"set mouse=a
+
+syntax on
+
+
+" Uncomment the following to have Vim jump to the last position when                                                       
+" reopening a file
+  if has("autocmd")
+     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+
+
+filetype plugin indent on
+set tabstop=4 shiftwidth=4 expandtab
+set tabstop=2 expandtab shiftwidth=2 softtabstop=2
+
+
+
+set hlsearch
+
+set number
+" Two times Ctrl+N to set numbers On/Off
+nmap <C-N><C-N> :set invnumber<CR>
+
+
+set background=dark
+
+
+
+set nosmartindent
+set cindent
+filetype plugin indent on
+set cinkeys-=0#
+set indentkeys-=0#
+autocmd FileType * set cindent "some file types override it
+
+
+
+if has("autocmd")
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+
+    autocmd BufNewFile,BufRead *._cpp,*._hpp set syntax=cpp
+
+endif
+
+let mapleader = " "
+nnoremap <silent> <Leader><Space> :Files<CR>
+nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
