@@ -1,8 +1,3 @@
-# @Author: Georgios Arampatzis <garampat>
-# @Date:   2021-02-28T22:02:28+01:00
-# @Email:  garampat@ethz.ch
-# @Last modified by:   garampat
-# @Last modified time: 2021-02-28T22:07:08+01:00
 
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
@@ -11,7 +6,7 @@ export FZF_DEFAULT_COMMAND='find .'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
-if [[ $HOST_NAME == "epicurus" ]]; then
+if [[ $HOST_NAME == *"epicurus"* ]]; then
   export CXX=g++-10
   export CC=gcc-10
 
@@ -30,7 +25,7 @@ if [[ $HOST_NAME == "epicurus" ]]; then
 fi
 
 
-if [[ $HOST_NAME == "euler.ethz.ch" ]]; then
+if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
   export PATH=$PATH:$HOME/bin
   export PATH=$HOME/usr/bin:$PATH
   export PATH=$HOME/usr/ctags/bin:$PATH

@@ -17,7 +17,7 @@ alias barry='ssh -Y barry.ethz.ch'
 alias pythonpath='echo -e ${PYTHONPATH//:/\\n}'
 
 
-if [[ $HOST_NAME == "epicurus" ]]; then
+if [[ $HOST_NAME == *"epicurus"* ]]; then
   alias cdd='cd $HOME/Desktop/'
   alias cdp='cd $HOME/work/ETH-work/projects'
   alias cdg='cd $HOME/work/ETH-work/projects/2020-graph-sir/python'
@@ -30,7 +30,7 @@ if [[ $HOST_NAME == "epicurus" ]]; then
 fi
 
 
-if [[ $HOST_NAME == "euler.ethz.ch" ]]; then
+if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
   alias cds='cd /cluster/scratch/garampat'
   alias bjob='bjobs' #'bjobs -w'
   alias running_users='busers `bugroup | grep "^es_koumo"`'

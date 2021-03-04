@@ -1,6 +1,5 @@
 
-HOST=`hostname -d`
-if [[ $HOST == "euler.ethz.ch" ]]; then
+if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
   
   ulimit -c 0 # set the maximum size of the core files
   
