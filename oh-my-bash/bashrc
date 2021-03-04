@@ -1,3 +1,9 @@
+
+HOST_NAME=`hostname -d &>/dev/null`
+[ $? != 0 ] && HOST_NAME=`hostname` &>/dev/null
+echo "On machine: $HOST_NAME"
+export HOST_NAME
+
 # Path to your oh-my-bash installation.
 export OSH=$HOME/.oh-my-bash
 
@@ -84,8 +90,6 @@ source $OSH/oh-my-bash.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-[ -f ".fzf.bash" ] && source .fzf.bash
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
