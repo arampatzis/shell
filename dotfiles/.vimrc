@@ -1,3 +1,8 @@
+" File              : .vimrc
+" Author            : George Arampatzis <garampat@ethz.ch>
+" Date              : 08.03.2021
+" Last Modified Date: 08.03.2021
+" Last Modified By  : George Arampatzis <garampat@ethz.ch>
 "----------------------------------------------------------------------------
 " vim-plug plugin manager
 " run :PlugInstall after adding a new plugin
@@ -19,6 +24,14 @@ Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'alpertuna/vim-header'
+
+Plug 'bfrg/vim-cpp-modern'
+
+Plug 'craigemery/vim-autotag'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -28,13 +41,21 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
 "----------------------------------------------------------------------------
+let mapleader = " "
+
 "----------------------------------------------------------------------------
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+
+"----------------------------------------------------------------------------
+" gruvbox
 let g:gruvbox_contrast_dark = 'hard'  " hard, medium, soft
 autocmd vimenter * colorscheme gruvbox
 
 "----------------------------------------------------------------------------
-"----------------------------------------------------------------------------
+" airline
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 
@@ -42,10 +63,37 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 "----------------------------------------------------------------------------
-"----------------------------------------------------------------------------
-filetype plugin indent on
+" fzf
+" https://bluz71.github.io/2018/12/04/fuzzy-finding-in-vim-with-fzf.html
+nnoremap <silent> <Leader><Space> :Files<CR>
+nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
 
+"----------------------------------------------------------------------------
+" vim header
+let g:header_field_author = 'George Arampatzis'
+let g:header_field_author_email = 'garampat@ethz.ch'
+let g:header_auto_add_header = 0
+let g:header_field_timestamp_format = '%d.%m.%Y'
+nmap <C-c> :AddHeader<CR>
+
+"----------------------------------------------------------------------------
+" automatic ctags
+let g:autotagStartMethod='fork'
+let g:autotagTagsFile=".tags"
+
+"----------------------------------------------------------------------------
+" Set the working directory to the current file
+set autochdir
+"autocmd BufEnter * silent! lcd %:p:h
+
+
+filetype plugin indent on
 syntax on
+autocmd BufNewFile,BufRead *._cpp set syntax=cpp
+autocmd BufNewFile,BufRead *._hpp set syntax=cpp
+autocmd BufNewFile,BufRead *.config set syntax=json
+autocmd BufRead,BufNewFile vifmrc setfiletype vim
 
 augroup python
     autocmd!
@@ -66,6 +114,7 @@ set hlsearch
 
 set number
 
+set tags=.tags
 
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
@@ -76,12 +125,7 @@ set ruler
 
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
-"----------------------------------------------------------------------------
-"----------------------------------------------------------------------------
-" https://bluz71.github.io/2018/12/04/fuzzy-finding-in-vim-with-fzf.html
-let mapleader = " "
-nnoremap <silent> <Leader><Space> :Files<CR>
-nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
-
 " Two times Ctrl+N to set numbers On/Off
 nmap <C-N><C-N> :set invnumber<CR>
+
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>

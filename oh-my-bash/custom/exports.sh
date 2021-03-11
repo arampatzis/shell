@@ -19,7 +19,6 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
   export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
 
-  export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
   export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
 fi

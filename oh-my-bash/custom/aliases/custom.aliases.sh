@@ -1,3 +1,9 @@
+#!/bin/bash
+# File              : custom.aliases.sh
+# Author            : George Arampatzis <garampat@ethz.ch>
+# Date              : 08.03.2021
+# Last Modified Date: 08.03.2021
+# Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 alias ls='ls  --group-directories-first --color --human-readable'
 alias ll='ls -l'             # Preferred 'ls' implementation
@@ -15,7 +21,14 @@ alias panda='ssh -Y panda.ethz.ch'
 alias barry='ssh -Y barry.ethz.ch'
 
 alias pythonpath='echo -e ${PYTHONPATH//:/\\n}'
+alias librarypath='echo -e ${LIBRARY_PATH//:/\\n}'
+alias ldlibrarypath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+alias dyldlibrarypath='echo -e ${DYLD_LIBRARY_PATH//:/\\n}'
 
+alias openalias='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh; source ~/.bashrc' 
+alias openexports='vim ~/.oh-my-bash/custom/exports.sh; source ~/.bashrc' 
+
+alias vf='vifm . .'
 
 if [[ $HOST_NAME == *"epicurus"* ]]; then
   alias cdd='cd $HOME/Desktop/'
@@ -27,6 +40,9 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   KORALI=$HOME/work/ETH-work/projects/korali/
   alias cdk='cd $KORALI'
   alias cda='cd $KORALI_APPS'
+
+  alias ctags="`brew --prefix`/bin/ctags"
+  alias cdshell='cd /Users/garampat/work/ETH-work/codes/shell'
 fi
 
 
