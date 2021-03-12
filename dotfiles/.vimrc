@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 
-" https://github.com/morhetz/gruvbox
 Plug 'morhetz/gruvbox'
 
 Plug 'junegunn/fzf.vim'
