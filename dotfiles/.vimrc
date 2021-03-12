@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : George Arampatzis <garampat@ethz.ch>
 " Date              : 08.03.2021
-" Last Modified Date: 08.03.2021
+" Last Modified Date: 12.03.2021
 " Last Modified By  : George Arampatzis <garampat@ethz.ch>
 "----------------------------------------------------------------------------
 " vim-plug plugin manager
@@ -13,7 +13,6 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 
-" https://github.com/morhetz/gruvbox
 Plug 'morhetz/gruvbox'
 
 Plug 'junegunn/fzf.vim'
@@ -67,7 +66,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " https://bluz71.github.io/2018/12/04/fuzzy-finding-in-vim-with-fzf.html
 nnoremap <silent> <Leader><Space> :Files<CR>
 nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> bb :Buffers<CR>
 
 "----------------------------------------------------------------------------
 " vim header
@@ -129,3 +128,6 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 nmap <C-N><C-N> :set invnumber<CR>
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+set wildchar=<Tab> wildmenu wildmode=full
+
