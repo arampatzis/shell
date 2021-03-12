@@ -50,6 +50,7 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 
 "----------------------------------------------------------------------------
 " gruvbox
+set bg=dark
 let g:gruvbox_contrast_dark = 'hard'  " hard, medium, soft
 autocmd vimenter * colorscheme gruvbox
 
