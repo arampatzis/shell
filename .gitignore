@@ -1,2 +1,4 @@
 .install.bak
 *.swp
+
+config/vifm/vifminfo.json
