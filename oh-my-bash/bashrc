@@ -78,7 +78,6 @@ aliases=(
   ls
   misc
   custom
-  export
 )
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -112,3 +111,5 @@ export LC_ALL=en_US.UTF-8
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

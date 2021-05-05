@@ -1,4 +1,6 @@
 
+echo "Exporting variables..."
+
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
@@ -25,13 +27,8 @@ fi
 
 
 if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
-  export PATH=$PATH:$HOME/bin
-  export PATH=$HOME/usr/bin:$PATH
-  export PATH=$HOME/usr/ctags/bin:$PATH
-  export PATH=$HOME/usr/valgrind/bin:$PATH
-  export PATH=$HOME/.local/bin:$PATH
+  export PATH=$HOME/.local/bin:${PATH}
 
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/usr/lib
   export XDG_CACHE_HOME=$HOME/.cache
 fi
 
@@ -39,3 +36,5 @@ fi
 if [[ $HOST_NAME == *"panda.ethz.ch"* ]]; then
   export PATH="$HOME/.local/bin:${PATH}"
 fi
+
+echo "Done exporting variables."
