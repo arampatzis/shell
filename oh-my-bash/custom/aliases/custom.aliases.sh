@@ -27,6 +27,7 @@ alias dyldlibrarypath='echo -e ${DYLD_LIBRARY_PATH//:/\\n}'
 
 alias openalias='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh; source ~/.bashrc' 
 alias openexports='vim ~/.oh-my-bash/custom/exports.sh; source ~/.bashrc' 
+alias opensystem='vim ~/.oh-my-bash/custom/system.sh; source ~/.bashrc' 
 
 alias vf='vifm . .'
 

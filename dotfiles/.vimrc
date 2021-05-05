@@ -40,7 +40,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
 "----------------------------------------------------------------------------
 let mapleader = " "
 
@@ -50,6 +49,7 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 
 "----------------------------------------------------------------------------
 " gruvbox
+set bg=dark 
 let g:gruvbox_contrast_dark = 'hard'  " hard, medium, soft
 autocmd vimenter * colorscheme gruvbox
 
