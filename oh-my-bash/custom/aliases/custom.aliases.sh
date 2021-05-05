@@ -37,9 +37,7 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   alias cdcode='cd $HOME/work/ETH-work/codes'
   alias cdpiole='cd /Users/garampat/Documents/MATLAB/Sampling/piolet'
   alias updatedb='sudo /usr/libexec/locate.updatedb'
-  KORALI=$HOME/work/ETH-work/projects/korali/
-  alias cdk='cd $KORALI'
-  alias cda='cd $KORALI_APPS'
+  alias cdk='cd /Users/garampat/work/ETH-work/projects/korali'
 
   alias ctags="`brew --prefix`/bin/ctags"
   alias cdshell='cd /Users/garampat/work/ETH-work/codes/shell'
