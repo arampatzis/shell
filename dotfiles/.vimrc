@@ -3,15 +3,14 @@
 " Date              : 08.03.2021
 " Last Modified Date: 12.03.2021
 " Last Modified By  : George Arampatzis <garampat@ethz.ch>
+
+let mapleader = " "
+
 "----------------------------------------------------------------------------
 " vim-plug plugin manager
 " run :PlugInstall after adding a new plugin
 "----------------------------------------------------------------------------
-
-" Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
-
-" Declare the list of plugins.
 
 Plug 'morhetz/gruvbox'
 
@@ -23,15 +22,19 @@ Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-
 Plug 'alpertuna/vim-header'
 
+" Enhanced C and C++ syntax highlighting
 Plug 'bfrg/vim-cpp-modern'
 
 Plug 'craigemery/vim-autotag'
 
-" List ends here. Plugins become visible to Vim after this call.
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+Plug 'tpope/vim-fugitive'
+Plug 'stsewd/fzf-checkout.vim'
+
 call plug#end()
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -41,11 +44,24 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 "----------------------------------------------------------------------------
-let mapleader = " "
+" vim-fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gd :Gitt diff<CR>
+nmap <leader>gc :GCheckout<CR>
 
 "----------------------------------------------------------------------------
-" NERDTree
-nnoremap <leader>n :NERDTreeFocus<CR>
+" UltiSnip
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" let g:UltiSnipsSnippetDirectories=["UltiSnips", "my.snippets"]
 
 "----------------------------------------------------------------------------
 " gruvbox
@@ -67,6 +83,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 nnoremap <silent> <Leader><Space> :Files<CR>
 nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
 nnoremap <silent> bb :Buffers<CR>
+let $FZF_DEFAULT_OPTS='--reverse'
 
 "----------------------------------------------------------------------------
 " vim header
@@ -86,13 +103,15 @@ let g:autotagTagsFile=".tags"
 set autochdir
 "autocmd BufEnter * silent! lcd %:p:h
 
+" sets the behaviour of backspace to the expected
+set backspace=indent,eol,start
 
 filetype plugin indent on
 syntax on
-autocmd BufNewFile,BufRead *._cpp set syntax=cpp
-autocmd BufNewFile,BufRead *._hpp set syntax=cpp
-autocmd BufNewFile,BufRead *.config set syntax=json
-autocmd BufRead,BufNewFile vifmrc setfiletype vim
+autocmd BufNewFile,BufRead *._cpp set filetype=cpp
+autocmd BufNewFile,BufRead *._hpp set filetype=cpp
+autocmd BufNewFile,BufRead *.config set filetype=json
+autocmd BufRead,BufNewFile vifmrc set filetype=vim
 
 augroup python
     autocmd!
@@ -100,8 +119,7 @@ augroup python
     autocmd FileType python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 augroup end
 
-" Uncomment the following to have Vim jump to the last position when                                                       
-" reopening a file
+" Vim jumps to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
@@ -131,3 +149,19 @@ nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 set wildchar=<Tab> wildmenu wildmode=full
 
+" left and right arrows change line
+set whichwrap+=<,>,[,]
+
+
+"----------------------------------------------------------------------------
+" Functions
+
+function! CommentStart()
+    let [L, R] = split(substitute(substitute(get(b:, 'commentary_format', &commentstring),'\S\zs%s',' %s','') ,'%s\ze\S', '%s ', ''), '%s', 1)
+    return L
+endfunction
+
+function! CommentEnd()
+    let [L, R] = split(substitute(substitute(get(b:, 'commentary_format', &commentstring),'\S\zs%s',' %s','') ,'%s\ze\S', '%s ', ''), '%s', 1)
+    return R
+endfunction
