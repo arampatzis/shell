@@ -3,6 +3,7 @@
 	email = gtarabat@gmail.com
 [core]
 	excludesfile = /Users/garampat/.gitignore_global
+	editor = vim
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
