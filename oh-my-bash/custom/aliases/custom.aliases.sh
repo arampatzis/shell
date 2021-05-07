@@ -31,6 +31,8 @@ alias opensystem='vim ~/.oh-my-bash/custom/system.sh; source ~/.bashrc'
 
 alias vf='vifm . .'
 
+alias cp='cp'
+
 if [[ $HOST_NAME == *"epicurus"* ]]; then
   alias cdd='cd $HOME/Desktop/'
   alias cdp='cd $HOME/work/ETH-work/projects'
