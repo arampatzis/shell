@@ -1,16 +1,16 @@
 
-if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
-  # Setup fzf
-  # ---------
-  if [[ ! "$PATH" == */cluster/home/garampat/.fzf/bin* ]]; then
-    export PATH="${PATH:+${PATH}:}/cluster/home/garampat/.fzf/bin"
-  fi
-
-  # Auto-completion
-  # ---------------
-  [[ $- == *i* ]] && source "/cluster/home/garampat/.fzf/shell/completion.bash" 2> /dev/null
-
-  # Key bindings
-  # ------------
-  source "/cluster/home/garampat/.fzf/shell/key-bindings.bash"
+# Set the fzf installation folder
+if [[ $HOST_NAME == *"epicurus"* ]]; then
+  fzf_path="/usr/local/opt/fzf/"
+elif [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
+  fzf_path="/cluster/home/garampat/.fzf/"
 fi
+
+# Setup fzf
+if [[ ! "$PATH" == *$fzf_path/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}$fzf_path/bin"
+fi
+
+[[ $- == *i* ]] && source "$fzf_path/shell/completion.bash" 2> /dev/null
+
+source "$fzf_path/shell/key-bindings.bash"
