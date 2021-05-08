@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : George Arampatzis <garampat@ethz.ch>
 " Date              : 08.03.2021
-" Last Modified Date: 12.03.2021
+" Last Modified Date: 07.05.2021
 " Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 let mapleader = " "

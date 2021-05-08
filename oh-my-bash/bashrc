@@ -1,3 +1,4 @@
+[[ $- == *i* ]] || return
 
 hostname -A &>/dev/null
 if [ $? == 0 ];then
@@ -5,8 +6,9 @@ if [ $? == 0 ];then
 else
   HOST_NAME=`hostname`
 fi
-echo "On machine: $HOST_NAME"
 export HOST_NAME
+
+echo "On machine: $HOST_NAME"
 
 # Path to your oh-my-bash installation.
 export OSH=$HOME/.oh-my-bash
