@@ -28,13 +28,21 @@ fi
 
 if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
   export PATH=$HOME/.local/bin:${PATH}
-
   export XDG_CACHE_HOME=$HOME/.cache
 fi
 
 
 if [[ $HOST_NAME == *"panda.ethz.ch"* ]]; then
   export PATH="$HOME/.local/bin:${PATH}"
+fi
+
+if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
+  export PATH="$HOME/.local/bin:${PATH}"
+
+  export PATH=/usr/local/cuda-11.0/bin:${PATH}
+  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+  export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:${LD_LIBRARY_PATH}
+  export CUDA_HOME=/usr/local/cuda
 fi
 
 echo "Done exporting variables."
