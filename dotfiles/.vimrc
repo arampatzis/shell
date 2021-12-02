@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : George Arampatzis <garampat@ethz.ch>
 " Date              : 08.03.2021
-" Last Modified Date: 07.05.2021
+" Last Modified Date: 12.08.2021
 " Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 let mapleader = " "
@@ -48,6 +48,7 @@ endif
 nmap <leader>gs :G<CR>
 nmap <leader>gd :Gitt diff<CR>
 nmap <leader>gc :GCheckout<CR>
+nmap <leader>gh :0Glog<CR>
 
 "----------------------------------------------------------------------------
 " UltiSnip
@@ -82,7 +83,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " https://bluz71.github.io/2018/12/04/fuzzy-finding-in-vim-with-fzf.html
 nnoremap <silent> <Leader><Space> :Files<CR>
 nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <silent> bb :Buffers<CR>
+nnoremap <silent> ;; :Buffers<CR>
 let $FZF_DEFAULT_OPTS='--reverse'
 
 "----------------------------------------------------------------------------
@@ -109,7 +110,9 @@ set backspace=indent,eol,start
 filetype plugin indent on
 syntax on
 autocmd BufNewFile,BufRead *._cpp set filetype=cpp
+autocmd BufNewFile,BufRead *.cpp.base set filetype=cpp
 autocmd BufNewFile,BufRead *._hpp set filetype=cpp
+autocmd BufNewFile,BufRead *.hpp.base set filetype=cpp
 autocmd BufNewFile,BufRead *.config set filetype=json
 autocmd BufRead,BufNewFile vifmrc set filetype=vim
 
@@ -152,6 +155,7 @@ set wildchar=<Tab> wildmenu wildmode=full
 " left and right arrows change line
 set whichwrap+=<,>,[,]
 
+set mouse=a
 
 "----------------------------------------------------------------------------
 " Highlight line and change cursor in insert mode
