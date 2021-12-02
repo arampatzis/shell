@@ -38,6 +38,7 @@ fi
 
 if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
   export PATH="$HOME/.local/bin:${PATH}"
+  export PATH="$HOME/ai2c/bellport/bin/:${PATH}"
 
   export PATH=/usr/local/cuda-11.0/bin:${PATH}
   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}

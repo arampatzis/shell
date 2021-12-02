@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : George Arampatzis <garampat@ethz.ch>
 " Date              : 08.03.2021
-" Last Modified Date: 07.05.2021
+" Last Modified Date: 24.11.2021
 " Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 let mapleader = " "
@@ -116,7 +116,7 @@ autocmd BufRead,BufNewFile vifmrc set filetype=vim
 augroup python
     autocmd!
     " Add shiftwidth and/or softtabstop if you want to override those too.
-    autocmd FileType python setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 augroup end
 
 " Vim jumps to the last position when reopening a file

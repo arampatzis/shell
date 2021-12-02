@@ -54,3 +54,9 @@ if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
   alias allocate='bsub -n 4  -Is bash'
   alias quota='/cluster/apps/local/lquota'
 fi
+
+
+if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
+  alias cds='cd /scratch/garampat'
+fi
+
