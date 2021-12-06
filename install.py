@@ -89,7 +89,7 @@ else:
 
 print('\n   * Install fzf: \n')
 destination = home / Path('.fzf/install')
-subprocess .call(['sh', destination, '--no-zsh', '--no-fish'])
+subprocess .call(['bash', destination, '--no-zsh', '--no-fish'])
 
 
 success_msg(f'\nBackup files are stored in folder {backup_folder}\n', 'CYAN')
