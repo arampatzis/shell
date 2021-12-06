@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 from pathlib import Path
+import subprocess
 import random
 import string
 import sys
@@ -48,8 +49,10 @@ def make_link(source, target):
 backup_folder = Path('.install.bak')
 backup_folder.mkdir(exist_ok=True)
 
+home = Path('~').expanduser()
+
 print('\n* oh-my-bash and .bashrc')
-ohmybash_path = Path('~/.oh-my-bash/').expanduser()
+ohmybash_path = home / Path('.oh-my-bash/')
 if not ohmybash_path.is_dir():
   error_msg(f'    oh-my-bash is not installed in the system. Installl oh-my-bash and rerun:')
   error_msg(f'    bash -c "$(wget https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh -O -)"')
@@ -67,7 +70,7 @@ print('\n* dotfiles')
 pathlist = Path('dotfiles').glob('.*')
 for file in pathlist:
   print(f'\n  * {file}')
-  src = Path('~').expanduser() / file.name
+  src = home/ file.name
   trg = file
   make_link(source=src,
            target=trg)
@@ -75,5 +78,18 @@ for file in pathlist:
 print('\n* .config')
 make_link(source='~/.config',
            target='config')
+
+print('\n* fzf')
+print('   * Clone fzf into ~/.fzf')
+destination = home / Path('.fzf')
+if Path.is_dir(destination):
+    warning_msg('   .fzf already exists in home directory.')
+else:
+    subprocess.call(['git', 'clone', '--depth', '1', 'https://github.com/junegunn/fzf.git', str(destination)])
+
+print('\n   * Install fzf: \n')
+destination = home / Path('.fzf/install')
+subprocess .call(['sh', destination, '--no-zsh', '--no-fish'])
+
 
 success_msg(f'\nBackup files are stored in folder {backup_folder}\n', 'CYAN')
