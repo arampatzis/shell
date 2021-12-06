@@ -10,4 +10,4 @@ fi
 
 # Key bindings
 # ------------
-source "/home/garampat/.fzf/shell/key-bindings.bash"
+source "$HOME/.fzf/shell/key-bindings.bash"
