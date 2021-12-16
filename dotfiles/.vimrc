@@ -35,6 +35,8 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'stsewd/fzf-checkout.vim'
 
+Plug 'ycm-core/YouCompleteMe'
+
 call plug#end()
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -143,6 +145,9 @@ endif
 
 set ruler
 
+" continue comments on next line. and maybe more...
+set formatoptions+=r
+
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " Two times Ctrl+N to set numbers On/Off
@@ -156,6 +161,8 @@ set wildchar=<Tab> wildmenu wildmode=full
 set whichwrap+=<,>,[,]
 
 set mouse=a
+
+set autowriteall
 
 "----------------------------------------------------------------------------
 " Highlight line and change cursor in insert mode

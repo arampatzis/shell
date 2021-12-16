@@ -9,8 +9,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 if [[ $HOST_NAME == *"epicurus"* ]]; then
-  export CXX=g++-11
-  export CC=gcc-11
+  export CXX=gcc-10
+  export CC=g++-10
 
   export PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
   export PATH="/usr/local/opt/llvm/bin:$PATH"
