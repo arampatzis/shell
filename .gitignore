@@ -2,3 +2,5 @@
 *.swp
 
 config/vifm/vifminfo.json
+
+**/__pycache__/
