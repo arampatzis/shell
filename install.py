@@ -7,6 +7,7 @@
 # Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 from pathlib import Path
+from datetime import datetime
 from messages import *
 import subprocess
 import random
@@ -22,8 +23,9 @@ def make_link(source, target):
   
     if source.exists():
         message.warning('    Warning: Source file exists.')
-        rnd = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
-        source_bak = backup_folder / Path(source.stem + '.' + rnd)
+        # ext = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
+        ext = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+        source_bak = backup_folder / Path(source.stem + '.' + ext)
         message.warning(f'    Warning: Backup Source to {source_bak}')
         source.rename(source_bak)
     elif source.is_symlink():
@@ -61,10 +63,11 @@ for f in Path('dotfiles').glob('.*'):
                 target=f)
 
 print('\n* .config')
+Path(home / Path('.config')).mkdir(exist_ok=True)
 for f in Path('config').glob('*/'):
     print(f'\n  * {f}')
-    make_link(source='~/.config',
-            target='config')
+    make_link(source=home / Path('.config') / f.name,
+            target=f)
 
 print('\n* fzf')
 print('   * Clone fzf into ~/.fzf')
