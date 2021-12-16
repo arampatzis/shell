@@ -1,0 +1,522 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'b
+	/home/garampat/bin/
+	..
+1632520496
+'h
+	/home/garampat/
+	..
+1632520496
+
+# Bookmarks:
+
+# TUI:
+al
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/garampat/ai2c/data/maystreet/bellport
+	cmake
+3
+d/home/garampat/ai2c/data/maystreet/bellport/cmake
+	..
+0
+d/home/garampat/ai2c/data/maystreet/bellport
+	example
+4
+d/home/garampat/ai2c/data/maystreet/bellport/example
+	xdp_ticker.cpp
+32
+d/home/garampat/ai2c/data/maystreet/bellport
+	bin
+1
+d/home/garampat/ai2c/data/maystreet/bellport/bin
+	mdtop
+3
+d/home/garampat/ai2c/data/maystreet/bellport
+	example
+4
+d/home/garampat/ai2c/data/maystreet/bellport/example
+	xdp_ticker.cpp
+32
+d/home/garampat/ai2c/data/maystreet/bellport
+	example
+4
+d/home/garampat/ai2c/data/maystreet/bellport/example
+	us_equities_proc_man_ticker.cpp
+28
+d/home/garampat
+	projects
+15
+d/home/garampat/projects
+	shell
+8
+d/home/garampat/projects/shell
+	oh-my-bash
+5
+d/home/garampat/projects/shell/oh-my-bash
+	custom
+1
+d/home/garampat/projects/shell/oh-my-bash/custom
+	xexports.sh
+7
+d/home/garampat/ai2c/bellport/example
+	CMakeFiles
+1
+d/home/garampat/ai2c/bellport/example/CMakeFiles
+	consolidated_book.dir
+6
+d/home/garampat/ai2c/bellport/example
+	bats_pitch_ticker.cfg
+3
+d/home/garampat/ai2c/bellport/example/build
+	..
+0
+d/home/garampat/ai2c/bellport/example
+	build
+1
+d/home/garampat/ai2c/bellport/example/build
+	iex_ticker
+12
+d/home/garampat/ai2c/bellport/example
+	build
+1
+d/home/garampat/ai2c/bellport/example/build
+	bats_pitch_ticker
+4
+d/home/garampat/ai2c/bellport/example
+	memoir_ticker.cfg
+18
+d/raid/garampat/process-data
+	reconstruct_lob.py
+3
+d/raid/garampat
+	process-data
+2
+d/raid/garampat/process-data
+	reconstruct_lob.py
+4
+d/home/garampat
+	projects
+15
+d/home
+	garampat
+6
+d/home/garampat
+	projects
+15
+d/home/garampat/projects
+	korali-test
+6
+d/home/garampat
+	projects
+15
+d/home
+	garampat
+6
+d/home/garampat/ai2c/mft
+	..
+0
+d/home/garampat/ai2c
+	mft
+2
+d/home/garampat/ai2c/mft
+	preprocess
+3
+d/home/garampat/ai2c/mft/preprocess
+	..
+0
+d/home/garampat/ai2c/mft
+	preprocess
+3
+d/home/garampat/ai2c
+	mhf-lob
+3
+d/home/garampat/ai2c/mhf-lob
+	code_gpu
+2
+d/home/garampat/ai2c/mhf-lob/code_gpu
+	.gitignore
+2
+d/home/garampat/ai2c/mhf-lob
+	code_gpu
+2
+d/home/garampat/ai2c
+	mft
+2
+d/home/garampat/ai2c/mft
+	preprocess
+3
+d/home/garampat/ai2c/mft/preprocess
+	lob
+1
+d/home/garampat/ai2c/mft/preprocess/lob
+	..
+0
+d/home/garampat/ai2c/mft/preprocess
+	reconstruct_lob.py
+2
+d/home/garampat/ai2c/mft
+	preprocess
+3
+d/home/garampat/ai2c/mft/preprocess
+	reconstruct_lob.py
+2
+d/home/garampat
+	.ssh
+12
+d/home/garampat/.ssh
+	id_rsa.pub
+4
+d/home/garampat/projects/am211_2021
+	assignment_6
+7
+d/home/garampat/projects/am211_2021/assignment_6
+	solution
+1
+d/home/garampat/projects/am211_2021/assignment_6/solution
+	code
+1
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	_results
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
+	_korali_results_np_1_200_9
+22
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results/_korali_results_np_1_200_9
+	..
+0
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
+	_korali_results_np_1_2000_2
+35
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results/_korali_results_np_1_2000_2
+	..
+0
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
+	_korali_results_np_1_4000_9
+42
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results/_korali_results_np_1_4000_9
+	..
+0
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
+	_korali_results_np_1_4000_9
+42
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	models
+3
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/models
+	..
+0
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	_results
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
+	..
+0
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	_results
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
+	_korali_results_np_1_5000_0
+41
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	_results
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution
+	code
+1
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	unknown_variance
+4
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/unknown_variance
+	run-inference.py
+8
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	known_variance
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/known_variance
+	..
+0
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	known_variance
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution
+	code
+1
+d/home/garampat/projects/am211_2021/assignment_6
+	solution
+1
+d/home/garampat/projects/am211_2021/assignment_6/solution
+	code
+1
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	known_variance
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/known_variance
+	plots.py
+7
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	known_variance
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution/code/known_variance
+	run-inference.py
+12
+d/home/garampat/projects/am211_2021/assignment_6/solution/code
+	known_variance
+2
+d/home/garampat/projects/am211_2021/assignment_6/solution
+	code
+1
+d/home/garampat/projects/am211_2021/assignment_6
+	solution
+1
+d/home/garampat/projects/am211_2021
+	assignment_6
+7
+d/home/garampat/projects
+	covid19
+3
+d/home/garampat
+	ai2c
+14
+d/home/garampat/ai2c
+	mhf-lob
+3
+d/home/garampat/ai2c/mhf-lob
+	code_gpu
+2
+d/home/garampat/ai2c
+	mft
+2
+d/home/garampat/ai2c/mft
+	preprocess
+3
+d/home/garampat/ai2c/mft/preprocess
+	lob
+1
+d/home/garampat/ai2c/mft/preprocess/lob
+	messages.py
+4
+d/home/garampat/ai2c/mft/preprocess
+	lob
+1
+d/home/garampat/ai2c/mft
+	preprocess
+3
+d/home/garampat/ai2c
+	mft
+2
+d/home/garampat
+	projects
+15
+d/home/garampat/projects
+	shell
+9
+d/home/garampat/projects/shell
+	.gitignore
+6
+d
+
+# Right window history (oldest to newest):
+D/home/garampat/projects/am211_2021/assignment_6/solution/code
+	..
+0
+D/scratch/garampat
+	maystreet_data
+1
+D/scratch/garampat/maystreet_data
+	..
+0
+D/scratch/garampat
+	process-data
+2
+D/scratch/garampat/process-data
+	.tags
+1
+D/home/garampat/projects/shell
+	..
+0
+D/home/garampat/ai2c
+	mhf-lob
+2
+D/home/garampat/ai2c/mhf-lob
+	code_gpu
+2
+D/home/garampat/ai2c/mhf-lob/code_gpu
+	model_gpu.py
+6
+D/home/garampat/ai2c
+	..
+0
+D/home/garampat/ai2c/data/maystreet/bellport
+	..
+0
+D/home/garampat/ai2c/data/maystreet
+	..
+0
+D/home/garampat/ai2c/data/maystreet/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
+	
+0
+D/home/garampat/ai2c/data/maystreet
+	..
+0
+D/home/garampat/ai2c/data
+	maystreet
+1
+D/home/garampat/ai2c/data/maystreet
+	..
+0
+D/home/garampat/ai2c/data
+	maystreet
+1
+D/raid/garampat
+	20210913_consolidated_levels_00000.csv
+2
+D/home/garampat/projects/shell/oh-my-bash/custom
+	plugins
+3
+D/home/garampat/projects
+	..
+0
+D/home/garampat
+	..
+0
+D/raid/garampat
+	20210913_consolidated_levels_00000.csv
+2
+D/home/garampat
+	..
+0
+D/raid/garampat
+	20210913_consolidated_levels_00000.csv
+2
+D/home/garampat/.bellport
+	..
+0
+D/home/garampat/ai2c/data/maystreet/bellport
+	..
+0
+D/home/garampat
+	..
+0
+D/home/garampat/ai2c/bellport/example
+	..
+0
+D/home/garampat/ai2c/bellport/example/build
+	..
+0
+D/raid/garampat/process-data
+	..
+0
+D/raid/garampat
+	..
+0
+D/home/garampat
+	..
+0
+D/home/garampat/ai2c/mft
+	..
+0
+D/home/garampat/ai2c
+	..
+0
+D/home/garampat/ai2c/mft
+	..
+0
+D/home/garampat
+	..
+0
+D/home/garampat/projects/am211_2021
+	..
+0
+D/home/garampat/projects/am211_2021/assignment_6/solution
+	..
+0
+D
+
+# Command line history (oldest to newest):
+:cds
+:cd /scratch/garampat/
+:za
+:zo
+:wq
+:set dotfiles
+:open unzip_all.sh
+:touch unzip_all.sh
+:sh
+:w
+:du _results
+:set statusline="  %t%= %A %10u:%-7g %15s %6E %20d  "
+:!du _results/
+:shell
+:q
+
+# Search history (oldest to newest):
+/pr
+
+# Prompt history (oldest to newest):
+pprocess_all.sh
+pcustom_consolidated_book.cfg
+
+# Local filter history (oldest to newest):
+
+# Registers:
+""/home/garampat/ai2c/mft/preprocess/lob/messages.py
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/home/garampat/.local/share/vifm/Trash/000_.20210913_consolidated_levels_00000.csv.swo
+	/raid/garampat/.20210913_consolidated_levels_00000.csv.swo
+t/home/garampat/.local/share/vifm/Trash/000_.20210913_consolidated_levels_00000.csv.swp
+	/raid/garampat/.20210913_consolidated_levels_00000.csv.swp
+t/home/garampat/.local/share/vifm/Trash/000_.~lock.20210913_consolidated_levels_00000.csv#
+	/raid/garampat/.~lock.20210913_consolidated_levels_00000.csv#
+t/home/garampat/.local/share/vifm/Trash/000_mhf-lob
+	/home/garampat/mhf-lob
+t/home/garampat/.local/share/vifm/Trash/000_.ipynb_checkpoints
+	/home/garampat/ai2c/mhf-lob/code_gpu/.ipynb_checkpoints
+t/home/garampat/.local/share/vifm/Trash/000_test.txt_LOB_*.csv
+	/raid/garampat/test.txt_LOB_*.csv
+t/home/garampat/.local/share/vifm/Trash/000_20210914_consolidated_levels_00001.csv.bz2
+	/raid/garampat/20210914_consolidated_levels_00001.csv.bz2
+t/home/garampat/.local/share/vifm/Trash/000_CMakeFiles
+	/home/garampat/ai2c/bellport/example/CMakeFiles
+t/home/garampat/.local/share/vifm/Trash/000_CMakeCache.txt
+	/home/garampat/ai2c/bellport/example/CMakeCache.txt
+t/home/garampat/.local/share/vifm/Trash/000_.custom_consolidated_book.cpp.swp
+	/home/garampat/ai2c/bellport/example/.custom_consolidated_book.cpp.swp
+t/home/garampat/.local/share/vifm/Trash/000_cmake_install.cmake
+	/home/garampat/ai2c/bellport/example/cmake_install.cmake
+t/home/garampat/.local/share/vifm/Trash/000_custom_consolidated_book.cfg
+	/home/garampat/ai2c/bellport/example/build/custom_consolidated_book.cfg
+t/home/garampat/.local/share/vifm/Trash/000_.20210913_consolidated_trades_00000.csv.swp
+	/raid/garampat/.20210913_consolidated_trades_00000.csv.swp
+t/home/garampat/.local/share/vifm/Trash/000_20210913_consolidated_levels_00000.csv
+	/raid/garampat/20210913_consolidated_levels_00000.csv
+t/home/garampat/.local/share/vifm/Trash/000_utc.py
+	/raid/garampat/process-data/utc.py
+t/home/garampat/.local/share/vifm/Trash/000_AAPL,GOOG.feather
+	/raid/garampat/maystreet_data/2019/12/05/AAPL,GOOG.feather
+t/home/garampat/.local/share/vifm/Trash/000_data.json
+	/home/garampat/projects/am211_2021/assignment_6/solution/code/data.json
+t/home/garampat/.local/share/vifm/Trash/000_models
+	/home/garampat/projects/am211_2021/assignment_6/solution/code/models
+
+# State:
+f
+i1
+[.0
+[F
+F
+I1
+].0
+]F
+s0
