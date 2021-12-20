@@ -4,7 +4,8 @@ echo "Exporting variables..."
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
-export FZF_DEFAULT_COMMAND='find .'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
@@ -44,6 +45,11 @@ if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
   export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:${LD_LIBRARY_PATH}
   export CUDA_HOME=/usr/local/cuda
+fi
+
+# aws fileserver
+if [[ $HOST_NAME == *"ip-172-16-1-65"* ]]; then
+  export PATH="$HOME/.local/bin:${PATH}"
 fi
 
 echo "Done exporting variables."

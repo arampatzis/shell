@@ -62,3 +62,7 @@ if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
   alias cds='cd /scratch/garampat'
 fi
 
+# aws fileserver
+if [[ $HOST_NAME == *"ip-172-16-1-65"* ]]; then
+  alias cds='cd /mnt/efs/fs1/'
+fi

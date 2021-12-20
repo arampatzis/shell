@@ -4,11 +4,11 @@
 'b
 	/home/garampat/bin/
 	..
-1632520496
+1639676018
 'h
 	/home/garampat/
 	..
-1632520496
+1639676018
 
 # Bookmarks:
 
@@ -22,363 +22,309 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/home/garampat/ai2c/data/maystreet/bellport
-	cmake
-3
-d/home/garampat/ai2c/data/maystreet/bellport/cmake
+d/home
+	garampat
+1
+d/home/garampat/.bellport
 	..
 0
-d/home/garampat/ai2c/data/maystreet/bellport
-	example
-4
-d/home/garampat/ai2c/data/maystreet/bellport/example
-	xdp_ticker.cpp
-32
-d/home/garampat/ai2c/data/maystreet/bellport
-	bin
+d/home/garampat/.bellport/licenses
+	..
+0
+d/home/garampat/.bellport
+	licenses
 1
-d/home/garampat/ai2c/data/maystreet/bellport/bin
-	mdtop
-3
-d/home/garampat/ai2c/data/maystreet/bellport
-	example
-4
-d/home/garampat/ai2c/data/maystreet/bellport/example
-	xdp_ticker.cpp
-32
-d/home/garampat/ai2c/data/maystreet/bellport
-	example
-4
-d/home/garampat/ai2c/data/maystreet/bellport/example
-	us_equities_proc_man_ticker.cpp
-28
-d/home/garampat
-	projects
-15
-d/home/garampat/projects
-	shell
-8
-d/home/garampat/projects/shell
-	oh-my-bash
-5
+d/home/garampat/.local
+	share
+1
+d/home/garampat/.local/share
+	..
+0
+d/home/garampat/.local
+	share
+1
+d/home
+	garampat
+1
+d/mnt/efs/fs1/processed
+	2019
+1
+d/mnt/efs/fs1/processed/2019
+	01
+1
+d/mnt/efs/fs1/processed/2019/01
+	02
+1
+d/mnt/efs/fs1/processed/2019/01/02
+	AAPL.csv
+1
+d/mnt/efs/fs1/processed/2019/01
+	03
+2
+d/mnt/efs/fs1/processed/2019/01/03
+	..
+0
+d/mnt/efs/fs1/processed/2019/01
+	03
+2
+d/mnt/efs/fs1/processed/2019/01/03
+	..
+0
+d/mnt/efs/fs1/processed/2019/01
+	03
+2
+d/mnt/efs/fs1/processed/2019/01/03
+	..
+0
+d/mnt/efs/fs1/processed/2019/01
+	03
+2
+d/mnt/efs/fs1/processed/2019/01/03
+	..
+0
+d/mnt/efs/fs1/processed/2019/01
+	03
+2
+d/mnt/efs/fs1/processed/2019/01/03
+	..
+0
+d/mnt/efs/fs1/processed/2019/01
+	03
+2
+d/mnt/efs/fs1/processed/2019/01/03
+	..
+0
+d/mnt/efs/fs1/processed/2019/01
+	03
+2
+d/mnt/efs/fs1/processed/2019/01/03
+	..
+0
 d/home/garampat/projects/shell/oh-my-bash
 	custom
 1
 d/home/garampat/projects/shell/oh-my-bash/custom
-	xexports.sh
-7
-d/home/garampat/ai2c/bellport/example
-	CMakeFiles
+	aliases
 1
-d/home/garampat/ai2c/bellport/example/CMakeFiles
-	consolidated_book.dir
-6
-d/home/garampat/ai2c/bellport/example
-	bats_pitch_ticker.cfg
-3
-d/home/garampat/ai2c/bellport/example/build
-	..
-0
-d/home/garampat/ai2c/bellport/example
-	build
+d/home/garampat/projects/shell/oh-my-bash/custom/aliases
+	custom.aliases.sh
 1
-d/home/garampat/ai2c/bellport/example/build
-	iex_ticker
-12
-d/home/garampat/ai2c/bellport/example
-	build
-1
-d/home/garampat/ai2c/bellport/example/build
-	bats_pitch_ticker
-4
-d/home/garampat/ai2c/bellport/example
-	memoir_ticker.cfg
-18
-d/raid/garampat/process-data
-	reconstruct_lob.py
-3
-d/raid/garampat
-	process-data
-2
-d/raid/garampat/process-data
-	reconstruct_lob.py
-4
-d/home/garampat
-	projects
-15
-d/home
-	garampat
-6
-d/home/garampat
-	projects
-15
-d/home/garampat/projects
-	korali-test
-6
-d/home/garampat
-	projects
-15
-d/home
-	garampat
-6
-d/home/garampat/ai2c/mft
-	..
-0
-d/home/garampat/ai2c
-	mft
-2
-d/home/garampat/ai2c/mft
-	preprocess
-3
-d/home/garampat/ai2c/mft/preprocess
-	..
-0
-d/home/garampat/ai2c/mft
-	preprocess
-3
-d/home/garampat/ai2c
-	mhf-lob
-3
-d/home/garampat/ai2c/mhf-lob
-	code_gpu
-2
-d/home/garampat/ai2c/mhf-lob/code_gpu
-	.gitignore
-2
-d/home/garampat/ai2c/mhf-lob
-	code_gpu
-2
-d/home/garampat/ai2c
-	mft
-2
-d/home/garampat/ai2c/mft
-	preprocess
-3
-d/home/garampat/ai2c/mft/preprocess
-	lob
-1
-d/home/garampat/ai2c/mft/preprocess/lob
-	..
-0
-d/home/garampat/ai2c/mft/preprocess
-	reconstruct_lob.py
-2
-d/home/garampat/ai2c/mft
-	preprocess
-3
-d/home/garampat/ai2c/mft/preprocess
-	reconstruct_lob.py
-2
-d/home/garampat
-	.ssh
-12
-d/home/garampat/.ssh
-	id_rsa.pub
-4
-d/home/garampat/projects/am211_2021
-	assignment_6
-7
-d/home/garampat/projects/am211_2021/assignment_6
-	solution
-1
-d/home/garampat/projects/am211_2021/assignment_6/solution
-	code
-1
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	_results
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
-	_korali_results_np_1_200_9
-22
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results/_korali_results_np_1_200_9
-	..
-0
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
-	_korali_results_np_1_2000_2
-35
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results/_korali_results_np_1_2000_2
-	..
-0
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
-	_korali_results_np_1_4000_9
-42
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results/_korali_results_np_1_4000_9
-	..
-0
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
-	_korali_results_np_1_4000_9
-42
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	models
-3
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/models
-	..
-0
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	_results
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
-	..
-0
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	_results
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/_results
-	_korali_results_np_1_5000_0
-41
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	_results
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution
-	code
-1
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	unknown_variance
-4
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/unknown_variance
-	run-inference.py
-8
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	known_variance
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/known_variance
-	..
-0
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	known_variance
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution
-	code
-1
-d/home/garampat/projects/am211_2021/assignment_6
-	solution
-1
-d/home/garampat/projects/am211_2021/assignment_6/solution
-	code
-1
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	known_variance
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/known_variance
-	plots.py
-7
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	known_variance
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution/code/known_variance
-	run-inference.py
-12
-d/home/garampat/projects/am211_2021/assignment_6/solution/code
-	known_variance
-2
-d/home/garampat/projects/am211_2021/assignment_6/solution
-	code
-1
-d/home/garampat/projects/am211_2021/assignment_6
-	solution
-1
-d/home/garampat/projects/am211_2021
-	assignment_6
-7
 d/home/garampat/projects
 	covid19
 3
 d/home/garampat
 	ai2c
 14
-d/home/garampat/ai2c
-	mhf-lob
-3
-d/home/garampat/ai2c/mhf-lob
-	code_gpu
-2
-d/home/garampat/ai2c
-	mft
-2
-d/home/garampat/ai2c/mft
-	preprocess
-3
-d/home/garampat/ai2c/mft/preprocess
-	lob
-1
-d/home/garampat/ai2c/mft/preprocess/lob
-	messages.py
-4
-d/home/garampat/ai2c/mft/preprocess
-	lob
-1
-d/home/garampat/ai2c/mft
-	preprocess
-3
-d/home/garampat/ai2c
-	mft
-2
-d/home/garampat
-	projects
-15
 d/home/garampat/projects
 	shell
 9
 d/home/garampat/projects/shell
 	.gitignore
 6
+d/mnt/efs/fs1
+	maystreet
+1
+d/mnt/efs/fs1/maystreet
+	data
+1
+d/mnt/efs/fs1/maystreet/data
+	builds
+1
+d/mnt/efs/fs1/maystreet/data/builds
+	..
+0
+d/mnt/efs/fs1/maystreet/data
+	licenses
+2
+d/mnt/efs/fs1/maystreet/data/licenses
+	..
+0
+d/mnt/efs/fs1/maystreet/data
+	licenses
+2
+d/mnt/efs/fs1/maystreet
+	days
+2
+d/mnt/efs/fs1/maystreet/days
+	kraken_json
+7
+d/mnt/efs/fs1/maystreet/days/kraken_json
+	2021
+1
+d/mnt/efs/fs1/maystreet/days/kraken_json/2021
+	11
+1
+d/mnt/efs/fs1/maystreet/days/kraken_json/2021/11
+	01
+1
+d/mnt/efs/fs1/maystreet/days/kraken_json/2021/11/01
+	.DONE
+1
+d/mnt/efs/fs1/maystreet/days/kraken_json/2021/11
+	01
+1
+d/mnt/efs/fs1/maystreet/days/kraken_json/2021
+	11
+1
+d/mnt/efs/fs1/maystreet/days/kraken_json
+	2021
+1
+d/mnt/efs/fs1/maystreet/days
+	kraken_json
+7
+d/mnt/efs/fs1/maystreet
+	days
+2
+d/mnt/efs/fs1
+	maystreet
+1
+d/mnt/efs/fs1/maystreet
+	feeds
+3
+d/mnt/efs/fs1/maystreet/feeds
+	total_view
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view
+	..
+0
+d/mnt/efs/fs1/maystreet/feeds
+	total_view_bx
+2
+d/mnt/efs/fs1/maystreet/feeds/total_view_bx
+	2020
+2
+d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020
+	12
+12
+d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020/12
+	01
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020/12/01
+	..
+0
+d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020/12
+	01
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020
+	12
+12
+d/mnt/efs/fs1/maystreet/feeds/total_view_bx
+	2020
+2
+d/mnt/efs/fs1/maystreet/feeds
+	total_view
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view
+	2020
+2
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020
+	01
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
+	02
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01/02
+	..
+0
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
+	02
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020
+	01
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view
+	2020
+2
+d/mnt/efs/fs1/maystreet/feeds
+	total_view
+1
+d/mnt/efs/fs1/maystreet
+	feeds
+3
+d/mnt/efs/fs1
+	maystreet
+1
+d/mnt/efs
+	fs1
+1
+d/mnt/efs/fs1
+	maystreet
+1
+d/mnt/efs/fs1/maystreet
+	feeds
+3
+d/mnt/efs/fs1
+	maystreet
+1
+d/mnt/efs/fs1/maystreet
+	feeds
+3
+d/mnt/efs/fs1/maystreet/feeds
+	total_view
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view
+	2020
+2
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020
+	01
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
+	02
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01/02
+	..
+0
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
+	02
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view/2020
+	01
+1
+d/mnt/efs/fs1/maystreet/feeds/total_view
+	2020
+2
+d/mnt/efs/fs1/maystreet/feeds
+	total_view
+1
+d/mnt/efs/fs1/maystreet
+	feeds
+3
+d/mnt/efs/fs1
+	maystreet
+1
+d/home/garampat/projects/mft/preprocess
+	run-all.sh
+3
+d/home/garampat
+	bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
+1
+d/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
+	bin
+1
+d/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm/bin
+	..
+0
+d/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
+	bin
+1
+d/home/garampat
+	projects
+1
+d/home/garampat/projects/mft/preprocess
+	run-all.sh
+3
+d/home/garampat/projects/mft
+	preprocess
+2
+d/home/garampat/projects/mft/preprocess
+	compress.py
+2
 d
 
 # Right window history (oldest to newest):
-D/home/garampat/projects/am211_2021/assignment_6/solution/code
-	..
-0
-D/scratch/garampat
-	maystreet_data
-1
-D/scratch/garampat/maystreet_data
-	..
-0
-D/scratch/garampat
-	process-data
-2
-D/scratch/garampat/process-data
-	.tags
-1
 D/home/garampat/projects/shell
 	..
 0
-D/home/garampat/ai2c
-	mhf-lob
-2
-D/home/garampat/ai2c/mhf-lob
-	code_gpu
-2
-D/home/garampat/ai2c/mhf-lob/code_gpu
-	model_gpu.py
-6
-D/home/garampat/ai2c
-	..
-0
-D/home/garampat/ai2c/data/maystreet/bellport
-	..
-0
-D/home/garampat/ai2c/data/maystreet
-	..
-0
-D/home/garampat/ai2c/data/maystreet/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
-	
-0
-D/home/garampat/ai2c/data/maystreet
-	..
-0
-D/home/garampat/ai2c/data
-	maystreet
-1
-D/home/garampat/ai2c/data/maystreet
-	..
-0
-D/home/garampat/ai2c/data
-	maystreet
-1
-D/raid/garampat
-	20210913_consolidated_levels_00000.csv
-2
 D/home/garampat/projects/shell/oh-my-bash/custom
 	plugins
 3
@@ -388,55 +334,16 @@ D/home/garampat/projects
 D/home/garampat
 	..
 0
-D/raid/garampat
-	20210913_consolidated_levels_00000.csv
-2
-D/home/garampat
+D/mnt/efs/fs1
 	..
 0
-D/raid/garampat
-	20210913_consolidated_levels_00000.csv
-2
-D/home/garampat/.bellport
-	..
-0
-D/home/garampat/ai2c/data/maystreet/bellport
+D/home/garampat/projects/mft/preprocess
 	..
 0
 D/home/garampat
 	..
 0
-D/home/garampat/ai2c/bellport/example
-	..
-0
-D/home/garampat/ai2c/bellport/example/build
-	..
-0
-D/raid/garampat/process-data
-	..
-0
-D/raid/garampat
-	..
-0
-D/home/garampat
-	..
-0
-D/home/garampat/ai2c/mft
-	..
-0
-D/home/garampat/ai2c
-	..
-0
-D/home/garampat/ai2c/mft
-	..
-0
-D/home/garampat
-	..
-0
-D/home/garampat/projects/am211_2021
-	..
-0
-D/home/garampat/projects/am211_2021/assignment_6/solution
+D/home/garampat/projects/mft/preprocess
 	..
 0
 D
@@ -468,7 +375,7 @@ pcustom_consolidated_book.cfg
 # Local filter history (oldest to newest):
 
 # Registers:
-""/home/garampat/ai2c/mft/preprocess/lob/messages.py
+""/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic
 
 # Directory stack (oldest to newest):
 
@@ -509,14 +416,26 @@ t/home/garampat/.local/share/vifm/Trash/000_data.json
 	/home/garampat/projects/am211_2021/assignment_6/solution/code/data.json
 t/home/garampat/.local/share/vifm/Trash/000_models
 	/home/garampat/projects/am211_2021/assignment_6/solution/code/models
+t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm.tar.gz
+	/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm.tar.gz
+t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.10914.29fb0-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-us_direct.tar.gz
+	/home/garampat/bellport-v1.0.10914.29fb0-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-us_direct.tar.gz
+t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic.tar.gz
+	/home/garampat/bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic.tar.gz
+t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
+	/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
+t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.10914.29fb0-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-us_direct
+	/home/garampat/bellport-v1.0.10914.29fb0-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-us_direct
+t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic
+	/home/garampat/bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic
 
 # State:
 f
 i1
-[.0
+[.1
 [F
 F
 I1
-].0
+].1
 ]F
 s0
