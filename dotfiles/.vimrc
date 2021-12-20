@@ -37,6 +37,8 @@ Plug 'stsewd/fzf-checkout.vim'
 
 Plug 'ycm-core/YouCompleteMe'
 
+Plug 'vim-scripts/indentpython.vim'
+
 call plug#end()
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -46,20 +48,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 "----------------------------------------------------------------------------
-" vim-fugitive
-nmap <leader>gs :G<CR>
-nmap <leader>gd :Gitt diff<CR>
-nmap <leader>gc :GCheckout<CR>
-nmap <leader>gh :0Glog<CR>
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 "----------------------------------------------------------------------------
 " UltiSnip
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"

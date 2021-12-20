@@ -20,7 +20,7 @@ alias euler='ssh -Y euler.ethz.ch'
 alias panda='ssh -Y panda.ethz.ch'
 alias barry='ssh -Y barry.ethz.ch'
 
-alias awsfileserver='ssh -i ~/.ssh/id_rsa_aws garampat@172.16.1.65'
+alias awsfileserver='ssh -Y -i ~/.ssh/id_rsa_aws garampat@172.16.1.65'
 
 alias pythonpath='echo -e ${PYTHONPATH//:/\\n}'
 alias librarypath='echo -e ${LIBRARY_PATH//:/\\n}'
