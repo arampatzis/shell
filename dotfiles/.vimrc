@@ -1,11 +1,8 @@
-" File              : .vimrc
-" Author            : George Arampatzis <garampat@ethz.ch>
 " Date              : 08.03.2021
-" Last Modified Date: 24.11.2021
+" Last Modified Date: 08.01.2022 16:05
 " Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 let mapleader = " "
-
 "----------------------------------------------------------------------------
 " vim-plug plugin manager
 " run :PlugInstall after adding a new plugin
@@ -46,7 +43,13 @@ Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
-"----------------------------------------------------------------------------
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" ----------------------------------------------------------------------------
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
 
@@ -88,10 +91,11 @@ let $FZF_DEFAULT_OPTS='--reverse'
 
 "----------------------------------------------------------------------------
 " vim header
+let g:header_auto_add_header = 0
+let g:header_auto_update_header = 1
 let g:header_field_author = 'George Arampatzis'
 let g:header_field_author_email = 'garampat@ethz.ch'
-let g:header_auto_add_header = 0
-let g:header_field_timestamp_format = '%d.%m.%Y'
+let g:header_field_timestamp_format = '%d.%m.%Y %H:%M'
 nmap <C-c> :AddHeader<CR>
 
 "----------------------------------------------------------------------------
@@ -101,8 +105,7 @@ let g:autotagTagsFile=".tags"
 
 "----------------------------------------------------------------------------
 " Set the working directory to the current file
-set autochdir
-"autocmd BufEnter * silent! lcd %:p:h
+" set autochdir
 
 " sets the behaviour of backspace to the expected
 set backspace=indent,eol,start
