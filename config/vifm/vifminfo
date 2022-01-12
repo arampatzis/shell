@@ -2,13 +2,13 @@
 
 # Marks:
 'b
-	/home/garampat/bin/
+	/home/garampat//bin/
 	..
-1639676018
+1641299845
 'h
-	/home/garampat/
+	/home/garampat//
 	..
-1639676018
+1641299845
 
 # Bookmarks:
 
@@ -22,30 +22,111 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/home
-	garampat
-1
-d/home/garampat/.bellport
+d/mnt/efs/fs1/processed/2020/06/01
 	..
 0
-d/home/garampat/.bellport/licenses
+d/home/garampat/projects/lobster
+	run-all.sh
+5
+d/mnt/efs/fs1
+	processed
+3
+d/mnt/efs/fs1/processed
+	2020
+2
+d/mnt/efs/fs1/processed/2020
+	01
+1
+d/mnt/efs/fs1/processed/2020/01
+	02
+1
+d/mnt/efs/fs1/processed/2020/01/02
 	..
 0
-d/home/garampat/.bellport
-	licenses
-1
-d/home/garampat/.local
-	share
-1
-d/home/garampat/.local/share
+d/mnt/efs/fs1/processed/2020/01
+	03
+2
+d/mnt/efs/fs1/processed/2020/01/03
 	..
 0
-d/home/garampat/.local
-	share
+d/mnt/efs/fs1/processed/2020/01
+	06
+3
+d/mnt/efs/fs1/processed/2020/01/06
+	..
+0
+d/mnt/efs/fs1/processed/2020/01
+	07
+4
+d/mnt/efs/fs1/processed/2020
+	01
 1
-d/home
-	garampat
+d/mnt/efs/fs1/processed
+	2019
 1
+d/mnt/efs/fs1/processed/2019
+	..
+0
+d/mnt/efs/fs1/processed
+	2020
+2
+d/mnt/efs/fs1/processed/2020
+	12
+12
+d/mnt/efs/fs1/processed/2020/12
+	31
+22
+d/mnt/efs/fs1/processed/2020/12/31
+	..
+0
+d/mnt/efs/fs1/processed/2020/12
+	31
+22
+d/mnt/efs/fs1/processed/2020/12/31
+	..
+0
+d/mnt/efs/fs1/processed/2020/12
+	30
+21
+d/mnt/efs/fs1/processed/2020/12/30
+	..
+0
+d/mnt/efs/fs1/processed/2020/12
+	29
+20
+d/mnt/efs/fs1/processed/2020/12/29
+	..
+0
+d/mnt/efs/fs1/processed/2020/12
+	29
+20
+d/mnt/efs/fs1/processed/2020
+	03
+3
+d/mnt/efs/fs1/processed/2020/03
+	05
+4
+d/mnt/efs/fs1/processed/2020/03/05
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	05
+4
+d/mnt/efs/fs1/processed/2020
+	10
+10
+d/mnt/efs/fs1/processed/2020/10
+	13
+9
+d/mnt/efs/fs1/processed/2020/10/13
+	..
+0
+d/mnt/efs/fs1/processed/2020/10
+	13
+9
+d/mnt/efs/fs1/processed/2020
+	10
+10
 d/mnt/efs/fs1/processed
 	2019
 1
@@ -53,275 +134,203 @@ d/mnt/efs/fs1/processed/2019
 	01
 1
 d/mnt/efs/fs1/processed/2019/01
-	02
+	..
+0
+d/mnt/efs/fs1/processed/2019
+	01
 1
-d/mnt/efs/fs1/processed/2019/01/02
+d/mnt/efs/fs1/processed
+	2019
+1
+d/mnt/efs/fs1/processed/2020
+	10
+10
+d/mnt/efs/fs1/processed/2020/10
+	14
+10
+d/mnt/efs/fs1/processed/2020/10/14
 	AAPL.csv
 1
-d/mnt/efs/fs1/processed/2019/01
-	03
-2
-d/mnt/efs/fs1/processed/2019/01/03
+d/mnt/efs/fs1/processed/2020/10
+	14
+10
+d/mnt/efs/fs1/processed/2020
+	12
+12
+d/mnt/efs/fs1/processed/2020/12
+	31
+22
+d/mnt/efs/fs1/processed/2020/12/31
 	..
 0
-d/mnt/efs/fs1/processed/2019/01
-	03
-2
-d/mnt/efs/fs1/processed/2019/01/03
-	..
-0
-d/mnt/efs/fs1/processed/2019/01
-	03
-2
-d/mnt/efs/fs1/processed/2019/01/03
-	..
-0
-d/mnt/efs/fs1/processed/2019/01
-	03
-2
-d/mnt/efs/fs1/processed/2019/01/03
-	..
-0
-d/mnt/efs/fs1/processed/2019/01
-	03
-2
-d/mnt/efs/fs1/processed/2019/01/03
-	..
-0
-d/mnt/efs/fs1/processed/2019/01
-	03
-2
-d/mnt/efs/fs1/processed/2019/01/03
-	..
-0
-d/mnt/efs/fs1/processed/2019/01
-	03
-2
-d/mnt/efs/fs1/processed/2019/01/03
-	..
-0
-d/home/garampat/projects/shell/oh-my-bash
-	custom
-1
-d/home/garampat/projects/shell/oh-my-bash/custom
-	aliases
-1
-d/home/garampat/projects/shell/oh-my-bash/custom/aliases
-	custom.aliases.sh
-1
-d/home/garampat/projects
-	covid19
-3
-d/home/garampat
-	ai2c
+d/mnt/efs/fs1/processed/2020/12
+	18
 14
-d/home/garampat/projects
-	shell
-9
-d/home/garampat/projects/shell
-	.gitignore
-6
-d/mnt/efs/fs1
-	maystreet
-1
-d/mnt/efs/fs1/maystreet
-	data
-1
-d/mnt/efs/fs1/maystreet/data
-	builds
-1
-d/mnt/efs/fs1/maystreet/data/builds
+d/mnt/efs/fs1/processed/2020/12/18
 	..
 0
-d/mnt/efs/fs1/maystreet/data
-	licenses
-2
-d/mnt/efs/fs1/maystreet/data/licenses
-	..
-0
-d/mnt/efs/fs1/maystreet/data
-	licenses
-2
-d/mnt/efs/fs1/maystreet
-	days
-2
-d/mnt/efs/fs1/maystreet/days
-	kraken_json
-7
-d/mnt/efs/fs1/maystreet/days/kraken_json
-	2021
-1
-d/mnt/efs/fs1/maystreet/days/kraken_json/2021
-	11
-1
-d/mnt/efs/fs1/maystreet/days/kraken_json/2021/11
-	01
-1
-d/mnt/efs/fs1/maystreet/days/kraken_json/2021/11/01
-	.DONE
-1
-d/mnt/efs/fs1/maystreet/days/kraken_json/2021/11
-	01
-1
-d/mnt/efs/fs1/maystreet/days/kraken_json/2021
-	11
-1
-d/mnt/efs/fs1/maystreet/days/kraken_json
-	2021
-1
-d/mnt/efs/fs1/maystreet/days
-	kraken_json
-7
-d/mnt/efs/fs1/maystreet
-	days
-2
-d/mnt/efs/fs1
-	maystreet
-1
-d/mnt/efs/fs1/maystreet
-	feeds
-3
-d/mnt/efs/fs1/maystreet/feeds
-	total_view
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view
-	..
-0
-d/mnt/efs/fs1/maystreet/feeds
-	total_view_bx
-2
-d/mnt/efs/fs1/maystreet/feeds/total_view_bx
-	2020
-2
-d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020
+d/mnt/efs/fs1/processed/2020/12
+	18
+14
+d/mnt/efs/fs1/processed/2020
 	12
 12
-d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020/12
-	01
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020/12/01
-	..
-0
-d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020/12
-	01
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view_bx/2020
-	12
-12
-d/mnt/efs/fs1/maystreet/feeds/total_view_bx
+d/mnt/efs/fs1/processed
 	2020
 2
-d/mnt/efs/fs1/maystreet/feeds
-	total_view
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view
-	2020
-2
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020
-	01
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
-	02
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01/02
-	..
-0
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
-	02
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020
-	01
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view
-	2020
-2
-d/mnt/efs/fs1/maystreet/feeds
-	total_view
-1
-d/mnt/efs/fs1/maystreet
-	feeds
-3
 d/mnt/efs/fs1
-	maystreet
-1
-d/mnt/efs
-	fs1
-1
-d/mnt/efs/fs1
-	maystreet
-1
-d/mnt/efs/fs1/maystreet
-	feeds
-3
-d/mnt/efs/fs1
-	maystreet
-1
-d/mnt/efs/fs1/maystreet
-	feeds
-3
-d/mnt/efs/fs1/maystreet/feeds
-	total_view
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view
-	2020
-2
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020
-	01
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
-	02
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01/02
-	..
-0
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020/01
-	02
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view/2020
-	01
-1
-d/mnt/efs/fs1/maystreet/feeds/total_view
-	2020
-2
-d/mnt/efs/fs1/maystreet/feeds
-	total_view
-1
-d/mnt/efs/fs1/maystreet
-	feeds
-3
-d/mnt/efs/fs1
-	maystreet
-1
-d/home/garampat/projects/mft/preprocess
-	run-all.sh
+	processed
 3
 d/home/garampat
-	bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
-1
-d/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
-	bin
-1
-d/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm/bin
-	..
-0
-d/home/garampat/bellport-v1.0.10841.6fdc7-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-mstnorm
-	bin
+	projects
+9
+d/home/garampat/projects
+	lobster
 1
 d/home/garampat
 	projects
 1
-d/home/garampat/projects/mft/preprocess
+d/home/garampat/projects
+	lobster
+1
+d/home/garampat/projects/lobster
 	run-all.sh
 3
-d/home/garampat/projects/mft
-	preprocess
+d/mnt/efs/fs1
+	processed
 2
-d/home/garampat/projects/mft/preprocess
-	compress.py
+d/mnt/efs/fs1/processed
+	2020
+2
+d/mnt/efs/fs1/processed/2020
+	12
+12
+d/mnt/efs/fs1/processed/2020/12
+	18
+14
+d/mnt/efs/fs1/processed/2020/12/18
+	..
+0
+d/mnt/efs/fs1/processed/2020/12
+	09
+7
+d/mnt/efs/fs1/processed/2020
+	04
+4
+d/mnt/efs/fs1/processed/2020/04
+	14
+9
+d/mnt/efs/fs1/processed/2020/04/14
+	..
+0
+d/mnt/efs/fs1/processed/2020/04
+	08
+6
+d/mnt/efs/fs1/processed/2020
+	03
+3
+d/mnt/efs/fs1/processed/2020/03
+	26
+19
+d/mnt/efs/fs1/processed/2020/03/26
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	17
+12
+d/mnt/efs/fs1/processed/2020/03/17
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	05
+4
+d/mnt/efs/fs1/processed/2020/03/05
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	05
+4
+d/mnt/efs/fs1/processed/2020
+	04
+4
+d/mnt/efs/fs1/processed/2020/04
+	08
+6
+d/mnt/efs/fs1/processed/2020/04/08
+	..
+0
+d/mnt/efs/fs1/processed/2020/04
+	07
+5
+d/mnt/efs/fs1/processed/2020
+	03
+3
+d/mnt/efs/fs1/processed/2020/03
+	31
+22
+d/mnt/efs/fs1/processed/2020/03/31
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	26
+19
+d/mnt/efs/fs1/processed/2020/03/26
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	27
+20
+d/mnt/efs/fs1/processed/2020/03/27
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	30
+21
+d/mnt/efs/fs1/processed/2020/03/30
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	27
+20
+d/mnt/efs/fs1/processed/2020/03/27
+	..
+0
+d/mnt/efs/fs1/processed/2020/03
+	27
+20
+d/mnt/efs/fs1
+	processed
+2
+d/mnt/efs/fs1/processed
+	2020
+2
+d/mnt/efs/fs1/processed/2020
+	01
+1
+d/mnt/efs/fs1/processed/2020/01
+	02
+1
+d/mnt/efs/fs1/processed/2020/01/02
+	..
+0
+d/mnt/efs/fs1/processed/2020/01
+	02
+1
+d/mnt/efs/fs1/processed/2020
+	01
+1
+d/mnt/efs/fs1/processed
+	2020
 2
 d
 
 # Right window history (oldest to newest):
+D/mnt/efs/fs1/processed/2020/03
+	..
+0
+D/mnt/efs/fs1/processed/2020/05/06
+	..
+0
 D/home/garampat/projects/shell
 	..
 0
@@ -346,6 +355,39 @@ D/home/garampat
 D/home/garampat/projects/mft/preprocess
 	..
 0
+D/home/garampat
+	..
+0
+D/home/garampat/.vim
+	..
+0
+D/home/garampat
+	..
+0
+D/home
+	garampat
+1
+D/home/garampat/projects/lobster
+	..
+0
+D/mnt/efs/fs1
+	..
+0
+D/home/garampat/projects/lobster
+	..
+0
+D/mnt/efs/fs1
+	..
+0
+D/mnt/efs/fs1/processed/2020
+	..
+0
+D/home/garampat
+	..
+0
+D/mnt/efs/fs1
+	..
+0
 D
 
 # Command line history (oldest to newest):
@@ -366,16 +408,18 @@ D
 :q
 
 # Search history (oldest to newest):
+/ohmy
 /pr
 
 # Prompt history (oldest to newest):
 pprocess_all.sh
 pcustom_consolidated_book.cfg
+plob_trim_old.py
 
 # Local filter history (oldest to newest):
 
 # Registers:
-""/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic
+""/home/garampat/projects/lobster/lobster/lob_trim.py
 
 # Directory stack (oldest to newest):
 
@@ -428,6 +472,10 @@ t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.10914.29fb0-ubu18.04-a
 	/home/garampat/bellport-v1.0.10914.29fb0-ubu18.04-amd64-gcc10.3.0-libc2.27-onload-7.1.2.141-us_direct
 t/home/garampat/.local/share/vifm/Trash/000_bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic
 	/home/garampat/bellport-v1.0.11387.2734c-ubu20.04-gcc9.3.0-libc2.31-onload-7.1.2.141-basic
+t/home/garampat//.local/share/vifm/Trash/000_preprocess
+	/home/garampat/projects/mft/preprocess
+t/mnt/efs/fs1/.vifm-Trash-1003/000_.vifm-Trash-1001
+	/mnt/efs/fs1/.vifm-Trash-1001
 
 # State:
 f
