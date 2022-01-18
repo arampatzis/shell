@@ -105,6 +105,7 @@ let g:autotagTagsFile=".tags"
 " sets the behaviour of backspace to the expected
 set backspace=indent,eol,start
 
+filetype plugin on
 filetype plugin indent on
 syntax on
 autocmd BufNewFile,BufRead *._cpp set filetype=cpp
