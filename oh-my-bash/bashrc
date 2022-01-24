@@ -90,6 +90,7 @@ plugins=(
   git
   bashmarks
   mountit
+  python-env
 )
 
 source $OSH/oh-my-bash.sh
