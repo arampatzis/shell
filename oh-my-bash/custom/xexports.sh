@@ -48,7 +48,7 @@ if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
 fi
 
 # aws fileserver
-if [[ $HOST_NAME == *"ip-172-16-1-65"* ]]; then
+i[[ $HOST_NAME == *"ip-172-31-20-160"* ]]; then
   export PATH="$HOME/.local/bin:${PATH}"
 fi
 
