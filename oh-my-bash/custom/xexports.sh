@@ -10,8 +10,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 if [[ $HOST_NAME == *"epicurus"* ]]; then
-  export CXX=gcc-10
-  export CC=g++-10
+  export CC=clang
+  export CXX=clang++
 
   export PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
   export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -24,6 +24,11 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
 
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
   export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
+
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
 fi
 
 
