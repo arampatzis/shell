@@ -91,6 +91,7 @@ plugins=(
   bashmarks
   mountit
   python-env
+  passwordless-ssh
 )
 
 source $OSH/oh-my-bash.sh
