@@ -41,6 +41,8 @@ Plug 'ycm-core/YouCompleteMe'
 
 Plug 'vim-scripts/indentpython.vim'
 
+Plug 'ntpeters/vim-better-whitespace'
+
 call plug#end()
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -48,6 +50,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" ----------------------------------------------------------------------------
+" vim-better-whitespace
+" clean whitespaces on save
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 
 " ----------------------------------------------------------------------------
 "  Fugitive
@@ -75,7 +83,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 "----------------------------------------------------------------------------
 " gruvbox
-set bg=dark 
+set bg=dark
 let g:gruvbox_contrast_dark = 'hard'  " hard, medium, soft
 autocmd vimenter * colorscheme gruvbox
 
@@ -176,8 +184,7 @@ set autowriteall
 " Highlight line and change cursor in insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-autocmd InsertEnter * set cul
-autocmd InsertLeave * set nocul
+set cursorline
 
 "----------------------------------------------------------------------------
 " Functions

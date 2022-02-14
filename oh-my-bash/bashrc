@@ -91,6 +91,7 @@ plugins=(
   bashmarks
   mountit
   python-env
+  passwordless-ssh
 )
 
 source $OSH/oh-my-bash.sh
@@ -116,3 +117,16 @@ export LC_ALL=en_US.UTF-8
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+
+
+vicd()
+{
+    local dst="$(command vifm --choose-dir - "$@")"
+    if [ -z "$dst" ]; then
+        echo 'Directory picking cancelled/failed'
+        return 1
+    fi
+    cd "$dst"
+}
