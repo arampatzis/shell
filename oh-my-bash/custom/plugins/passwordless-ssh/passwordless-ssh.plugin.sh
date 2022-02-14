@@ -2,7 +2,7 @@
 # File              : passwordless-ssh.plugin.sh
 # Author            : George Arampatzis <garampat@ethz.ch>
 # Date              : 29.01.2022 23:15
-# Last Modified Date: 29.01.2022 23:31
+# Last Modified Date: 30.01.2022 12:47
 # Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 
