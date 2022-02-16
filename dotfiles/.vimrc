@@ -65,7 +65,9 @@ nnoremap dfl :diffget //3<CR>
 
 " ----------------------------------------------------------------------------
 " YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_key_list_stop_completion = [ '<C-y>', '<Enter>' ]
 
 "----------------------------------------------------------------------------
 " UltiSnip
@@ -146,7 +148,7 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
-set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 set hlsearch
 
