@@ -2,7 +2,7 @@
 # File              : python-env.plugin.sh
 # Author            : George Arampatzis <garampat@ethz.ch>
 # Date              : 20.01.2022 18:00
-# Last Modified Date: 16.02.2022 14:07
+# Last Modified Date: 16.02.2022 13:33
 # Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 if [ -d ~/.venv ]; then
@@ -155,3 +155,4 @@ _complete_environments() {
 
 shopt -s progcomp
 complete -F _complete_environments ve -a
+complete -F _complete_environments ve -d
