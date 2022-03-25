@@ -2,7 +2,7 @@
 # File              : python-env.plugin.sh
 # Author            : George Arampatzis <garampat@ethz.ch>
 # Date              : 20.01.2022 18:00
-# Last Modified Date: 16.02.2022 13:33
+# Last Modified Date: 25.03.2022 13:08
 # Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 if [ -d ~/.venv ]; then
@@ -41,18 +41,18 @@ function ve {
     ;;
     # help
     -h)
-      _echo_usage
+      _echo_ve_usage
     ;;
     *)
       if [[ $1 == -* ]]; then
         # unrecognized option
         echo "Unknown option '$1'"
-        _echo_usage
+        _echo_ve_usage
         kill -SIGINT $$
         exit 1
       elif [[ $1 == "" ]]; then
         # no args supplied
-        _echo_usage
+        _echo_ve_usage
       else
         # non-option supplied as first arg
         _activate_environment "$1"
@@ -62,7 +62,7 @@ function ve {
 }
 
 
-_echo_usage() {
+_echo_ve_usage() {
   echo 'USAGE:'
   echo "ve -h                        - Prints this usage info."
   echo 've -s                        - Prints the save directory of environments.'
@@ -130,7 +130,7 @@ _delete_environment() {
             echo -e "${RED}Do you want to detele ${GREEN}${1}${RED} ? The directory ${GREEN}${env_dir}${RED} will be deleted.${RESET}"
             select yn in "Yes" "No"; do
                 case $yn in
-                    Yes ) rm -rf ${env_dir}; break
+                    Yo ) rm -rf ${env_dir}; break
                     ;;
                     No ) break
                     ;;
