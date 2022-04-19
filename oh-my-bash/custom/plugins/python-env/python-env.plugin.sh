@@ -2,7 +2,7 @@
 # File              : python-env.plugin.sh
 # Author            : George Arampatzis <garampat@ethz.ch>
 # Date              : 20.01.2022 18:00
-# Last Modified Date: 25.03.2022 13:08
+# Last Modified Date: 19.04.2022 12:14
 # Last Modified By  : George Arampatzis <garampat@ethz.ch>
 
 if [ -d ~/.venv ]; then
@@ -130,7 +130,7 @@ _delete_environment() {
             echo -e "${RED}Do you want to detele ${GREEN}${1}${RED} ? The directory ${GREEN}${env_dir}${RED} will be deleted.${RESET}"
             select yn in "Yes" "No"; do
                 case $yn in
-                    Yo ) rm -rf ${env_dir}; break
+                    Yes ) rm -rf ${env_dir}; break
                     ;;
                     No ) break
                     ;;
