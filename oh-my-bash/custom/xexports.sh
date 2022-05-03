@@ -5,7 +5,7 @@ export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
@@ -17,7 +17,7 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   export PATH="/usr/local/opt/llvm/bin:$PATH"
 
   export LIBRARY_PATH="$LIBRARY_PATH:`brew --prefix llvm`/lib"
-  
+
   # GNU flavored commands. e.g. ls
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
   export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"

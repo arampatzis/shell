@@ -41,11 +41,14 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'ycm-core/YouCompleteMe'
 
 Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
 
 Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'psf/black', { 'branch': 'stable' }
 
 call plug#end()
 
@@ -59,8 +62,6 @@ endif
 " ----------------------------------------------------------------------------
 " nerdtree
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeMinimalUI = 1
@@ -69,6 +70,16 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 set wildignore+=*.pyc,*.swp,*.DS_Store,*.egg-info,__pycache__
 let NERDTreeRespectWildIgnore=1
+
+" do not exit vim when delete a buffer
+" https://stackoverflow.com/a/16505009/9690756
+noremap <leader>q :bp<cr>:bd #<cr>
+
+
+" ----------------------------------------------------------------------------
+" ale
+let g:ale_python_pylint_change_directory = 0
+
 
 " ----------------------------------------------------------------------------
 " vim-better-whitespace
