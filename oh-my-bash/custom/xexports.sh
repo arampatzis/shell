@@ -17,7 +17,7 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   export PATH="/usr/local/opt/llvm/bin:$PATH"
 
   export LIBRARY_PATH="$LIBRARY_PATH:`brew --prefix llvm`/lib"
-  
+
   # GNU flavored commands. e.g. ls
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
   export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
@@ -53,7 +53,7 @@ if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
 fi
 
 # aws fileserver
-if [[ $HOSTNAME == *"dionysus"* ]]; then
+if [[ $HOSTNAME == *"maenad"* ]]; then
   export PATH="$HOME/.local/bin:${PATH}"
 fi
 
