@@ -16,8 +16,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
 
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 Plug 'tomtom/tcomment_vim'
 
@@ -26,22 +26,29 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'alpertuna/vim-header'
 
-" Enhanced C and C++ syntax highlighting
 Plug 'bfrg/vim-cpp-modern'
 
 Plug 'craigemery/vim-autotag'
 
 Plug 'SirVer/ultisnips'
+
 Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-fugitive'
+
 Plug 'stsewd/fzf-checkout.vim'
 
 Plug 'ycm-core/YouCompleteMe'
 
-Plug 'vim-scripts/indentpython.vim'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dense-analysis/ale'
 
 Plug 'ntpeters/vim-better-whitespace'
+
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'psf/black', { 'branch': 'stable' }
 
 call plug#end()
 
@@ -50,6 +57,29 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+
+" ----------------------------------------------------------------------------
+" nerdtree
+nnoremap <leader>n :NERDTreeFocus<CR>
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeMinimalUI = 1
+" close nerdtree if last
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+set wildignore+=*.pyc,*.swp,*.DS_Store,*.egg-info,__pycache__
+let NERDTreeRespectWildIgnore=1
+
+" do not exit vim when delete a buffer
+" https://stackoverflow.com/a/16505009/9690756
+noremap <leader>q :bp<cr>:bd #<cr>
+
+
+" ----------------------------------------------------------------------------
+" ale
+let g:ale_python_pylint_change_directory = 0
+
 
 " ----------------------------------------------------------------------------
 " vim-better-whitespace
@@ -117,7 +147,7 @@ nmap <C-c> :AddHeader<CR>
 "----------------------------------------------------------------------------
 " automatic ctags
 let g:autotagStartMethod='fork'
-let g:autotagTagsFile=".tags"
+let g:autotagTagsFile="tags"
 
 "----------------------------------------------------------------------------
 " Set the working directory to the current file
@@ -154,7 +184,7 @@ set hlsearch
 
 set number
 
-set tags=.tags
+set tags=tags
 
 if $TERM_PROGRAM =~ "iTerm"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
@@ -171,6 +201,7 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 " Two times Ctrl+N to set numbers On/Off
 nmap <C-N><C-N> :set invnumber<CR>
 
+" Set working directory to the current file
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 set wildchar=<Tab> wildmenu wildmode=full
