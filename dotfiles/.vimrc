@@ -18,6 +18,7 @@ Plug 'morhetz/gruvbox'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 
 Plug 'tomtom/tcomment_vim'
 
@@ -36,7 +37,6 @@ Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'stsewd/fzf-checkout.vim'
 
 Plug 'ycm-core/YouCompleteMe'
 
@@ -47,8 +47,6 @@ Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'psf/black', { 'branch': 'stable' }
 
 call plug#end()
 
@@ -75,17 +73,18 @@ let NERDTreeRespectWildIgnore=1
 " https://stackoverflow.com/a/16505009/9690756
 noremap <leader>q :bp<cr>:bd #<cr>
 
-
 " ----------------------------------------------------------------------------
 " ale
 let g:ale_python_pylint_change_directory = 0
-
+let g:ale_linters={
+\ 'python': ['pylint', 'flake8'],
+\}
 
 " ----------------------------------------------------------------------------
 " vim-better-whitespace
 " clean whitespaces on save
 let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
+" let g:strip_whitespace_on_save=1
 
 " ----------------------------------------------------------------------------
 "  Fugitive
