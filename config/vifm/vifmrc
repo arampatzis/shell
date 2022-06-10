@@ -70,7 +70,7 @@ colorscheme Default-256 Default
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
 
-set timefmt=%m/%d\ %H:%M
+set timefmt=%d/%m\ %H:%M
 
 " Show list of matches on tab completion in command-line mode
 

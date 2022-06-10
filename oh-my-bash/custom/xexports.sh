@@ -53,7 +53,7 @@ if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
 fi
 
 # aws fileserver
-if [[ $HOSTNAME == *"dionysus"* ]]; then
+if [[ $HOSTNAME == *"maenad"* ]]; then
   export PATH="$HOME/.local/bin:${PATH}"
 fi
 
