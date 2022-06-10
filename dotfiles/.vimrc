@@ -48,6 +48,10 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'kqito/vim-easy-replace'
+
+Plug 'brooth/far.vim'
+
 call plug#end()
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -56,6 +60,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
+" ----------------------------------------------------------------------------
+" far.vim
+let g:far#enable_undo=1
 
 " ----------------------------------------------------------------------------
 " nerdtree
@@ -85,7 +93,7 @@ let g:ale_linters={
 " vim-better-whitespace
 " clean whitespaces on save
 let g:better_whitespace_enabled=1
-" let g:strip_whitespace_on_save=1
+let g:strip_whitespace_on_save=1
 
 " ----------------------------------------------------------------------------
 "  Fugitive
@@ -212,6 +220,8 @@ set whichwrap+=<,>,[,]
 set mouse=a
 
 set autowriteall
+
+set colorcolumn=88
 
 "----------------------------------------------------------------------------
 " Highlight line and change cursor in insert mode
