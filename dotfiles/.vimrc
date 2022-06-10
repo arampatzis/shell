@@ -37,10 +37,10 @@ Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-fugitive'
 
-
 Plug 'ycm-core/YouCompleteMe'
 
 Plug 'Vimjas/vim-python-pep8-indent'
+
 Plug 'dense-analysis/ale'
 
 Plug 'ntpeters/vim-better-whitespace'
@@ -67,6 +67,7 @@ let NERDTreeMinimalUI = 1
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 set wildignore+=*.pyc,*.swp,*.DS_Store,*.egg-info,__pycache__
+
 let NERDTreeRespectWildIgnore=1
 
 " do not exit vim when delete a buffer
