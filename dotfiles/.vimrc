@@ -84,7 +84,7 @@ noremap <leader>q :bp<cr>:bd #<cr>
 
 " ----------------------------------------------------------------------------
 " ale
-let g:ale_python_pylint_change_directory = 0
+let g:ale_python_pylint_change_directory = 1
 let g:ale_linters={
 \ 'python': ['pylint', 'flake8'],
 \}

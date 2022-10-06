@@ -8,6 +8,10 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
+eval "$(pyenv init --path)"
+
 
 if [[ $HOST_NAME == *"epicurus"* ]]; then
   export CC=clang
@@ -55,6 +59,7 @@ fi
 # aws fileserver
 if [[ $HOSTNAME == *"maenad"* ]]; then
   export PATH="$HOME/.local/bin:${PATH}"
+  export PYTHON_KEYRING_BACKEND="keyring.backends.null.Keyring"
 fi
 
 echo "Done exporting variables."
