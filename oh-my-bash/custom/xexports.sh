@@ -15,6 +15,7 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
 
   export PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
   export PATH="/usr/local/opt/llvm/bin:$PATH"
+  export PATH="/Users/garampat/Library/Python/3.9/bin:$PATH"
 
   export LIBRARY_PATH="$LIBRARY_PATH:`brew --prefix llvm`/lib"
 

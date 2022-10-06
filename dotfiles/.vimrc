@@ -32,10 +32,7 @@ Plug 'bfrg/vim-cpp-modern'
 Plug 'craigemery/vim-autotag'
 
 Plug 'SirVer/ultisnips'
-
 Plug 'honza/vim-snippets'
-
-Plug 'tpope/vim-fugitive'
 
 Plug 'ycm-core/YouCompleteMe'
 
@@ -47,9 +44,11 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+" Find and replace plugins
 Plug 'kqito/vim-easy-replace'
-
 Plug 'brooth/far.vim'
+
+Plug 'pechorin/any-jump.vim'
 
 call plug#end()
 
