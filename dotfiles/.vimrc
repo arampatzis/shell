@@ -1,8 +1,5 @@
-" Date              : 08.03.2021
-" Last Modified Date: 08.01.2022 16:05
-" Last Modified By  : George Arampatzis <garampat@ethz.ch>
-
 let mapleader = " "
+
 "----------------------------------------------------------------------------
 " vim-plug plugin manager
 " run :PlugInstall after adding a new plugin
@@ -27,10 +24,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'alpertuna/vim-header'
 
-Plug 'bfrg/vim-cpp-modern'
-
-Plug 'craigemery/vim-autotag'
-
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -50,6 +43,8 @@ Plug 'brooth/far.vim'
 
 Plug 'pechorin/any-jump.vim'
 
+Plug 'ervandew/supertab'
+
 call plug#end()
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -57,7 +52,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 
 " ----------------------------------------------------------------------------
 " far.vim
@@ -93,30 +87,34 @@ let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 
 " ----------------------------------------------------------------------------
-"  Fugitive
-nnoremap <leader>df :Gdiffsplit!<CR>
-nnoremap dfh :diffget //2<CR>
-nnoremap dfl :diffget //3<CR>
-
-" ----------------------------------------------------------------------------
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_key_list_stop_completion = [ '<C-y>', '<Enter>' ]
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "----------------------------------------------------------------------------
 " UltiSnip
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+" let g:UltiSnipsExpandTrigger="<C-l>"
+" let g:UltiSnipsJumpForwardTrigger="<C-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsListSnippets="<c-m>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" let g:UltiSnipsSnippetDirectories=["UltiSnips", "my.snippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
 
 "----------------------------------------------------------------------------
 " gruvbox
