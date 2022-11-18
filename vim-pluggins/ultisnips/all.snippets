@@ -1,0 +1,24 @@
+
+snippet /\s*todo/ "TODO" br
+`!v CommentStart()`TODO: [george@ai2c.ch; `!v strftime('%Y-%m-%d')`] ${VISUAL}$1`!v CommentEnd()`$0
+endsnippet
+
+snippet /\s*fixme/ "FIXME" br
+`!v CommentStart()`FIXME: [george@ai2c.ch; `!v strftime('%Y-%m-%d')`] ${VISUAL}$1`!v CommentEnd()`$0
+endsnippet
+
+snippet /\s*combak/ "COMBAK" br
+`!v CommentStart()`COMBAK: [george@ai2c.ch; `!v strftime('%Y-%m-%d')`] ${VISUAL}$1`!v CommentEnd()`$0
+endsnippet
+
+snippet /\s*xxx/ "XXX" br
+`!v CommentStart()`XXX: [george@ai2c.ch; `!v strftime('%Y-%m-%d')`] ${VISUAL}$1`!v CommentEnd()`$0
+endsnippet
+
+snippet me "Insert comment with my contact information"
+`!v CommentStart()`[george@ai2c.ch; `!v strftime('%Y-%m-%d')`] ${VISUAL}$1`!v CommentEnd()`$0
+endsnippet
+
+snippet now "Insert time and date"
+`!v strftime('%a %b %d %Y %r (%z)')`
+endsnippet
