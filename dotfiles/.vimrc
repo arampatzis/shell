@@ -61,6 +61,26 @@ endif
 
 
 " ----------------------------------------------------------------------------
+"  any-jump
+function! Preserve(command)
+    " preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    execute a:command
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" let g:any_jump_disable_default_keybindings = 1
+let g:any_jump_list_numbers = 1
+
+nnoremap <leader>j :call Preserve("AnyJump")<CR>
+xnoremap <leader>j :call Preserve("AnyJump")<CR>
+
+" ----------------------------------------------------------------------------
 " far.vim
 let g:far#enable_undo=1
 
@@ -85,7 +105,7 @@ noremap <leader>q :bp<cr>:bd #<cr>
 " ale
 let g:ale_python_pylint_change_directory = 1
 let g:ale_linters={
-\ 'python': ['pylint', 'flake8'],
+\ 'python': ['pylint'],
 \}
 
 " ----------------------------------------------------------------------------
