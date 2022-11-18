@@ -77,7 +77,7 @@ noremap <leader>q :bp<cr>:bd #<cr>
 " ale
 let g:ale_python_pylint_change_directory = 0
 let g:ale_linters={
-\ 'python': ['pylint', 'flake8'],
+\ 'python': ['pylint'],
 \}
 
 " ----------------------------------------------------------------------------
@@ -85,6 +85,7 @@ let g:ale_linters={
 " clean whitespaces on save
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 
 " ----------------------------------------------------------------------------
 " YouCompleteMe
@@ -99,17 +100,9 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "----------------------------------------------------------------------------
 " UltiSnip
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-" let g:UltiSnipsExpandTrigger="<C-l>"
-" let g:UltiSnipsJumpForwardTrigger="<C-j>"
-" let g:UltiSnipsJumpBackwardTrigger="<C-k>"
-" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsListSnippets="<c-m>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"

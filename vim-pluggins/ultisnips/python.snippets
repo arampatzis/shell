@@ -1,0 +1,33 @@
+priority 100
+
+snippet pr "print message"
+print(f'{$1}')
+endsnippet
+
+snippet pre "print message and exit"
+print(f'{$1}'); exit()
+endsnippet
+
+snippet ppr "pretty print message"
+import pprint as pp; pp.pprint(f'{$1}')
+endsnippet
+
+snippet ppre "pretty print message and exit"
+import pprint as pp; pp.pprint(f'{$1}'); exit()
+endsnippet
+
+snippet " "triple quoted string" b
+"""${1:${VISUAL:Document it.}}"""
+endsnippet
+
+snippet pylintignore "ignore pylint message"
+# pylint: disable=$1
+endsnippet
+
+snippet flake8ignore "ignore all errors in flake8"
+# flake8: noqa
+endsnippet
+
+snippet mypyi "ignore this error in mypy"
+# type: ignore[$1]
+endsnippet
