@@ -1,3 +1,6 @@
+function path_prepend {
+    [[ ":$PATH:" != *":$1:"* ]] && export PATH="$1:${PATH}"
+}
 
 echo "Exporting variables..."
 
@@ -8,10 +11,16 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
-eval "$(pyenv init --path)"
-
+if [[ "$PATH" == *"pypoetry/virtualenvs"* ]]
+then
+  # when we create a new shell from inside a poetry shell, we want the new shell to get
+  # python from the poetry environment and not from pyenv.
+  echo "Inside a Poetry shell. pyenv will not be initialized"
+else
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
 
 if [[ $HOST_NAME == *"epicurus"* ]]; then
   export CC=clang
@@ -36,30 +45,13 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   eval "$(pyenv init -)"
 fi
 
-
-if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
-  export PATH=$HOME/.local/bin:${PATH}
-  export XDG_CACHE_HOME=$HOME/.cache
-fi
-
-
-if [[ $HOST_NAME == *"panda.ethz.ch"* ]]; then
-  export PATH="$HOME/.local/bin:${PATH}"
-fi
-
-if [[ $HOST_NAME == *"barry.ethz.ch"* ]]; then
-  export PATH="$HOME/.local/bin:${PATH}"
-  export PATH="$HOME/ai2c/bellport/bin/:${PATH}"
-
-  export PATH=/usr/local/cuda-11.0/bin:${PATH}
-  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
-  export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:${LD_LIBRARY_PATH}
-  export CUDA_HOME=/usr/local/cuda
-fi
-
 # aws fileserver
 if [[ $HOSTNAME == *"maenad"* ]]; then
-  export PATH="$HOME/.local/bin:${PATH}"
+
+    path_prepend "$HOME/.local/bin"
+
+    # export PATH="$HOME/.local/bin:${PATH}"
+
   export PYTHON_KEYRING_BACKEND="keyring.backends.null.Keyring"
 fi
 
