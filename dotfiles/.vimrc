@@ -46,6 +46,8 @@ Plug 'pechorin/any-jump.vim'
 
 Plug 'ervandew/supertab'
 
+Plug 'cespare/vim-toml'
+
 call plug#end()
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -238,6 +240,10 @@ set colorcolumn=88
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 set cursorline
+
+"----------------------------------------------------------------------------
+" Set all tabs from 2 to 4 spaces
+command FixTabs set ts=2 sts=2 noet | retab! | set ts=4 sts=4 et | retab!
 
 "----------------------------------------------------------------------------
 " Functions

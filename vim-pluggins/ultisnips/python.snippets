@@ -39,3 +39,23 @@ endsnippet
 snippet mypyi "ignore this error in mypy"
 # type: ignore[$1]
 endsnippet
+
+snippet glog
+import logging
+logger = logging.getLogger(${0:__name__})
+endsnippet
+snippet le
+logger.error(${0:msg})
+endsnippet
+snippet ld
+logger.debug(${0:msg})
+endsnippet
+snippet lw
+logger.warning(${0:msg})
+endsnippet
+snippet lc
+logger.critical(${0:msg})
+endsnippet
+snippet li
+logger.info(${0:msg})
+endsnippet
