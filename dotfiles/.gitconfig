@@ -27,3 +27,5 @@
 	clean = git-lfs clean -- %f
 [safe]
 	directory = *
+[init]
+	templateDir = /Users/garampat/.git-template

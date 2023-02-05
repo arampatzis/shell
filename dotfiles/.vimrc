@@ -68,7 +68,7 @@ function! Preserve(command)
     call cursor(l, c)
 endfunction
 
-" let g:any_jump_disable_default_keybindings = 1
+let g:any_jump_disable_default_keybindings = 1
 let g:any_jump_list_numbers = 1
 
 nnoremap <leader>j :call Preserve("AnyJump")<CR>

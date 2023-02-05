@@ -9,11 +9,19 @@ print(f'{$1}'); exit()
 endsnippet
 
 snippet ppr "pretty print message"
-import pprint as pp; pp.pprint(f'{$1}')
+import pprint as pp; pp.pprint($1)
 endsnippet
 
 snippet ppre "pretty print message and exit"
-import pprint as pp; pp.pprint(f'{$1}'); exit()
+import pprint as pp; pp.pprint($1); exit()
+endsnippet
+
+snippet jsondump "pretty print dictionary"
+import json; print(json.dumps($1, indent=2))
+endsnippet
+
+snippet jsondumpexit "pretty print dictionary and exit"
+import json; print(json.dumps($1, indent=2)); exit()
 endsnippet
 
 snippet " "triple quoted string" b

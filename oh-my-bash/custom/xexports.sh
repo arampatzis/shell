@@ -12,6 +12,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PYENV_ROOT/shims:$PATH"
 eval "$(pyenv init --path)"
 
+export SCIAGRAPH_ACCESS_KEY=e7f320b8-ea81-4ee8-897c-801cf1d2530e
+export SCIAGRAPH_ACCESS_SECRET=jc_ttcoDfpy7cmEV1ZWCyQYFcnEG38IW87WiDPi6nEAbAuRWRIgawtogY1IO26dRPUZ-kNm3kt3XbeyITsJXBA==
 
 if [[ $HOST_NAME == *"epicurus"* ]]; then
   export CC=clang

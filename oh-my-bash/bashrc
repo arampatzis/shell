@@ -20,7 +20,9 @@ if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
   OSH_THEME=""
 else
   OSH_THEME="font"
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 fi
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

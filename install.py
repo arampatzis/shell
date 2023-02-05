@@ -4,6 +4,7 @@ from pathlib import Path
 from datetime import datetime
 from messages import message as msg
 from messages import color
+import shutil
 import subprocess
 import sys
 
@@ -30,7 +31,8 @@ def make_link(source, target):
         ext = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
         source_bak = backup_folder() / Path(source.stem + '.' + ext)
         msg.warning(f'    Warning: Backup Source to {source_bak}')
-        source.rename(source_bak)
+        # source.rename(source_bak)
+        shutil.move(source, source_bak)
 
     elif source.is_symlink():
         msg.warning(
@@ -109,7 +111,7 @@ def install_vim_snippets():
     source = home() / '.vim/my_snippets'
     targets = Path('vim-pluggins/ultisnips').glob('*')
 
-    source.mkdir(exist_ok=True)
+    source.mkdir(exist_ok=True, parents=True)
 
     link_all(source, targets)
 
@@ -147,7 +149,17 @@ def install_fzf():
         destination = home_ / '.fzf/install'
 
         msg.inseparator('Start fzf installer (external script)', n=60, sep='-', clr=color.orange)
-        subprocess.call(['bash', destination, '--no-zsh', '--no-fish'])
+        subprocess.call(
+            [
+                'bash',
+                destination,
+                '--no-zsh',
+                '--no-fish',
+                '--key-bindings',
+                '--completion',
+                '--update-rc',
+            ]
+        )
         msg.inseparator('End fzf installer', n=60, sep='-', clr=color.orange)
 
 
