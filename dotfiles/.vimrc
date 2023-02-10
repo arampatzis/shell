@@ -76,6 +76,9 @@ let g:any_jump_list_numbers = 1
 nnoremap <leader>j :call Preserve("AnyJump")<CR>
 xnoremap <leader>j :call Preserve("AnyJump")<CR>
 
+nnoremap <leader>b :AnyJumpBack<CR>
+xnoremap <leader>b :AnyJumpBack<CR>
+
 " ----------------------------------------------------------------------------
 " far.vim
 let g:far#enable_undo=1
