@@ -31,7 +31,6 @@ def make_link(source, target):
         ext = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
         source_bak = backup_folder() / Path(source.stem + '.' + ext)
         msg.warning(f'    Warning: Backup Source to {source_bak}')
-        # source.rename(source_bak)
         shutil.move(source, source_bak)
 
     elif source.is_symlink():

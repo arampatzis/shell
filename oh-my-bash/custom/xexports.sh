@@ -53,9 +53,9 @@ if [[ $HOSTNAME == *"maenad"* ]]; then
 
     path_prepend "$HOME/.local/bin"
 
-    # export PATH="$HOME/.local/bin:${PATH}"
+    export DOCKER_HOST=unix:///run/user/1004/docker.sock
 
-  export PYTHON_KEYRING_BACKEND="keyring.backends.null.Keyring"
+    export PYTHON_KEYRING_BACKEND="keyring.backends.null.Keyring"
 fi
 
 echo "Done exporting variables."

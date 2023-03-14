@@ -159,15 +159,6 @@ nnoremap <silent> ;; :Buffers<CR>
 let $FZF_DEFAULT_OPTS='--reverse'
 
 "----------------------------------------------------------------------------
-" vim header
-let g:header_auto_add_header = 0
-let g:header_auto_update_header = 1
-let g:header_field_author = 'George Arampatzis'
-let g:header_field_author_email = 'garampat@ethz.ch'
-let g:header_field_timestamp_format = '%d.%m.%Y %H:%M'
-nmap <C-c> :AddHeader<CR>
-
-"----------------------------------------------------------------------------
 " automatic ctags
 let g:autotagStartMethod='fork'
 let g:autotagTagsFile="tags"
@@ -209,11 +200,6 @@ set number
 
 set tags=tags
 
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif
-
 set ruler
 
 " continue comments on next line. and maybe more...
@@ -238,11 +224,20 @@ set autowriteall
 
 set colorcolumn=88
 
+" the buffer of a file will only be hidden when you switch to the new file, not closed
+" set hidden
+
 "----------------------------------------------------------------------------
 " Highlight line and change cursor in insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 set cursorline
+
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 "----------------------------------------------------------------------------
 " Set all tabs from 2 to 4 spaces
