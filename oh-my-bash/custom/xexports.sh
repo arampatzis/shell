@@ -48,14 +48,17 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   eval "$(pyenv init -)"
 fi
 
-# aws fileserver
-if [[ $HOSTNAME == *"maenad"* ]]; then
+if [[ $HOSTNAME == *"astakos"* ]]; then
 
-    path_prepend "$HOME/.local/bin"
+    path_prepend "$HOME/local/bin"
 
-    export DOCKER_HOST=unix:///run/user/1004/docker.sock
+    source .cargo/env
 
     export PYTHON_KEYRING_BACKEND="keyring.backends.null.Keyring"
+
+    . "$HOME/.cargo/env"
+
+    export PATH="$PATH:/home/thodoros/storage/arampatzis/.local/bin"
 fi
 
 echo "Done exporting variables."
