@@ -29,23 +29,21 @@ if [[ $HOST_NAME == *"epicurus"* ]]; then
   export CC=clang
   export CXX=clang++
 
-  export PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
-  export PATH="/usr/local/opt/llvm/bin:$PATH"
-  export PATH="/Users/garampat/Library/Python/3.9/bin:$PATH"
-
   export LIBRARY_PATH="$LIBRARY_PATH:`brew --prefix llvm`/lib"
 
   # GNU flavored commands. e.g. ls
-  export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+  path_prepend "/usr/local/opt/coreutils/libexec/gnubin"
   export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
 
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
   export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
 
   export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
+  path_prepend "$PYENV_ROOT/bin"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
+
+  path_prepend "$HOME/.local/bin"
 fi
 
 if [[ $HOSTNAME == *"astakos"* ]]; then
@@ -56,7 +54,7 @@ if [[ $HOSTNAME == *"astakos"* ]]; then
 
     . "$HOME/.cargo/env"
 
-    export PATH="$PATH:/home/thodoros/storage/arampatzis/.local/bin"
+    path_prepend "$HOME/.local/bin"
 fi
 
 echo "Done exporting variables."
