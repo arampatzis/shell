@@ -27,8 +27,6 @@ Plug 'alpertuna/vim-header'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'ycm-core/YouCompleteMe'
-
 Plug 'Vimjas/vim-python-pep8-indent'
 
 Plug 'dense-analysis/ale'
@@ -113,17 +111,6 @@ let g:ale_linters={
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
-
-" ----------------------------------------------------------------------------
-" YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_key_list_stop_completion = [ '<C-y>', '<Enter>' ]
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "----------------------------------------------------------------------------
 " UltiSnip

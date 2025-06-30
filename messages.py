@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# File              : messages.py
-# Author            : George Arampatzis <garampat@ethz.ch>
-# Date              : 04.12.2021
-# Last Modified Date: 05.12.2021
-# Last Modified By  : George Arampatzis <garampat@ethz.ch>
-
 class color:
     black       = '\033[30m'
     red         = '\033[31m'
