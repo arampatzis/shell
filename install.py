@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 
+import argparse
 from pathlib import Path
 from datetime import datetime
 from messages import message as msg
@@ -55,13 +56,12 @@ def install_oh_my_bash():
     if not destination.is_dir():
         msg.error(
             '    Error: oh-my-bash is not installed in the system. '
-            'Installl oh-my-bash and rerun:\n'
+            'Install oh-my-bash and rerun:\n'
             f'Error: bash -c "$(wget {omb_install_script} -O -)"'
         )
-        sys.exit(0)
-
+        sys.exit(1)
     else:
-        msg.warning(f'    Warning: oh-my-bash is found in the system.')
+        msg.warning('    Warning: oh-my-bash is found in the system.')
 
     make_link(
         source='~/.bashrc',
@@ -75,7 +75,6 @@ def install_oh_my_bash():
 
 
 def link_all(source, targets):
-
     for f in targets:
         print(f'\n  * {f}')
         make_link(
@@ -119,60 +118,83 @@ def install_fzf():
     print('\n* fzf')
     print('   * Clone fzf into ~/.fzf')
 
-    home_ = home()
+    destination = home() / '.fzf'
 
-    destination = home_ / '.fzf'
-
-    if Path.is_dir(destination):
+    if destination.is_dir():
         msg.warning(
             '   Warning: .fzf already exists in home directory. '
             'Aborting installation...'
         )
+        return
 
-    else:
-        msg.inseparator('Start git clone', n=60, sep='-', clr=color.orange)
-        subprocess.call(
-            [
-                'git',
-                'clone',
-                '--depth',
-                '1',
-                'https://github.com/junegunn/fzf.git',
-                str(destination)
-            ]
-        )
-        msg.inseparator('End git clone', n=60, sep='-', clr=color.orange)
+    msg.inseparator('Start git clone', n=60, sep='-', clr=color.orange)
+    subprocess.call([
+        'git', 'clone', '--depth', '1',
+        'https://github.com/junegunn/fzf.git',
+        str(destination)
+    ])
+    msg.inseparator('End git clone', n=60, sep='-', clr=color.orange)
 
-        print('\n   * Install fzf: \n')
+    print('\n   * Install fzf: \n')
+    install_script = home() / '.fzf/install'
 
-        destination = home_ / '.fzf/install'
+    msg.inseparator('Start fzf installer (external script)', n=60, sep='-', clr=color.orange)
+    subprocess.call([
+        'bash', str(install_script),
+        '--no-zsh',
+        '--no-fish',
+        '--key-bindings',
+        '--completion',
+        '--update-rc',
+    ])
+    msg.inseparator('End fzf installer', n=60, sep='-', clr=color.orange)
 
-        msg.inseparator('Start fzf installer (external script)', n=60, sep='-', clr=color.orange)
-        subprocess.call(
-            [
-                'bash',
-                destination,
-                '--no-zsh',
-                '--no-fish',
-                '--key-bindings',
-                '--completion',
-                '--update-rc',
-            ]
-        )
-        msg.inseparator('End fzf installer', n=60, sep='-', clr=color.orange)
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description='Install and set up dotfiles, oh-my-bash, fzf, and vim snippets.'
+    )
+    parser.add_argument(
+        '--oh-my-bash', action='store_true', help='Install oh-my-bash and link bashrc/custom'
+    )
+    parser.add_argument(
+        '--dotfiles', action='store_true', help='Link all dotfiles from ~/dotfiles'
+    )
+    parser.add_argument(
+        '--config', action='store_true', help='Link all config folders from ~/config'
+    )
+    parser.add_argument(
+        '--fzf', action='store_true', help='Install fzf from GitHub'
+    )
+    parser.add_argument(
+        '--vim-snippets', action='store_true', help='Link vim snippets'
+    )
+    parser.add_argument(
+        '--all', action='store_true', help='Run all install steps (default)'
+    )
+    return parser.parse_args()
 
 
 def main():
+    args = parse_args()
 
-    install_oh_my_bash()
+    # Determine which tasks to run
+    run_all = args.all or not any(vars(args).values())
 
-    install_dot_files()
+    if run_all or args.oh_my_bash:
+        install_oh_my_bash()
 
-    install_config_folder()
+    if run_all or args.dotfiles:
+        install_dot_files()
 
-    install_fzf()
+    if run_all or args.config:
+        install_config_folder()
 
-    install_vim_snippets()
+    if run_all or args.fzf:
+        install_fzf()
+
+    if run_all or args.vim_snippets:
+        install_vim_snippets()
 
     msg.custom(
         f'\nBackup files are stored in folder {backup_folder()}\n',
