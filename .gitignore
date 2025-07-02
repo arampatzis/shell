@@ -1,6 +1,8 @@
 .install.bak
 *.swp
 
-config/vifm/vifminfo.json
+data/config/vifm/vifminfo.json
 
 **/__pycache__/
+
+*.log
