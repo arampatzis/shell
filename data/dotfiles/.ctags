@@ -1,3 +1,0 @@
--f .tags
---exclude=.git
---langmap=C++:+._cpp._hpp

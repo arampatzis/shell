@@ -1,0 +1,72 @@
+binary_tools:
+  lazygit:
+    name: "lazygit"
+    binary_name: "lazygit"
+    repo: "jesseduffield/lazygit"
+    version: "v0.44.1"
+    archive_pattern: "https://github.com/{repo}/releases/download/{version}/lazygit_0.44.1_Linux_{arch}.tar.gz"
+    check_cmd: "lazygit"
+    
+  ripgrep:
+    name: "ripgrep"
+    binary_name: "rg"
+    repo: "BurntSushi/ripgrep"
+    version: "14.1.0"
+    archive_pattern: "https://github.com/{repo}/releases/download/{version}/ripgrep-{version}-x86_64-unknown-linux-musl.tar.gz"
+    check_cmd: "rg"
+
+script_tools:
+  fzf:
+    name: "fzf"
+    script_type: "git_clone"
+    repo_url: "https://github.com/junegunn/fzf.git"
+    target_dir: ".fzf"
+    installer_script: "install"
+    installer_args:
+      - "--no-zsh"
+      - "--no-fish"
+      - "--key-bindings"
+      - "--completion"
+      - "--update-rc"
+    check_cmd: "fzf"
+    check_path: "~/.fzf"
+    
+  oh_my_bash:
+    name: "oh-my-bash"
+    script_type: "direct_script"
+    script_url: "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh"
+    check_path: "~/.oh-my-bash"
+
+source_tools:
+  vifm:
+    name: "vifm"
+    repo: "vifm/vifm"
+    version: "v0.13"
+    archive_pattern: "https://github.com/{repo}/releases/download/{version}/vifm-{version}.tar.bz2"
+    binary_name: "vifm"
+    build_deps:
+      - "wget"
+      - "tar"
+      - "make"
+      - "gcc"
+    configure_args: []
+    check_cmd: "vifm"
+
+dotfile_configs:
+  dotfiles:
+    name: "dotfiles"
+    source: "data/dotfiles"
+    target: "~/"
+    expand: true
+
+  oh_my_bash_configuration:
+    name: "oh-my-bash configuration"
+    source: "data/oh-my-bash/custom"
+    target: "~/.oh-my-bash/custom"
+    expand: false
+    
+  config:
+    name: "config files"
+    source: "data/config"
+    target: "~/.config/"
+    expand: true 

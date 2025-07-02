@@ -1,25 +1,46 @@
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = vim 
+	excludesfile = ~/.gitignore_global         # Global ignore file
+	editor = vim                               # Default editor
+
 [alias]
-  st = status
-  al = add --all
-  cm = commit -m
-  b = branch
-  br = branch -r
-  co = checkout
-  lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-  lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-  lg = !"git lg1"
+	st = status                                # Show working tree status
+	al = add --all                             # Stage all changes
+	cm = commit -m                             # Commit with message
+	b = branch                                 # List local branches
+	br = branch -r                             # List remote branches
+	co = checkout                              # Switch branches or restore files
+
+	lg1 = log --graph --abbrev-commit --decorate \
+	--format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all \
+	# Compact graphical log with relative time
+
+	lg2 = log --graph --abbrev-commit --decorate \
+	--format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all \
+	# Expanded graphical log with full date
+
+	lg = !"git lg1"                            # Default log alias
+
+	last = log -1 HEAD                         # Show last commit
+	undo = reset --soft HEAD~1                 # Undo last commit, keep changes staged
+	amend = commit --amend --no-edit           # Amend last commit without changing message
+	unstage = reset HEAD --                    # Unstage files (keep changes)
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short \
+	# Compact one-line log history
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
 [safe]
-	directory = *
+	directory = *                               # Trust all directories (be cautious!)
+
 [init]
-	templateDir = ~/.git-template
-[user]
-	email = georgios.arampatzis@uoc.gr
-	name = G. Arampatzis
+	templateDir = ~/.git-template               # Custom git init template directory
+
+[pull]
+	rebase = false                              # Use merge (not rebase) on pull
+
+[merge]
+	tool = vimdiff                              # Optional: set merge tool (you can change this)
