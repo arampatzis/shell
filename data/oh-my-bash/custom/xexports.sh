@@ -48,4 +48,9 @@ if [[ $HOSTNAME == *"astakos"* ]]; then
     path_prepend "$HOME/.local/bin"
 fi
 
+if [[ $HOSTNAME == *"my-pc"* ]]; then
+    path_prepend "$HOME/local/bin"
+    path_prepend "$HOME/.local/bin"
+fi
+
 echo "Done exporting variables."

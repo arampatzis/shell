@@ -20,3 +20,6 @@
 	directory = *
 [init]
 	templateDir = ~/.git-template
+[user]
+	email = georgios.arampatzis@uoc.gr
+	name = G. Arampatzis
