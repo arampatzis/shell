@@ -35,6 +35,7 @@ if [[ $HOSTNAME == *"epicurus"* ]]; then
   export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
   export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
 
+  path_prepend "$HOME/local/bin"
   path_prepend "$HOME/.local/bin"
 fi
 

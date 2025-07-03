@@ -14,6 +14,30 @@ binary_tools:
     version: "14.1.0"
     archive_pattern: "https://github.com/{repo}/releases/download/{version}/ripgrep-{version}-x86_64-unknown-linux-musl.tar.gz"
     check_cmd: "rg"
+    
+  bat:
+    name: "bat"
+    binary_name: "bat"
+    repo: "sharkdp/bat"
+    version: "v0.24.0"
+    archive_pattern: "https://github.com/sharkdp/bat/releases/download/{version}/bat-{version}-x86_64-unknown-linux-musl.tar.gz"
+    check_cmd: "bat"
+    
+  fd:
+    name: "fd"
+    binary_name: "fd"
+    repo: "sharkdp/fd"
+    version: "v10.2.0"
+    archive_pattern: "https://github.com/sharkdp/fd/releases/download/{version}/fd-{version}-x86_64-unknown-linux-musl.tar.gz"
+    check_cmd: "fd"
+    
+  zellij:
+    name: "zellij"
+    binary_name: "zellij"
+    repo: "zellij-org/zellij"
+    version: "v0.42.2"
+    archive_pattern: "https://github.com/zellij-org/zellij/releases/download/{version}/zellij-x86_64-unknown-linux-musl.tar.gz"
+    check_cmd: "zellij"
 
 script_tools:
   fzf:
@@ -41,16 +65,32 @@ source_tools:
   vifm:
     name: "vifm"
     repo: "vifm/vifm"
-    version: "v0.13"
-    archive_pattern: "https://github.com/{repo}/releases/download/{version}/vifm-{version}.tar.bz2"
+    version: "v0.14.3"
+    archive_pattern: "https://github.com/vifm/vifm/archive/refs/tags/{version}.tar.gz"
     binary_name: "vifm"
     build_deps:
       - "wget"
       - "tar"
       - "make"
       - "gcc"
-    configure_args: []
+    configure_args: ["--prefix=$HOME/local"]
     check_cmd: "vifm"
+    
+  htop:
+    name: "htop"
+    repo: "htop-dev/htop"
+    version: "3.4.1"
+    archive_pattern: "https://github.com/htop-dev/htop/archive/refs/tags/{version}.tar.gz"
+    binary_name: "htop"
+    build_deps:
+      - "gcc"
+      - "make"
+      - "autoconf"
+      - "automake"
+      - "pkg-config"
+    configure_args: ["--prefix=$HOME/local"]
+    run_autogen: true
+    check_cmd: "htop"
 
 dotfile_configs:
   dotfiles:
@@ -59,8 +99,8 @@ dotfile_configs:
     target: "~/"
     expand: true
 
-  oh_my_bash_configuration:
-    name: "oh-my-bash configuration"
+  oh_my_bash configuration:
+    name: "oh-my-bash-configuration"
     source: "data/oh-my-bash/custom"
     target: "~/.oh-my-bash/custom"
     expand: false
@@ -69,4 +109,4 @@ dotfile_configs:
     name: "config files"
     source: "data/config"
     target: "~/.config/"
-    expand: true 
+    expand: true

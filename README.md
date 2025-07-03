@@ -1,14 +1,6 @@
-# Dotfiles Installation Script
+# Shell Environment Setup
 
-Advanced dotfiles installer with symlink management, backup system, and rollback capabilities.
-
-## Features
-
-- **Symlink Management**: Links dotfiles to home directory
-- **Automatic Backups**: Backs up existing files to `.install.bak/`
-- **Component Installation**: Install specific parts (dotfiles, oh-my-bash, config, fzf)
-- **Dry Run Mode**: Preview changes without applying them
-- **Rollback Support**: Undo installations completely
+A Python-based installer for dotfiles and development tools with YAML configuration.
 
 ## Quick Start
 
@@ -16,46 +8,42 @@ Advanced dotfiles installer with symlink management, backup system, and rollback
 # Install everything
 ./install.py
 
-# Preview what would be installed
+# Install specific tools
+./install.py --components bat fd zellij htop
+
+# Preview changes
 ./install.py --dry-run
 
-# Install specific components
-./install.py --components dotfiles oh_my_bash_configuration
-
-# List available components
+# List available tools
 ./install.py --list-components
-
-# Rollback last installation
-./install.py --rollback
 ```
 
-## Components
+## Available Tools
 
-- **oh_my_bash_installation**: Checks if oh-my-bash is installed
-- **dotfiles**: Links `.bashrc`, `.vimrc`, `.gitconfig`, etc.
-- **oh_my_bash_configuration**: Links oh-my-bash config and custom directory
-- **config**: Links configuration files to `~/config/`
-- **fzf**: Installs fuzzy finder
+**Binary Tools**: lazygit, ripgrep, bat, fd, zellij  
+**Script Tools**: fzf, oh-my-bash  
+**Source Tools**: vifm, htop  
+**Dotfiles**: bash, vim, git configs
 
-## Directory Structure
+## Configuration
+
+Edit `install_config.yaml` to add tools or modify versions. Supports:
+- GitHub binary releases
+- Git clone + scripts  
+- Source builds with autogen
+- Dotfile symlinking
+
+## Requirements
+
+- Python 3.8+
+- Basic build tools (wget, tar, git, make, gcc)
+
+## Structure
 
 ```
 shell/
-├── install.py
-├── data/
-│   ├── dotfiles/          # Home directory dotfiles
-│   ├── oh-my-bash/        # Oh-my-bash configuration
-│   │   ├── .bashrc
-│   │   └── custom/
-│   └── config/            # Application configs
-│       ├── iterm2/
-│       └── vifm/
-└── .install.bak/          # Automatic backups
+├── install.py              # Main installer
+├── install_config.yaml     # Tool configurations  
+├── installers/             # Installer classes
+└── data/                   # Dotfiles and configs
 ```
-
-## Notes
-
-- Backups are created automatically in `.install.bak/`
-- Existing symlinks to same source are skipped
-- Operations are logged for rollback capability
-- Requires oh-my-bash to be pre-installed

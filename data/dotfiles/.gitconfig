@@ -44,3 +44,6 @@
 
 [merge]
 	tool = vimdiff                              # Optional: set merge tool (you can change this)
+[user]
+	name = G. Arampatzis
+	email = georgios.arampatzis@uoc.gr
