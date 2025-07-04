@@ -65,7 +65,7 @@ class SymlinkerInstaller(Installer):
     ) -> Optional[Path]:
         """
         Create backup of existing file/directory, dereferencing symlinks and 
-        preserving data/ structure.
+        preserving dotfiles/ structure.
         """
         if not system_path.exists():
             return None

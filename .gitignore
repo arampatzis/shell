@@ -5,4 +5,4 @@
 
 *.log
 
-data/config/vifm/vifminfo.json
+dotfiles/config/vifm/vifminfo.json

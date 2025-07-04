@@ -105,18 +105,18 @@ source_tools:
 dotfile_configs:
   dotfiles:
     name: "dotfiles"
-    source: "data/dotfiles"
+    source: "dotfiles/dotfiles"
     target: "~/"
     expand: true
 
   oh_my_bash configuration:
     name: "oh-my-bash-configuration"
-    source: "data/oh-my-bash/custom"
+    source: "dotfiles/oh-my-bash/custom"
     target: "~/.oh-my-bash/custom"
     expand: false
     
   config:
     name: "config files"
-    source: "data/config"
+    source: "dotfiles/config"
     target: "~/.config/"
     expand: true

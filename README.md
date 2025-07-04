@@ -1,6 +1,6 @@
 # Shell Environment Setup
 
-A Python-based installer for dotfiles and development tools with YAML configuration.
+A Python-based installer for development tools and dotfiles with YAML configuration.
 
 ## Quick Start
 
@@ -16,34 +16,47 @@ A Python-based installer for dotfiles and development tools with YAML configurat
 
 # List available tools
 ./install.py --list-components
+
+# Force reinstall
+./install.py --force
 ```
 
 ## Available Tools
 
-**Binary Tools**: lazygit, ripgrep, bat, fd, zellij  
+**Binary Tools**: lazygit, ripgrep, bat, fd, zellij, gh  
 **Script Tools**: fzf, oh-my-bash  
 **Source Tools**: vifm, htop  
-**Dotfiles**: bash, vim, git configs
+**Dotfiles**: bash, vim, git configs, oh-my-bash themes
+
+## Features
+
+- **Selective Installation**: Install only the tools you need
+- **Dry Run Mode**: Preview changes without making them
+- **Force Installation**: Override existing installations
+- **Comprehensive Logging**: Detailed logs in `install.log`
+- **Multiple Sources**: GitHub releases, git clones, source builds
+- **Dotfile Management**: Symlink configuration files
 
 ## Configuration
 
-Edit `install_config.yaml` to add tools or modify versions. Supports:
-- GitHub binary releases
-- Git clone + scripts  
-- Source builds with autogen
-- Dotfile symlinking
+Edit `install_config.yaml` to customize:
+- Tool versions and sources
+- Build dependencies
+- Installation paths
+- Dotfile locations
 
 ## Requirements
 
 - Python 3.8+
 - Basic build tools (wget, tar, git, make, gcc)
 
-## Structure
+## Project Structure
 
 ```
 shell/
-├── install.py              # Main installer
+├── install.py              # Main installer script
 ├── install_config.yaml     # Tool configurations  
-├── installers/             # Installer classes
-└── data/                   # Dotfiles and configs
+├── installers/             # Installer classes (binary, script, source, symlink)
+├── dotfiles/               # Dotfiles and configs
+└── messages.py             # UI messaging utilities
 ```
