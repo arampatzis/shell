@@ -49,11 +49,11 @@ class Installer(ABC):
                 check_location = Path(self.check_path).expanduser()
                 if check_location.exists():
                     msg.custom(
-                        f"    {name} directory exists at {check_location}. "
-                        f"Remove it manually before forcing installation.",
-                        color.yellow
+                        f"    {name} directory exists at {check_location}.\n"
+                        f"    Remove it manually before forcing installation.",
+                        color.red,
                     )
-                    return False
+                    return True
             return False
 
         if (self.check_cmd and shutil.which(self.check_cmd)) or self._check_path(name):
