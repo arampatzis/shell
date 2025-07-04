@@ -122,7 +122,11 @@ class ScriptInstaller(Installer):
             return True
             
         except subprocess.CalledProcessError as e:
-            return self._handle_error(e)
+            error_msg = e.stderr if e.stderr else e.stdout if e.stdout else str(e)
+            msg.custom(f"   {self.name} installation failed: {error_msg}", color.red)
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"{self.name} installation failed: {error_msg}\n")
+            return False
         except Exception as e:
             return self._handle_error(e)
     
@@ -131,41 +135,53 @@ class ScriptInstaller(Installer):
         msg.custom(f"Installing {self.name} from script", color.cyan)
         
         try:
-            # Download and execute script
+            # Inform the user
             msg.custom(
                 f"   Downloading and running {self.name} installer...",
                 color.cyan
             )
-            
-            # Prepare installer command
-            install_cmd = ['bash', '-c', f'curl -fsSL {self.script_url} | bash']
-            
+
+            # Correct install command: download script and pipe to bash
+            install_cmd = ['bash', '-c', f'wget -qO - {self.script_url} | bash']
+
             with open('install.log', 'a') as log_file:
                 log_file.write(
                     f"\n=== {self.name} direct script installation "
-                    "started at {datetime.now()} ===\n"
+                    f"started at {datetime.now()} ===\n"
                 )
                 log_file.write(f"Script URL: {self.script_url}\n")
-                
-                subprocess.run(
+
+                # Run and capture output
+                result = subprocess.run(
                     install_cmd,
-                    check=True,
-                    stdout=log_file,
-                    stderr=log_file
+                    capture_output=True,
+                    text=True
                 )
-            
+
+                log_file.write(result.stdout)
+                log_file.write(result.stderr)
+
+                if result.returncode != 0:
+                    log_file.write(
+                        "\n=== ERROR: Command failed with return code "
+                        f"{result.returncode} ===\n"
+                    )
+                    raise subprocess.CalledProcessError(
+                        result.returncode, install_cmd, result.stdout, result.stderr
+                    )
+
             msg.custom(f"   {self.name} installed successfully", color.green)
             msg.custom("   Detailed logs written to install.log", color.yellow)
-            
+
             with open('install.log', 'a') as log_file:
                 log_file.write(
                     f"\n=== {self.name} installation completed successfully "
-                    "at {datetime.now()} ===\n"
+                    f"at {datetime.now()} ===\n"
                 )
-            
+
             return True
-            
+
         except subprocess.CalledProcessError as e:
             return self._handle_error(e)
         except Exception as e:
-            return self._handle_error(e) 
+            return self._handle_error(e)
