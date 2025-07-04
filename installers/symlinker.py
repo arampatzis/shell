@@ -19,15 +19,12 @@ class SymlinkerInstaller(Installer):
     source: str = ""
     target: str = ""
     expand: bool = False
-    backup_dir: str = ".install.bak"  # Accept string from config, convert to Path later
+    backup_dir: Path = field(default_factory=lambda: Path(".install.bak"))
     operations_log: list = field(default_factory=list)
     required_deps: list[str] = field(default_factory=list)  # No external dependencies
     
     def __post_init__(self):
         """Initialize backup directory after dataclass initialization."""
-        # Convert backup_dir string to Path object
-        self.backup_dir = Path(self.backup_dir)
-        
         # Always ensure backup directory exists (both dry-run and real)
         self.backup_dir.mkdir(parents=True, exist_ok=True)
     
@@ -35,6 +32,13 @@ class SymlinkerInstaller(Installer):
         """Sanitize component name for safe use in filenames."""
         # Replace unsafe characters with underscores
         return re.sub(r'[^\w\-.]', '_', name)
+    
+    def _is_broken_symlink(self, path: Path) -> bool:
+        """Check if a path is a broken symlink."""
+        try:
+            return path.is_symlink() and not path.exists()
+        except (OSError, RuntimeError):
+            return False
     
     def _install(self) -> bool:
         """Install files using symlinking."""        
@@ -96,6 +100,9 @@ class SymlinkerInstaller(Installer):
             # If system_path is a symlink, dereference and copy the real 
             # file/folder recursively
             if system_path.is_symlink():
+            
+                
+                
                 real_path = system_path.resolve()
                 if real_path.is_dir():
                     shutil.copytree(real_path, backup_path, symlinks=False)
@@ -141,49 +148,60 @@ class SymlinkerInstaller(Installer):
         
         # Remove existing file/symlink
         if target_expanded.exists() or target_expanded.is_symlink():
-            # Check if existing symlink already points to our source
-            should_backup = True
-            if target_expanded.is_symlink():
-                try:
-                    existing_target = target_expanded.readlink().resolve()
-                    if existing_target == source:
-                        should_backup = False
-                        msg.warning(
-                            f"    Symlink {target_expanded.name} "
-                            "already points to source, skipping backup\n"
-                        )
-                        self.logger.info(
-                            f"Symlink {target_expanded} already points to {source}, "
-                            "skipping backup"
-                        )
-                except (OSError, RuntimeError):
-                    should_backup = True
-            
-            if should_backup:
-                backup_path = self.backup_file(
-                    target_expanded,
-                    source_path=source,
-                    source_root=source_root
+            # Check if existing symlink is broken
+            if self._is_broken_symlink(target_expanded):
+                msg.warning(
+                    f"    Found broken symlink {target_expanded.name}, "
+                    "removing without backup\n"
                 )
-                if backup_path:
-                    self.operations_log.append({
-                        'action': 'backup',
-                        'original': str(target_expanded),
-                        'backup': str(backup_path)
-                    })
-                else:
-                    msg.error(
-                        f"    Cannot proceed: backup of {target_expanded.name} failed"
-                    )
-                    return False
-            
-            # Only remove original after successful backup (or no backup needed)
-            if target_expanded.is_symlink():
+                self.logger.info(
+                    f"Found broken symlink {target_expanded}, removing without backup"
+                )
                 target_expanded.unlink()
-            elif target_expanded.is_dir():
-                shutil.rmtree(target_expanded)
             else:
-                target_expanded.unlink()
+                # Check if existing symlink already points to our source
+                should_backup = True
+                if target_expanded.is_symlink():
+                    try:
+                        existing_target = target_expanded.readlink().resolve()
+                        if existing_target == source:
+                            should_backup = False
+                            msg.warning(
+                                f"    Symlink {target_expanded.name} "
+                                "already points to source, skipping backup\n"
+                            )
+                            self.logger.info(
+                                f"Symlink {target_expanded} already points to {source}, "
+                                "skipping backup"
+                            )
+                    except (OSError, RuntimeError):
+                        should_backup = True
+                
+                if should_backup:
+                    backup_path = self.backup_file(
+                        target_expanded,
+                        source_path=source,
+                        source_root=source_root
+                    )
+                    if backup_path:
+                        self.operations_log.append({
+                            'action': 'backup',
+                            'original': str(target_expanded),
+                            'backup': str(backup_path)
+                        })
+                    else:
+                        msg.error(
+                            f"    Cannot proceed: backup of {target_expanded.name} failed"
+                        )
+                        return False
+                
+                # Only remove original after successful backup (or no backup needed)
+                if target_expanded.is_symlink():
+                    target_expanded.unlink()
+                elif target_expanded.is_dir():
+                    shutil.rmtree(target_expanded)
+                else:
+                    target_expanded.unlink()
         
         # Create parent directory if needed (resolve parent path to avoid issues)
         parent_dir = target_expanded.parent.resolve()
