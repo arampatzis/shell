@@ -35,8 +35,6 @@ def authenticate_github_cli(gh_binary: Path) -> bool:
         
         token = input("   Token: ")
         
-        print(f"Token type: {type(token)}, Token value: {repr(token)}")
-        
         if not token.strip():
             msg.custom(
                 (
