@@ -25,13 +25,18 @@ def authenticate_github_cli(gh_binary: Path) -> bool:
     msg.custom("   To create one:", color.yellow)
     msg.custom("   1. Go to https://github.com/settings/tokens", color.yellow)
     msg.custom("   2. Click 'Generate new token (classic)'", color.yellow)
-    msg.custom("   3. Select scopes: repo, workflow, read:org", color.yellow)
+    msg.custom(
+        "   3. Select scopes: repo, workflow, admin:org, admin:public_key",
+        color.yellow
+    )
     msg.custom("   4. Copy the generated token", color.yellow)
     
     try:
         # Get token from user
-        msg.custom("   Please paste your GitHub Personal Access Token below:", color.cyan)
-        msg.custom("   (You can paste with Ctrl+Shift+V or right-click)", color.yellow)
+        msg.custom(
+            "   Please paste your GitHub Personal Access Token below:",
+            color.cyan
+        )
         
         token = input("   Token: ")
         
@@ -192,11 +197,13 @@ def setup_github_ssh_key(gh_binary: Path) -> bool:
                     hostname
                 ],
                 text=True,
-                check=True,
-                stdout=log_file,
-                stderr=log_file
+                capture_output=True,
+                check=True
             )
             
+            # Log the output
+            log_file.write(f"stdout: {result.stdout}\n")
+            log_file.write(f"stderr: {result.stderr}\n")
             log_file.write("SSH key uploaded successfully\n")
         
         msg.custom("   SSH key uploaded to GitHub successfully!", color.green)
@@ -205,9 +212,10 @@ def setup_github_ssh_key(gh_binary: Path) -> bool:
         return configure_ssh_config()
         
     except subprocess.CalledProcessError as e:
-        msg.custom(f"   SSH key setup failed: {e.stderr}", color.red)
+        error_msg = e.stderr if e.stderr else e.stdout if e.stdout else str(e)
+        msg.custom(f"   SSH key setup failed: {error_msg}", color.red)
         with open('install.log', 'a') as log_file:
-            log_file.write(f"SSH key setup failed: {e.stderr}\n")
+            log_file.write(f"SSH key setup failed: {error_msg}\n")
         return False
     except KeyboardInterrupt:
         msg.custom("\n   SSH key setup cancelled by user.", color.yellow)
