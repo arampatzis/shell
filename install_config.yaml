@@ -39,6 +39,16 @@ binary_tools:
     archive_pattern: "https://github.com/zellij-org/zellij/releases/download/{version}/zellij-x86_64-unknown-linux-musl.tar.gz"
     check_cmd: "zellij"
 
+  gh:
+    name: "gh"
+    binary_name: "gh"
+    repo: "cli/cli"
+    version: "2.74.2"
+    archive_pattern: "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_linux_amd64.tar.gz"
+    check_cmd: "gh"
+
+
+
 script_tools:
   fzf:
     name: "fzf"

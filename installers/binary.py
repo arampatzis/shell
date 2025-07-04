@@ -1,9 +1,13 @@
 """Binary installer for pre-built binaries from GitHub releases."""
 
+import os
 import platform
+import re
 import shutil
 import subprocess
 import tempfile
+import getpass
+import socket
 from datetime import datetime
 from pathlib import Path
 from dataclasses import dataclass, field
@@ -81,6 +85,8 @@ class BinaryInstaller(Installer):
                     log_file
                 )
                 
+            
+                
             except subprocess.CalledProcessError as e:
                 return self._handle_error(e)
             except Exception as e:
@@ -121,4 +127,210 @@ class BinaryInstaller(Installer):
                 "at {datetime.now()} ===\n"
             )
         
-        return True 
+        # Handle GitHub CLI authentication if binary is "gh"
+        if self.binary_name == "gh":
+            auth_success = self._authenticate_github_cli(target_binary)
+            if auth_success:
+                return self._setup_ssh_key(target_binary)
+            return auth_success
+        
+        return True
+    
+    def _authenticate_github_cli(self, gh_binary: Path) -> bool:
+        """Authenticate GitHub CLI with user token."""
+        msg.custom("\n   Setting up GitHub CLI authentication...", color.cyan)
+        msg.custom("   You'll need a GitHub Personal Access Token (PAT)", color.yellow)
+        msg.custom("   To create one:", color.yellow)
+        msg.custom("   1. Go to https://github.com/settings/tokens", color.yellow)
+        msg.custom("   2. Click 'Generate new token (classic)'", color.yellow)
+        msg.custom("   3. Select scopes: repo, workflow, read:org", color.yellow)
+        msg.custom("   4. Copy the generated token", color.yellow)
+        
+        try:
+            # Get token from user
+            token = getpass.getpass(
+                "   Enter your GitHub Personal Access Token [press enter to skip]: "
+            )
+            
+            if not token.strip():
+                msg.custom(
+                    (
+                        "   No token provided. GitHub CLI authentication skipped.\n"
+                        "   You can set it later with 'gh auth login'"
+                    ),
+                    color.yellow
+                )
+                return True
+            
+            # Authenticate with token
+            msg.custom("   Authenticating with GitHub...", color.cyan)
+            
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"\n=== GitHub CLI authentication started ===\n")
+                
+                result = subprocess.run(
+                    [
+                        str(gh_binary),
+                        'auth',
+                        'login',
+                        '--hostname',
+                        'github.com',
+                        '--with-token'
+                    ],
+                    input=token.encode(),
+                    capture_output=True,
+                    text=True,
+                    check=True
+                )
+                
+                log_file.write("GitHub CLI authentication completed successfully\n")
+            
+            msg.custom("   GitHub CLI authenticated successfully!", color.green)
+            
+            return True
+            
+        except subprocess.CalledProcessError as e:
+            msg.custom(f"   GitHub CLI authentication failed: {e.stderr}", color.red)
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"GitHub CLI authentication failed: {e.stderr}\n")
+            return False
+        except KeyboardInterrupt:
+            msg.custom("\n   Authentication cancelled by user.", color.yellow)
+            return True
+        except Exception as e:
+            msg.custom(f"   Unexpected error during authentication: {e}", color.red)
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"Unexpected authentication error: {e}\n")
+            return False
+    
+    def _setup_ssh_key(self, gh_binary: Path) -> bool:
+        """Create and upload SSH key to GitHub."""
+    
+        msg.custom("\n   Setting up SSH key for GitHub...", color.cyan)
+        
+        try:
+            # Get email from user with validation
+            email_pattern = re.compile(
+                r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            )
+            
+            while True:
+                email = input(
+                    "   Enter your email for SSH key [leave blank to skip]: "
+                ).strip()
+                
+                if not email:
+                    msg.custom(
+                        (
+                            "   No email provided. SSH key setup skipped.\n"
+                            "   You can set it later with 'gh ssh-key add'"
+                        ),
+                        color.yellow
+                    )
+                    return True
+                
+                if email_pattern.match(email):
+                    break
+                else:
+                    msg.custom(
+                        "   Invalid email format. Please enter a valid email address.",
+                        color.red
+                    )
+            
+            # Create .ssh directory if it doesn't exist
+            ssh_dir = Path.home() / '.ssh'
+            ssh_dir.mkdir(mode=0o700, exist_ok=True)
+            
+            # Generate SSH key
+            msg.custom("   Generating SSH key...", color.cyan)
+            ssh_key_path = ssh_dir / 'github'
+            
+            # Check if key already exists
+            if ssh_key_path.exists() or (ssh_key_path.with_suffix('.pub')).exists():
+                msg.custom("   SSH key 'github' already exists.", color.yellow)
+                overwrite = input("   Do you want to overwrite it? [y/N]: ").strip().lower()
+                if overwrite not in ['y', 'yes']:
+                    msg.custom("   SSH key generation skipped.", color.yellow)
+                    return True
+                
+                # Remove existing keys
+                if ssh_key_path.exists():
+                    ssh_key_path.unlink()
+                if (ssh_key_path.with_suffix('.pub')).exists():
+                    (ssh_key_path.with_suffix('.pub')).unlink()
+                msg.custom("   Existing SSH keys removed.", color.cyan)
+            
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"\n=== SSH key generation started ===\n")
+                
+                # Generate SSH key pair
+                subprocess.run(
+                    [
+                        'ssh-keygen',
+                        '-t', 'ed25519',
+                        '-C', email,
+                        '-f', str(ssh_key_path),
+                        '-N', '',  # No passphrase
+                        '-q'  # Quiet mode
+                    ],
+                    check=True,
+                    text=True,
+                    stdout=log_file,
+                    stderr=log_file
+                )
+                
+                log_file.write("SSH key generated successfully\n")
+            
+            msg.custom("   SSH key generated successfully!", color.green)
+            
+            # Get IP address for key title
+            try:
+                result = subprocess.run(
+                    ['hostname', '-I'],
+                    capture_output=True,
+                    text=True,
+                    check=True
+                )
+                hostname = result.stdout.strip().split()[0]  # Get first IP address
+            except (subprocess.CalledProcessError, IndexError):
+                hostname = socket.gethostname()  # Fallback to local hostname
+            
+            # Upload SSH key to GitHub
+            msg.custom(f"   Uploading SSH key to GitHub as '{hostname}'...", color.cyan)
+            
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"\n=== SSH key upload started ===\n")
+                
+                result = subprocess.run(
+                    [
+                        str(gh_binary),
+                        'ssh-key',
+                        'add',
+                        str(ssh_key_path) + '.pub',
+                        '--title',
+                        hostname
+                    ],
+                    text=True,
+                    check=True,
+                    stdout=log_file,
+                    stderr=log_file
+                )
+                
+                log_file.write("SSH key uploaded successfully\n")
+            
+            msg.custom("   SSH key uploaded to GitHub successfully!", color.green)
+            return True
+            
+        except subprocess.CalledProcessError as e:
+            msg.custom(f"   SSH key setup failed: {e.stderr}", color.red)
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"SSH key setup failed: {e.stderr}\n")
+            return False
+        except KeyboardInterrupt:
+            msg.custom("\n   SSH key setup cancelled by user.", color.yellow)
+            return True
+        except Exception as e:
+            msg.custom(f"   Unexpected error during SSH key setup: {e}", color.red)
+            with open('install.log', 'a') as log_file:
+                log_file.write(f"Unexpected SSH key setup error: {e}\n")
+            return False 
