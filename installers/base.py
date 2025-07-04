@@ -43,14 +43,6 @@ class Installer(ABC):
 
         if self.force:
             msg.custom(f"    Forcing installation of {name}", color.yellow)
-            if self._check_path(name):
-                msg.custom(
-                    f"    {name} is found in the system. "
-                    f"Remove {self.check_path} if you want to reinstall.",
-                    color.red
-                )
-                self.logger.warning(f"{name} already installed, skipping")
-                return True
             return False
 
         if (self.check_cmd and shutil.which(self.check_cmd)) or self._check_path(name):

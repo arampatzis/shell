@@ -29,11 +29,20 @@ class ScriptInstaller(Installer):
         if self.dry_run:
             if self.script_type == 'git_clone':
                 msg.custom(f"Installing {self.name} from git repository", color.cyan)
-                msg.custom(f"    Would clone {self.repo_url} to {self.target_dir}", color.cyan)
-                msg.custom(f"    Would run installer script: {self.installer_script}", color.cyan)
+                msg.custom(
+                    f"    Would clone {self.repo_url} to {self.target_dir}",
+                    color.cyan
+                )
+                msg.custom(
+                    f"    Would run installer script: {self.installer_script}",
+                    color.cyan
+                )
             elif self.script_type == 'direct_script':
                 msg.custom(f"Installing {self.name} from script", color.cyan)
-                msg.custom(f"    Would download and run script from: {self.script_url}", color.cyan)
+                msg.custom(
+                    f"    Would download and run script from: {self.script_url}",
+                    color.cyan
+                )
             return True
         
         if self.script_type == 'git_clone':
@@ -54,12 +63,29 @@ class ScriptInstaller(Installer):
             # Clone repository
             msg.custom(f"   Cloning {self.name} repository...", color.cyan)
             with open('install.log', 'a') as log_file:
-                log_file.write(f"\n=== {self.name} git clone started at {datetime.now()} ===\n")
+                log_file.write(
+                    f"\n=== {self.name} git clone started at {datetime.now()} ===\n"
+                )
                 
-                subprocess.run([
-                    'git', 'clone', '--depth', '1',
-                    self.repo_url, str(install_dir)
-                ], check=True, stdout=log_file, stderr=log_file)
+                result = subprocess.run(
+                    [
+                        'git',
+                        'clone',
+                        '--depth',
+                        '1',
+                        self.repo_url,
+                        str(install_dir)
+                    ],
+                    stdout=log_file,
+                    stderr=log_file
+                )
+                
+                # Check if clone was successful by verifying the directory exists
+                if not install_dir.exists() or not (install_dir / '.git').exists():
+                    raise subprocess.CalledProcessError(
+                        result.returncode, 
+                        f"git clone failed with return code {result.returncode}"
+                    )
             
             # Run installer script
             msg.custom(f"   Running {self.name} installer...", color.cyan)
@@ -77,13 +103,21 @@ class ScriptInstaller(Installer):
                 log_file.write(f"\n=== {self.name} installer started ===\n")
                 log_file.write(f"Command: {' '.join(install_cmd)}\n")
                 
-                subprocess.run(install_cmd, check=True, stdout=log_file, stderr=log_file)
+                subprocess.run(
+                    install_cmd,
+                    check=True,
+                    stdout=log_file,
+                    stderr=log_file
+                )
             
             msg.custom(f"   {self.name} installed successfully", color.green)
             msg.custom("   Detailed logs written to install.log", color.yellow)
             
             with open('install.log', 'a') as log_file:
-                log_file.write(f"\n=== {self.name} installation completed successfully at {datetime.now()} ===\n")
+                log_file.write(
+                    f"\n=== {self.name} installation completed successfully "
+                    f"at {datetime.now()} ===\n"
+                )
             
             return True
             
@@ -98,7 +132,10 @@ class ScriptInstaller(Installer):
         
         try:
             # Download and execute script
-            msg.custom(f"   Downloading and running {self.name} installer...", color.cyan)
+            msg.custom(
+                f"   Downloading and running {self.name} installer...",
+                color.cyan
+            )
             
             # Prepare installer command
             install_cmd = ['bash', '-c', f'curl -fsSL {self.script_url} | bash']
@@ -110,7 +147,12 @@ class ScriptInstaller(Installer):
                 )
                 log_file.write(f"Script URL: {self.script_url}\n")
                 
-                subprocess.run(install_cmd, check=True, stdout=log_file, stderr=log_file)
+                subprocess.run(
+                    install_cmd,
+                    check=True,
+                    stdout=log_file,
+                    stderr=log_file
+                )
             
             msg.custom(f"   {self.name} installed successfully", color.green)
             msg.custom("   Detailed logs written to install.log", color.yellow)
