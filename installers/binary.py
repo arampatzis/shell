@@ -30,9 +30,12 @@ def authenticate_github_cli(gh_binary: Path) -> bool:
     
     try:
         # Get token from user
-        token = getpass.getpass(
-            "   Enter your GitHub Personal Access Token [press enter to skip]: "
-        )
+        msg.custom("   Please paste your GitHub Personal Access Token below:", color.cyan)
+        msg.custom("   (You can paste with Ctrl+Shift+V or right-click)", color.yellow)
+        
+        token = input("   Token: ")
+        
+        print(f"Token type: {type(token)}, Token value: {repr(token)}")
         
         if not token.strip():
             msg.custom(
@@ -59,9 +62,8 @@ def authenticate_github_cli(gh_binary: Path) -> bool:
                     'github.com',
                     '--with-token'
                 ],
-                input=token.encode(),
+                input=token.encode('utf-8'),
                 capture_output=True,
-                text=True,
                 check=True
             )
             
