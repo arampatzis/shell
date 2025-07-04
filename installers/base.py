@@ -43,6 +43,15 @@ class Installer(ABC):
 
         if self.force:
             msg.custom(f"    Forcing installation of {name}", color.yellow)
+            # Check if directory exists and warn user
+            if self.check_path:
+                check_location = Path(self.check_path).expanduser()
+                if check_location.exists():
+                    msg.custom(
+                        f"    {name} directory exists at {self.check_path}. "
+                        f"Consider removing it before forcing installation.",
+                        color.yellow
+                    )
             return False
 
         if (self.check_cmd and shutil.which(self.check_cmd)) or self._check_path(name):
