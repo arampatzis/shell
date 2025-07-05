@@ -109,7 +109,7 @@ dotfile_configs:
     target: "~/"
     expand: true
 
-  oh_my_bash configuration:
+  oh_my_bash_configuration:
     name: "oh-my-bash-configuration"
     source: "dotfiles/oh-my-bash/custom"
     target: "~/.oh-my-bash/custom"

@@ -5,8 +5,8 @@ from datetime import datetime
 from pathlib import Path
 from dataclasses import dataclass, field
 
-from messages import message as msg
-from messages import color
+from .messages import message as msg
+from .messages import color
 from .base import Installer
 
 

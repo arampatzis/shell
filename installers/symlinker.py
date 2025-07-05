@@ -7,8 +7,8 @@ from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Optional
 
-from messages import message as msg
-from messages import color
+from .messages import message as msg
+from .messages import color
 from .base import Installer
 
 

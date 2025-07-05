@@ -8,8 +8,8 @@ from pathlib import Path
 from dataclasses import dataclass, field
 import subprocess
 
-from messages import message as msg
-from messages import color
+from .messages import message as msg
+from .messages import color
 
 
 @dataclass(kw_only=True)

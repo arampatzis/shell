@@ -12,8 +12,8 @@ import sys
 from pathlib import Path
 import yaml
 
-from messages import message as msg
-from messages import color
+from installers.messages import message as msg
+from installers.messages import color
 from installers import (
     BinaryInstaller,
     ScriptInstaller,

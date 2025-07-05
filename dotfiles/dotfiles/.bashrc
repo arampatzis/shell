@@ -92,7 +92,6 @@ plugins=(
   git
   bashmarks
   mountit
-  python-env
   passwordless-ssh
 )
 
