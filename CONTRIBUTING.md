@@ -1,75 +1,147 @@
 # Contributing
 
-Thanks for your interest! Here are the main ways to contribute:
+Thank you for your interest in contributing to the Shell Environment Setup project! This document provides guidelines and instructions for contributing effectively.
+
+## Development Setup
+
+### Prerequisites
+
+1. **Python 3.11+**: The project requires Python 3.11 or higher
+2. **Poetry**: For dependency management
+3. **Git**: For version control
+4. **Build Tools**: For testing source installations
+
+### Initial Setup
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd shell
+
+# Install dependencies
+poetry install
+
+# Install pre-commit hooks
+pre-commit install
+
+# Activate the virtual environment
+poetry shell
+
+# Verify setup
+pre-commit run --all-files
+```
+
+## Code Quality Standards
+
+### Pre-commit Hooks
+
+The project uses pre-commit hooks to maintain code quality:
+
+- **Trailing whitespace removal**
+- **End-of-file fixer**
+- **YAML/TOML validation**
+- **Large file detection**
+- **Case conflict detection**
+- **Executable permissions**
+- **Merge conflict detection**
+- **Code formatting** (Ruff)
+- **Linting** (Ruff)
+- **Python version upgrades** (pyupgrade)
+- **F-string optimization**
+
+### Code Style Guidelines
+
+- **Type Hints**: Use type hints for all function parameters and return values
+- **Docstrings**: Add docstrings to all public functions and classes
+- **Error Handling**: Implement proper error handling with meaningful messages
+- **Logging**: Use the project's logging system for all output
+- **Naming**: Follow Python naming conventions (snake_case for functions/variables)
+
 
 ## Adding New Tools
 
-1. **Binary Tools** (GitHub releases):
-   ```yaml
-   tool_name:
-     name: "Tool Name"
-     binary_name: "tool"
-     repo: "owner/repo"
-     version: "v1.0.0"
-     archive_pattern: "https://github.com/{repo}/releases/download/{version}/tool-{version}-x86_64-unknown-linux-musl.tar.gz"
-     check_cmd: "tool"
-   ```
+### 1. Binary Tools (GitHub Releases)
 
-2. **Source Tools** (build from source):
-   ```yaml
-   tool_name:
-     name: "Tool Name"
-     repo: "owner/repo"
-     version: "v1.0.0"
-     archive_pattern: "https://github.com/{repo}/archive/refs/tags/{version}.tar.gz"
-     binary_name: "tool"
-     build_deps: ["wget", "tar", "make", "gcc"]
-     configure_args: ["--prefix=$HOME/local"]
-     run_autogen: true  # if needed
-     check_cmd: "tool"
-   ```
+For tools distributed as pre-compiled binaries via GitHub releases:
 
-## Improving Installers
-
-- **Binary**: Enhance `installers/binary.py` for different archive formats
-- **Script**: Improve `installers/script.py` for new script patterns
-- **Source**: Extend `installers/source.py` for complex build systems
-- **Symlinker**: Add features to `installers/symlinker.py` for advanced linking
-
-## Testing
-
-```bash
-# Test specific tool
-./install.py --components tool_name --dry-run
-
-# Test installation
-./install.py --components tool_name --force
+```json
+{
+  "binary_installer": {
+    "new_tool": {
+      "binary_name": "new_tool",
+      "version": "1.0.0",
+      "archive_pattern": "https://github.com/owner/repo/releases/download/v{version}/new_tool-{version}-x86_64-unknown-linux-musl.tar.gz"
+    }
+  }
+}
 ```
 
-## Code Style
+**Requirements**:
+- Tool must have GitHub releases
+- Archive must contain the binary directly or in a predictable location
+- Binary name should match the executable name
 
-- Use type hints
-- Follow existing patterns
-- Add error handling
-- Update documentation
+### 2. Script Tools (Installation Scripts)
 
-## Code Guidelines
+For tools that use installation scripts (curl/wget):
 
-- Keep functions focused and testable
-- Use type hints and docstrings
-- Follow existing naming conventions
-- Test changes with `--dry-run` first
+```json
+{
+  "script_installer": {
+    "new_script_tool": {
+      "script_url": "https://raw.githubusercontent.com/owner/repo/master/install.sh"
+    }
+  }
+}
+```
 
-## Pull Requests
+**Requirements**:
+- Script should be idempotent (safe to run multiple times)
+- Script should handle its own dependencies
+- Consider security implications of running external scripts
 
-1. Fork the repository
-2. Create a feature branch
-3. Test your changes thoroughly
-4. Submit a PR with clear description
+### 3. Source Tools (Build from Source)
 
-## Issues
+For tools that need to be compiled from source:
 
-Report bugs or request features via GitHub Issues. Include:
-- OS and Python version
-- Error logs from `install.log`
-- Steps to reproduce
+```json
+{
+  "source_installer": {
+    "new_source_tool": {
+      "version": "1.0.0",
+      "archive_pattern": "https://github.com/owner/repo/archive/refs/tags/{version}.tar.gz",
+      "binary_name": "new_source_tool",
+      "required_deps": ["gcc", "make", "autoconf", "automake"],
+      "run_autogen": true,
+      "configure_args": ["--prefix=$HOME/local"],
+      "make_args": ["-j4"]
+    }
+  }
+}
+```
+
+**Requirements**:
+- Source must be available as a tarball
+- Build process should be standard (autotools, cmake, etc.)
+- Dependencies should be clearly documented
+
+### 4. Dotfiles & Configuration
+
+For configuration files and dotfiles:
+
+```json
+{
+  "dotfiles_installer": {
+    "new_config": {
+      "source": "dotfiles/new_config",
+      "target": "~/.new_config",
+      "expand": true
+    }
+  }
+}
+```
+
+**Options**:
+- `expand`: Whether to link the source directory to the target directory or link the files in the source directory to the target directory
+- `source`: Relative path from project root
+- `target`: Destination path (supports `~` expansion)

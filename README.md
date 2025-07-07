@@ -1,34 +1,33 @@
 # Shell Environment Setup
 
-A Python-based installer for development tools and dotfiles with YAML configuration.
+A Python-based installer for development tools and dotfiles with JSON configuration. This project provides a comprehensive solution for managing your development environment with selective installation, dry-run capabilities, and detailed logging.
 
 ## Quick Start
 
+Download and unzip the repository:
+```bash
+wget https://github.com/arampatzis/shell/archive/refs/heads/master.zip
+unzip main.zip
+cd shell-main
+```
+Installation options:
 ```bash
 # Install everything
 ./install.py
 
+# List available tools
+./install.py --list
 # Install specific tools
 ./install.py --components bat fd zellij htop
 
 # Preview changes
 ./install.py --dry-run
 
-# List available tools
-./install.py --list-components
-
 # Force reinstall
 ./install.py --force
 ```
-
-## Available Tools
-
-**Binary Tools**: lazygit, ripgrep, bat, fd, zellij, gh
-**Script Tools**: fzf, oh-my-bash
-**Source Tools**: vifm, htop
-**Dotfiles**: bash, vim, git configs, oh-my-bash themes
-
 ## Features
+
 
 - **Selective Installation**: Install only the tools you need
 - **Dry Run Mode**: Preview changes without making them
@@ -36,27 +35,11 @@ A Python-based installer for development tools and dotfiles with YAML configurat
 - **Comprehensive Logging**: Detailed logs in `install.log`
 - **Multiple Sources**: GitHub releases, git clones, source builds
 - **Dotfile Management**: Symlink configuration files
-
-## Configuration
-
-Edit `install_config.yaml` to customize:
-- Tool versions and sources
-- Build dependencies
-- Installation paths
-- Dotfile locations
+- **Error Handling**: Robust error handling with rollback capabilities
+- **Type Safety**: Full type hints and modern Python practices
 
 ## Requirements
 
-- Python 3.8+
-- Basic build tools (wget, tar, git, make, gcc)
-
-## Project Structure
-
-```
-shell/
-├── install.py              # Main installer script
-├── install_config.yaml     # Tool configurations
-├── installers/             # Installer classes (binary, script, source, symlink)
-├── dotfiles/               # Dotfiles and configs
-└── messages.py             # UI messaging utilities
-```
+- **Python**: 3.11+
+- **Build Tools**: wget, tar, git, make, gcc, autoconf, automake, pkg-config
+- **Dependencies**: No dependencies for the installer
