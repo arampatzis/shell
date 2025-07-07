@@ -17,6 +17,7 @@ Installation options:
 
 # List available tools
 ./install.py --list
+
 # Install specific tools
 ./install.py --components bat fd zellij htop
 
