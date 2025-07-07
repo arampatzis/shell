@@ -22,6 +22,14 @@ from installers import (
 )
 
 
+INSTALLERS_MAP = {
+    "binary_installer": BinaryInstaller,
+    "script_installer": ScriptInstaller,
+    "source_installer": SourceInstaller,
+    "dotfiles_installer": SymlinkerInstaller
+}
+
+
 def load_config():
     """Load configuration from YAML file."""
     config_file = Path("install_config.yaml")
@@ -47,56 +55,49 @@ def setup_logging():
 
 def install_all_tools(
     dry_run: bool = False,
-    components: list[str] | None = None,
+    tools_to_install: list[str] | None = None,
     force: bool = False
 ) -> bool:
     """Install all tools using simple loops."""
     
-    # Setup logging
+    log_file = "install.log"
+    
     setup_logging()
     
-    # Load configuration
     config = load_config()
     
-    # Get available components
-    all_components = []
-    all_components.extend(config.get('binary_tools', {}).keys())
-    all_components.extend(config.get('script_tools', {}).keys())
-    all_components.extend(config.get('source_tools', {}).keys())
-    all_components.extend(config.get('dotfile_configs', {}).keys())
-    
-    # Filter components if specified
-    if components:
-        invalid_components = set(components) - set(all_components)
+    available_tools = []
+    for tool in INSTALLERS_MAP.keys():
+        available_tools.extend(config.get(tool, {}).keys())
+        
+    if tools_to_install:
+        invalid_components = set(tools_to_install) - set(available_tools)
         if invalid_components:
             msg.error(f"Invalid components: {', '.join(invalid_components)}")
-            msg.custom(f"Available components: {', '.join(all_components)}", color.cyan)
+            msg.custom(f"Available components: {', '.join(available_tools)}", color.cyan)
             return False
-        target_components = components
+        target_components = tools_to_install
     else:
-        target_components = all_components
+        target_components = available_tools
     
     success = True
-    
-    tools_to_install = {
-        "binary_tools": BinaryInstaller,
-        "script_tools": ScriptInstaller,
-        "source_tools": SourceInstaller,
-        "dotfile_configs": SymlinkerInstaller
-    }
-    
-    for tool_type in tools_to_install.keys():
-        if config.get(tool_type):
-            for tool_name, tool_config in config[tool_type].items():
+        
+    for installer_name, installer_cls in INSTALLERS_MAP.items():
+        if config.get(installer_name):
+            for tool_name, tool_config in config[installer_name].items():
                 if tool_name in target_components:
-                    installer = tools_to_install[tool_type](
+                    installer = installer_cls(
                         **tool_config,
+                        name=tool_name,
                         dry_run=dry_run,
-                        force=force
+                        force=force,
+                        log_file=log_file
                     )
                     if not installer.install():
                         success = False
-    # Show results
+                        
+    msg.custom(f"\nDetailed logs written to {log_file}", color.orange)
+    
     if success:
         if dry_run:
             msg.custom("\nDry run completed", color.green)
@@ -106,12 +107,12 @@ def install_all_tools(
         if dry_run:
             msg.custom(
                 "Dry run completed with errors. Check install.log for details.",
-                color.yellow
+                color.red
             )
         else:
             msg.custom(
                 "Installation completed with errors. "
-                "Check install.log for details.", color.yellow
+                "Check install.log for details.", color.red
             )
     
     return success
@@ -121,27 +122,13 @@ def list_components() -> None:
     """List all available components."""
     config = load_config()
     
-    print("Available components:")
+    msg.custom("Available components:", color.cyan)
     
-    if config.get('binary_tools'):
-        print("\nBinary tools:")
-        for name, tool_config in config['binary_tools'].items():
-            print(f"  {name}: {tool_config.get('name', name)}")
-    
-    if config.get('script_tools'):
-        print("\nScript tools:")
-        for name, tool_config in config['script_tools'].items():
-            print(f"  {name}: {tool_config.get('name', name)}")
-    
-    if config.get('source_tools'):
-        print("\nSource tools:")
-        for name, tool_config in config['source_tools'].items():
-            print(f"  {name}: {tool_config.get('name', name)}")
-    
-    if config.get('dotfile_configs'):
-        print("\nDotfile configurations:")
-        for name, tool_config in config['dotfile_configs'].items():
-            print(f"  {name}: {tool_config.get('name', name)}")
+    for installer_name in INSTALLERS_MAP:
+        if config.get(installer_name):
+            msg.custom(f"\n{installer_name}:", color.yellow)
+            for tool_name in config[installer_name]:
+                msg.custom(f"  {tool_name}", color.green)
 
 
 def main() -> None:
@@ -155,7 +142,7 @@ Examples:
   %(prog)s --dry-run                # Show what would be installed
   %(prog)s --force                  # Force installation even if already installed
   %(prog)s --components dotfiles config vifm  # Install specific components
-  %(prog)s --list-components        # List available components
+  %(prog)s --list                   # List available components
         """
     )
     
@@ -176,19 +163,19 @@ Examples:
         nargs='+',
         help=(
             "Specific components to install "
-            "(use --list-components to see all available)"
+            "(use --list to see all available)"
         )
     )
     
     parser.add_argument(
-        '--list-components',
+        '--list',
         action='store_true',
         help='List available components and exit'
     )
     
     args = parser.parse_args()
     
-    if args.list_components:
+    if args.list:
         list_components()
         return
     
@@ -197,7 +184,7 @@ Examples:
     
     success = install_all_tools(
         dry_run=args.dry_run,
-        components=args.components,
+        tools_to_install=args.components,
         force=args.force
     )
     

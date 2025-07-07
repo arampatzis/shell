@@ -1,122 +1,79 @@
-binary_tools:
+binary_installer:
   lazygit:
-    name: "lazygit"
     binary_name: "lazygit"
-    repo: "jesseduffield/lazygit"
-    version: "v0.44.1"
-    archive_pattern: "https://github.com/{repo}/releases/download/{version}/lazygit_0.44.1_Linux_{arch}.tar.gz"
-    check_cmd: "lazygit"
+    version: "0.44.1"
+    archive_pattern: "https://github.com/jesseduffield/lazygit/releases/download/v{version}/lazygit_{version}_Linux_x86_64.tar.gz"
     
   ripgrep:
-    name: "ripgrep"
     binary_name: "rg"
-    repo: "BurntSushi/ripgrep"
-    version: "14.1.0"
-    archive_pattern: "https://github.com/{repo}/releases/download/{version}/ripgrep-{version}-x86_64-unknown-linux-musl.tar.gz"
-    check_cmd: "rg"
+    version: "14.1.1"
+    archive_pattern: "https://github.com/BurntSushi/ripgrep/releases/download/{version}/ripgrep-{version}-x86_64-unknown-linux-musl.tar.gz"
     
   bat:
-    name: "bat"
     binary_name: "bat"
-    repo: "sharkdp/bat"
-    version: "v0.24.0"
-    archive_pattern: "https://github.com/sharkdp/bat/releases/download/{version}/bat-{version}-x86_64-unknown-linux-musl.tar.gz"
-    check_cmd: "bat"
+    version: "0.25.0"
+    archive_pattern: "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-aarch64-unknown-linux-musl.tar.gz"
     
   fd:
-    name: "fd"
     binary_name: "fd"
-    repo: "sharkdp/fd"
     version: "v10.2.0"
     archive_pattern: "https://github.com/sharkdp/fd/releases/download/{version}/fd-{version}-x86_64-unknown-linux-musl.tar.gz"
-    check_cmd: "fd"
     
   zellij:
-    name: "zellij"
     binary_name: "zellij"
-    repo: "zellij-org/zellij"
     version: "v0.42.2"
     archive_pattern: "https://github.com/zellij-org/zellij/releases/download/{version}/zellij-x86_64-unknown-linux-musl.tar.gz"
-    check_cmd: "zellij"
 
   gh:
-    name: "gh"
     binary_name: "gh"
-    repo: "cli/cli"
     version: "2.74.2"
     archive_pattern: "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_linux_amd64.tar.gz"
-    check_cmd: "gh"
 
-
-
-script_tools:
   fzf:
-    name: "fzf"
-    script_type: "git_clone"
-    repo_url: "https://github.com/junegunn/fzf.git"
-    target_dir: ".fzf"
-    installer_script: "install"
-    installer_args:
-      - "--no-zsh"
-      - "--no-fish"
-      - "--key-bindings"
-      - "--completion"
-      - "--update-rc"
-    check_cmd: "fzf"
-    check_path: "~/.fzf"
-    
-  oh_my_bash:
-    name: "oh-my-bash"
-    script_type: "direct_script"
-    script_url: "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh"
-    check_path: "~/.oh-my-bash"
+    binary_name: "fzf"
+    version: "0.63.0"
+    archive_pattern: "https://github.com/junegunn/fzf/releases/download/v{version}/fzf-{version}-linux_amd64.tar.gz"
 
-source_tools:
+
+script_installer:
+  oh_my_bash:
+    script_url: "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh"
+
+source_installer:
   vifm:
-    name: "vifm"
-    repo: "vifm/vifm"
     version: "v0.14.3"
     archive_pattern: "https://github.com/vifm/vifm/archive/refs/tags/{version}.tar.gz"
     binary_name: "vifm"
-    build_deps:
+    required_deps:
       - "wget"
       - "tar"
       - "make"
       - "gcc"
-    configure_args: ["--prefix=$HOME/local"]
-    check_cmd: "vifm"
     
   htop:
-    name: "htop"
-    repo: "htop-dev/htop"
     version: "3.4.1"
     archive_pattern: "https://github.com/htop-dev/htop/archive/refs/tags/{version}.tar.gz"
     binary_name: "htop"
-    build_deps:
+    required_deps:
       - "gcc"
       - "make"
       - "autoconf"
       - "automake"
       - "pkg-config"
-    configure_args: ["--prefix=$HOME/local"]
     run_autogen: true
-    check_cmd: "htop"
 
-dotfile_configs:
+dotfiles_installer:
   dotfiles:
-    name: "dotfiles"
     source: "dotfiles/dotfiles"
     target: "~/"
     expand: true
 
-  oh_my_bash_configuration:
-    name: "oh-my-bash-configuration"
+  omb_config:
     source: "dotfiles/oh-my-bash/custom"
     target: "~/.oh-my-bash/custom"
     expand: false
     
-  config:
-    name: "config files"
+  dot_config:
     source: "dotfiles/config"
     target: "~/.config/"
     expand: true
