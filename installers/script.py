@@ -1,12 +1,11 @@
 """Script installer for tools that use git repositories with installer scripts."""
 
-from datetime import datetime
 from dataclasses import dataclass, field
 
 from .messages import message as msg
 from .messages import color
 from .base import Installer
-from .tools import execute_cmd
+from .tools import install_from_url
 
 
 @dataclass(kw_only=True)
@@ -24,18 +23,13 @@ class ScriptInstaller(Installer):
         """
         msg.custom(
             f"    Installing {self.name} from script:\n    {self.script_url}",
-            color.orange
+            color.orange,
         )
 
-        msg.custom(
-            f"    Downloading and running {self.name} installer...",
-            color.cyan
-        )
+        msg.custom(f"    Downloading and running {self.name} installer...", color.cyan)
 
-        install_cmd = ['bash', '-c', f'wget -qO - {self.script_url} | bash']
-        result = execute_cmd(
-            install_cmd,
-            message = f"Starting {self.name} installation",
-            logger=self.logger,
+        result = install_from_url(
+            self.script_url,
+            message=f"Starting {self.name} installation",
         )
         return result.success

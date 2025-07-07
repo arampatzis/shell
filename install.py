@@ -2,10 +2,11 @@
 """
 Advanced Dotfiles Installation Script
 
-This script provides a comprehensive solution for managing dotfiles and development 
-environment setup. It supports selective installation, dry-run mode, rollback 
+This script provides a comprehensive solution for managing dotfiles and development
+environment setup. It supports selective installation, dry-run mode, rollback
 capabilities, and detailed logging.
 """
+
 import argparse
 import logging
 import sys
@@ -19,7 +20,7 @@ from installers import (
     BinaryInstaller,
     ScriptInstaller,
     SymlinkerInstaller,
-    SourceInstaller
+    SourceInstaller,
 )
 
 
@@ -27,7 +28,7 @@ INSTALLERS_MAP = {
     "binary_installer": BinaryInstaller,
     "script_installer": ScriptInstaller,
     "source_installer": SourceInstaller,
-    "dotfiles_installer": SymlinkerInstaller
+    "dotfiles_installer": SymlinkerInstaller,
 }
 
 
@@ -37,52 +38,67 @@ def load_config():
     if not config_file.exists():
         msg.error(f"Configuration file {config_file} not found")
         sys.exit(1)
-    
-    with open(config_file, 'r') as f:
+
+    with open(config_file) as f:
         return json.load(f)
 
 
-def setup_logging():
-    """Configure logging system."""
-    log_format = '%(asctime)s - %(levelname)s - %(message)s'
-    logging.basicConfig(
-        level=logging.INFO,
-        format=log_format,
-        handlers=[
-            logging.FileHandler('install.log')
-        ]
-    )
+def setup_logger(
+    name: str = "install", level: int = logging.INFO, log_to_file: str = "install.log"
+) -> logging.Logger:
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+
+    if logger.hasHandlers():
+        return logger  # Prevent adding multiple handlers on reload
+
+    formatter = logging.Formatter("[%(levelname)s] %(message)s")
+
+    # Console handler
+    console_handler = logging.StreamHandler(sys.stderr)
+    console_handler.setFormatter(formatter)
+    logger.addHandler(console_handler)
+
+    # Optional: file logging
+    if log_to_file:
+        file_handler = logging.FileHandler(log_to_file)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+
+    return logger
 
 
 def install_all_tools(
     dry_run: bool = False,
     tools_to_install: list[str] | None = None,
-    force: bool = False
+    force: bool = False,
 ) -> bool:
     """Install all tools using simple loops."""
-    
+
     log_file = "install.log"
-    
-    setup_logging()
-    
+
+    logger = setup_logger()
+
     config = load_config()
-    
+
     available_tools = []
     for tool in INSTALLERS_MAP.keys():
         available_tools.extend(config.get(tool, {}).keys())
-        
+
     if tools_to_install:
         invalid_components = set(tools_to_install) - set(available_tools)
         if invalid_components:
             msg.error(f"Invalid components: {', '.join(invalid_components)}")
-            msg.custom(f"Available components: {', '.join(available_tools)}", color.cyan)
+            msg.custom(
+                f"Available components: {', '.join(available_tools)}", color.cyan
+            )
             return False
         target_components = tools_to_install
     else:
         target_components = available_tools
-    
+
     success = True
-    
+
     for installer_name, installer_cls in INSTALLERS_MAP.items():
         if config.get(installer_name):
             for tool_name, tool_config in config[installer_name].items():
@@ -92,21 +108,21 @@ def install_all_tools(
                         name=tool_name,
                         dry_run=dry_run,
                         force=force,
-                        log_file=log_file
+                        log_file=log_file,
                     )
                     try:
                         result = installer.install()
                         success = success and result
                     except Exception as e:
-                        logging.error("Unexpected error occurred:")
-                        logging.error(traceback.format_exc())
+                        logger.error(f"Unexpected error occurred: {e}")
+                        logger.error(traceback.format_exc())
                         msg.error(
                             "An unexpected error occurred. Check logs for details."
                         )
                         success = False
 
     msg.custom(f"\nDetailed logs written to {log_file}", color.orange)
-    
+
     if success:
         if dry_run:
             msg.custom("\nDry run completed", color.green)
@@ -116,23 +132,23 @@ def install_all_tools(
         if dry_run:
             msg.custom(
                 "Dry run completed with errors. Check install.log for details.",
-                color.red
+                color.red,
             )
         else:
             msg.custom(
-                "Installation completed with errors. "
-                "Check install.log for details.", color.red
+                "Installation completed with errors. Check install.log for details.",
+                color.red,
             )
-    
+
     return success
 
 
 def list_components() -> None:
     """List all available components."""
     config = load_config()
-    
+
     msg.custom("Available components:", color.cyan)
-    
+
     for installer_name in INSTALLERS_MAP:
         if config.get(installer_name):
             msg.custom(f"\n{installer_name}:", color.yellow)
@@ -152,53 +168,46 @@ Examples:
   %(prog)s --force                  # Force installation even if already installed
   %(prog)s --components dotfiles config vifm  # Install specific components
   %(prog)s --list                   # List available components
-        """
+        """,
     )
-    
+
     parser.add_argument(
-        '--dry-run', 
-        action='store_true',
-        help='Show what would be installed without making changes'
+        "--dry-run",
+        action="store_true",
+        help="Show what would be installed without making changes",
     )
-    
+
     parser.add_argument(
-        '--force',
-        action='store_true',
-        help='Force installation even if tools are already installed'
+        "--force",
+        action="store_true",
+        help="Force installation even if tools are already installed",
     )
-    
+
     parser.add_argument(
-        '--components',
-        nargs='+',
-        help=(
-            "Specific components to install "
-            "(use --list to see all available)"
-        )
+        "--components",
+        nargs="+",
+        help=("Specific components to install (use --list to see all available)"),
     )
-    
+
     parser.add_argument(
-        '--list',
-        action='store_true',
-        help='List available components and exit'
+        "--list", action="store_true", help="List available components and exit"
     )
-    
+
     args = parser.parse_args()
-    
+
     if args.list:
         list_components()
         return
-    
+
     if args.dry_run:
         msg.custom("Dry run mode - No changes will be made", color.green)
-    
+
     success = install_all_tools(
-        dry_run=args.dry_run,
-        tools_to_install=args.components,
-        force=args.force
+        dry_run=args.dry_run, tools_to_install=args.components, force=args.force
     )
-    
+
     sys.exit(0 if success else 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

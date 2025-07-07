@@ -7,12 +7,12 @@
 
 
 function passwordless_login {
-  
+
   if [ "$#" -ne 1 ]; then
     printf "Usage:  $0 valid_ip\n"
     return 1
   fi
-  
+
   ip="$1"
 
   file=$HOME/.ssh/id_rsa.pub

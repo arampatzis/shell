@@ -39,6 +39,9 @@
   "script_installer": {
     "oh_my_bash": {
       "script_url": "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh"
+    },
+    "pyenv": {
+      "script_url": "https://pyenv.run"
     }
   },
   "source_installer": {
@@ -84,4 +87,4 @@
       "expand": true
     }
   }
-} 
+}

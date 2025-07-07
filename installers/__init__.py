@@ -7,9 +7,9 @@ from .symlinker import SymlinkerInstaller
 from .source import SourceInstaller
 
 __all__ = [
-    'Installer',
-    'BinaryInstaller', 
-    'ScriptInstaller',
-    'SymlinkerInstaller',
-    'SourceInstaller'
-] 
+    "Installer",
+    "BinaryInstaller",
+    "ScriptInstaller",
+    "SymlinkerInstaller",
+    "SourceInstaller",
+]

@@ -22,4 +22,3 @@ alias vf='vifm . .'
 alias openalias='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh; source ~/.bashrc'
 alias openexports='vim ~/.oh-my-bash/custom/xexports.sh; source ~/.bashrc'
 alias opensystem='vim ~/.oh-my-bash/custom/system.sh; source ~/.bashrc'
-

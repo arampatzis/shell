@@ -32,7 +32,7 @@ Thanks for your interest! Here are the main ways to contribute:
 ## Improving Installers
 
 - **Binary**: Enhance `installers/binary.py` for different archive formats
-- **Script**: Improve `installers/script.py` for new script patterns  
+- **Script**: Improve `installers/script.py` for new script patterns
 - **Source**: Extend `installers/source.py` for complex build systems
 - **Symlinker**: Add features to `installers/symlinker.py` for advanced linking
 
@@ -72,4 +72,4 @@ Thanks for your interest! Here are the main ways to contribute:
 Report bugs or request features via GitHub Issues. Include:
 - OS and Python version
 - Error logs from `install.log`
-- Steps to reproduce 
+- Steps to reproduce

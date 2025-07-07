@@ -2,28 +2,25 @@
 
 from abc import ABC, abstractmethod
 import logging
-import re
 import shutil
-from datetime import datetime
 from pathlib import Path
 from dataclasses import dataclass, field
-import subprocess
-from typing import TextIO
 
 from .messages import message as msg
 from .messages import color
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(kw_only=True)
 class Installer(ABC):
     """Base installer class with common functionality."""
-    
+
     name: str = ""
     dry_run: bool = False
     force: bool = False
     check_cmd: str = ""
     check_path: str = ""
-    logger: logging.Logger = field(default_factory=lambda: logging.getLogger(__name__))
     installation_path: Path | str = ""
     log_file: Path | str = "install.log"
     required_deps: list[str] = field(default_factory=list)
@@ -41,16 +38,16 @@ class Installer(ABC):
 
     def install(self) -> bool:
         """Install a tool from a source to a target."""
-        msg.custom(f'\n* {self.name}', color.pink)
-        
+        msg.custom(f"\n* {self.name}", color.pink)
+
         if self._check_installed(self.name):
-            return True    
+            return True
         if not self._check_dependencies(self.required_deps):
             return False
         return self._install()
 
     def _check_installed(self, name: str) -> bool:
-        """Check if the tool is already installed."""    
+        """Check if the tool is already installed."""
 
         if shutil.which(self.check_cmd):
             if self.force:
@@ -72,8 +69,6 @@ class Installer(ABC):
         missing = [dep for dep in dependencies if not shutil.which(dep)]
         if missing:
             msg.error(f"Missing dependencies: {', '.join(missing)}")
-            self.logger.error(f"Missing dependencies: {', '.join(missing)}")
+            logger.error(f"Missing dependencies: {', '.join(missing)}")
             return False
         return True
-
-    

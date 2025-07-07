@@ -23,9 +23,9 @@ A Python-based installer for development tools and dotfiles with YAML configurat
 
 ## Available Tools
 
-**Binary Tools**: lazygit, ripgrep, bat, fd, zellij, gh  
-**Script Tools**: fzf, oh-my-bash  
-**Source Tools**: vifm, htop  
+**Binary Tools**: lazygit, ripgrep, bat, fd, zellij, gh
+**Script Tools**: fzf, oh-my-bash
+**Source Tools**: vifm, htop
 **Dotfiles**: bash, vim, git configs, oh-my-bash themes
 
 ## Features
@@ -55,7 +55,7 @@ Edit `install_config.yaml` to customize:
 ```
 shell/
 ├── install.py              # Main installer script
-├── install_config.yaml     # Tool configurations  
+├── install_config.yaml     # Tool configurations
 ├── installers/             # Installer classes (binary, script, source, symlink)
 ├── dotfiles/               # Dotfiles and configs
 └── messages.py             # UI messaging utilities
