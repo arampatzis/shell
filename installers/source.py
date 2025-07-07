@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from .messages import message as msg
 from .messages import color
 from .base import Installer
+from .tools import execute_cmd
 
 
 @dataclass(kw_only=True)
@@ -66,37 +67,38 @@ class SourceInstaller(Installer):
             try:
                 msg.custom(f"    Downloading {self.name} source...", color.cyan)
                 
-                with open('install.log', 'a') as log_file:
-                    log_file.write(
-                        f"\n=== {self.name} download started at {datetime.now()} ===\n"
-                    )
-                    
-                    subprocess.run(
-                        [
-                            'wget',
-                            '-q',
-                            '-O',
-                            str(temp_path / f'{self.name}.tar.gz'),
-                            url
-                        ],
-                        check=True,
-                        cwd=temp_path,
-                        stdout=log_file,
-                        stderr=log_file
-                    )
-                    
-                    log_file.write(f"\n=== {self.name} source extraction started ===\n")
-                    subprocess.run(
-                        [
-                            'tar',
-                            '-xzf',
-                            f'{self.name}.tar.gz'
-                        ],
-                        check=True,
-                        cwd=temp_path,
-                        stdout=log_file,
-                        stderr=log_file
-                    )
+                self.logger.info(f"=== {self.name} download started at {datetime.now()} ===")
+                
+                result = execute_cmd(
+                    [
+                        'wget',
+                        '-q',
+                        '-O',
+                        str(temp_path / f'{self.name}.tar.gz'),
+                        url
+                    ],
+                    cwd=temp_path,
+                    message=f"=== {self.name} download started ===",
+                    logger=self.logger,
+                )
+                
+                if not result.success:
+                    return False
+                
+                self.logger.info(f"=== {self.name} source extraction started ===")
+                result = execute_cmd(
+                    [
+                        'tar',
+                        '-xzf',
+                        f'{self.name}.tar.gz'
+                    ],
+                    cwd=temp_path,
+                    message=f"=== {self.name} source extraction started ===",
+                    logger=self.logger,
+                )
+                
+                if not result.success:
+                    return False
                 
                 # Find extracted source directory
                 extracted_dirs = [
@@ -113,17 +115,15 @@ class SourceInstaller(Installer):
                 # Run autogen.sh if needed
                 if self.run_autogen:
                     msg.custom(f"    Running autogen.sh for {self.name}...", color.cyan)
-                    with open(self.log_file, 'a') as log_file:
-                        log_file.write(f"\n=== {self.name} autogen.sh started ===\n")
-                        subprocess.run(
-                            [
-                                './autogen.sh'
-                            ],
-                            check=True,
-                            cwd=source_dir,
-                            stdout=log_file,
-                            stderr=log_file
-                        )
+                    self.logger.info(f"=== {self.name} autogen.sh started ===")
+                    result = execute_cmd(
+                        ['./autogen.sh'],
+                        cwd=source_dir,
+                        message=f"=== {self.name} autogen.sh started ===",
+                        logger=self.logger,
+                    )
+                    if not result.success:
+                        return False
                 
                 # Configure
                 msg.custom(f"    Configuring {self.name}...", color.cyan)
@@ -134,31 +134,31 @@ class SourceInstaller(Installer):
                 if self.configure_args:
                     configure_cmd.extend(self.configure_args)
                 
-                with open(self.log_file, 'a') as log_file:
-                    log_file.write(f"\n=== {self.name} configure started ===\n")
-                    log_file.write(f"Command: {' '.join(configure_cmd)}\n")
-                    
-                    subprocess.run(
-                        configure_cmd,
-                        check=True,
-                        cwd=source_dir,
-                        stdout=log_file,
-                        stderr=log_file
-                    )
+                self.logger.info(f"=== {self.name} configure started ===")
+                self.logger.info(f"Command: {' '.join(configure_cmd)}")
+                
+                result = execute_cmd(
+                    configure_cmd,
+                    cwd=source_dir,
+                    message=f"=== {self.name} configure started ===",
+                    logger=self.logger,
+                )
+                
+                if not result.success:
+                    return False
                 
                 # Build
                 msg.custom(f"    Building {self.name}...", color.cyan)
-                with open(self.log_file, 'a') as log_file:
-                    log_file.write(f"\n=== {self.name} build started ===\n")
-                    subprocess.run(
-                        [
-                            'make'
-                        ],
-                        check=True,
-                        cwd=source_dir,
-                        stdout=log_file,
-                        stderr=log_file
-                    )
+                self.logger.info(f"=== {self.name} build started ===")
+                result = execute_cmd(
+                    ['make'],
+                    cwd=source_dir,
+                    message=f"=== {self.name} build started ===",
+                    logger=self.logger,
+                )
+                
+                if not result.success:
+                    return False
                 
                 # Install
                 display_path = str(self.installation_path)
@@ -168,21 +168,20 @@ class SourceInstaller(Installer):
                     f"    Installing {self.name} to {display_path}...",
                     color.cyan
                 )
-                with open(self.log_file, 'a') as log_file:
-                    log_file.write(f"\n=== {self.name} install started ===\n")
-                    subprocess.run(
-                        [
-                            'make',
-                            'install'
-                        ],
-                        check=True,
-                        cwd=source_dir,
-                        stdout=log_file,
-                        stderr=log_file
-                    )
+                self.logger.info(f"=== {self.name} install started ===")
+                result = execute_cmd(
+                    ['make', 'install'],
+                    cwd=source_dir,
+                    message=f"=== {self.name} install started ===",
+                    logger=self.logger,
+                )
+                
+                if not result.success:
+                    return False
+                    
                 return True
                 
-            except subprocess.CalledProcessError as e:
-                return self._handle_error(e)
             except Exception as e:
-                return self._handle_error(e) 
+                self.logger.error(f"Error during {self.name} installation: {e}")
+                msg.error(f"    Installation failed: {e}")
+                return False 

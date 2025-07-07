@@ -8,6 +8,7 @@ import subprocess
 import tempfile
 import getpass
 import socket
+import logging
 from datetime import datetime
 from pathlib import Path
 from dataclasses import dataclass, field
@@ -19,25 +20,27 @@ from .base import Installer
 from .tools import execute_cmd
 
 
-def authenticate_github_cli(gh_binary: Path, log_file: Path | str = "") -> bool:
-    """Authenticate GitHub CLI with user token."""
-    msg.custom("\n    Setting up GitHub CLI authentication...", color.cyan)
-    msg.custom("    You'll need a GitHub Personal Access Token (PAT)", color.yellow)
-    msg.custom("    To create one:", color.yellow)
-    msg.custom("    1. Go to https://github.com/settings/tokens", color.yellow)
-    msg.custom("    2. Click 'Generate new token (classic)'", color.yellow)
-    msg.custom(
-        "    3. Select scopes: repo, workflow, admin:org, admin:public_key",
-        color.yellow
-    )
-    msg.custom("    4. Copy the generated token", color.yellow)
+logger = logging.getLogger(__name__)
+
+
+def authenticate_github_cli(gh_binary: Path) -> bool:
+    """Authenticate GitHub CLI with user token."""        
+    msg_lines = [
+        ("\n    Setting up GitHub CLI authentication...", color.cyan),
+        ("    You'll need a GitHub Personal Access Token (PAT)", color.yellow),
+        ("    To create one:", color.yellow),
+        ("    1. Go to https://github.com/settings/tokens", color.yellow),
+        ("    2. Click 'Generate new token (classic)'", color.yellow),
+        ("    3. Select scopes: repo, workflow, admin:org, admin:public_key", color.yellow),
+        ("    4. Copy the generated token", color.yellow),
+        ("    Paste your GitHub Personal Access Token below:", color.cyan),
+    ]
+
+    for line, col in msg_lines:
+        msg.custom(line, col)
+
     
-    msg.custom(
-        "    Paste your GitHub Personal Access Token below:",
-        color.cyan
-    )
-    
-    token = input("    Token: ")
+    token = input("    Token [leave blank to skip]: ")
     
     if not token.strip():
         msg.custom(
@@ -64,9 +67,10 @@ def authenticate_github_cli(gh_binary: Path, log_file: Path | str = "") -> bool:
             ],
             input=token.encode('utf-8'),
             message = f"\n=== GitHub CLI authentication started ===\n",
+            logger=logger,
         )
         
-        if not result:
+        if not result.success:
             return False
         
         msg.custom("   GitHub CLI authenticated successfully!", color.green)
@@ -79,13 +83,13 @@ def authenticate_github_cli(gh_binary: Path, log_file: Path | str = "") -> bool:
     
     except Exception as e:
         msg.custom(f"   Unexpected error during authentication: {e}", color.red)
-        with open(log_file, 'a') as lf:
-            lf.write(f"Unexpected authentication error: {e}\n")
+        logger.error(f"Unexpected authentication error: {e}")
         return False
 
 
 def setup_github_ssh_key(gh_binary: Path) -> bool:
     """Create and upload SSH key to GitHub."""
+        
     msg.custom("\n    Setting up SSH key for GitHub...", color.cyan)
     
     try:
@@ -148,8 +152,9 @@ def setup_github_ssh_key(gh_binary: Path) -> bool:
                 '-N', ''  # No passphrase
             ],
             message = f"\n=== SSH key generation started ===\n",
+            logger=logger,
         )
-        if not result:
+        if not result.success:
             msg.error("   SSH key generation failed!")
             return False
         msg.custom("   SSH key generated successfully!", color.green)
@@ -159,8 +164,9 @@ def setup_github_ssh_key(gh_binary: Path) -> bool:
         result = execute_cmd(
                 ['hostname', '-I'],
                 message = f"\n=== Getting IP address ===\n",
+                logger=logger,
             )
-        if not result:
+        if not result.success:
             msg.error("   Failed to get IP address!")
             hostname = socket.gethostname()
         else:
@@ -170,51 +176,51 @@ def setup_github_ssh_key(gh_binary: Path) -> bool:
         # Upload SSH key to GitHub
         msg.custom(f"   Uploading SSH key to GitHub as '{hostname}'...", color.cyan)
         
-        with open('install.log', 'a') as log_file:
-            log_file.write(f"\n=== SSH key upload started ===\n")
-            
-            result = subprocess.run(
-                [
-                    str(gh_binary),
-                    'ssh-key',
-                    'add',
-                    str(ssh_key_path) + '.pub',
-                    '--title',
-                    hostname
-                ],
-                text=True,
-                capture_output=True,
-                check=True
-            )
-            
-            # Log the output
-            log_file.write(f"stdout: {result.stdout}\n")
-            log_file.write(f"stderr: {result.stderr}\n")
-            log_file.write("SSH key uploaded successfully\n")
+        logger.info("=== SSH key upload started ===")
+        
+        result = subprocess.run(
+            [
+                str(gh_binary),
+                'ssh-key',
+                'add',
+                str(ssh_key_path) + '.pub',
+                '--title',
+                hostname
+            ],
+            text=True,
+            capture_output=True,
+            check=True
+        )
+        
+        # Log the output
+        logger.info(f"stdout: {result.stdout}")
+        logger.info(f"stderr: {result.stderr}")
+        logger.info("SSH key uploaded successfully")
         
         msg.custom("   SSH key uploaded to GitHub successfully!", color.green)
         
         # Configure SSH config for GitHub
-        return configure_ssh_config()
+        return configure_ssh_config(logger)
         
     except subprocess.CalledProcessError as e:
         error_msg = e.stderr if e.stderr else e.stdout if e.stdout else str(e)
         msg.custom(f"   SSH key setup failed: {error_msg}", color.red)
-        with open('install.log', 'a') as log_file:
-            log_file.write(f"SSH key setup failed: {error_msg}\n")
+        logger.error(f"SSH key setup failed: {error_msg}")
         return False
     except KeyboardInterrupt:
         msg.custom("\n   SSH key setup cancelled by user.", color.yellow)
         return True
     except Exception as e:
         msg.custom(f"   Unexpected error during SSH key setup: {e}", color.red)
-        with open('install.log', 'a') as log_file:
-            log_file.write(f"Unexpected SSH key setup error: {e}\n")
+        logger.error(f"Unexpected SSH key setup error: {e}")
         return False
 
 
-def configure_ssh_config() -> bool:
+def configure_ssh_config(logger: logging.Logger | None = None) -> bool:
     """Configure SSH config file for GitHub."""
+    if logger is None:
+        logger = logging.getLogger(__name__)
+        
     try:
         ssh_config_path = Path.home() / '.ssh' / 'config'
         github_config = (
@@ -255,8 +261,7 @@ def configure_ssh_config() -> bool:
         
     except Exception as e:
         msg.custom(f"   Failed to configure SSH config: {e}", color.red)
-        with open('install.log', 'a') as log_file:
-            log_file.write(f"SSH config setup failed: {e}\n")
+        logger.error(f"SSH config setup failed: {e}")
         return False
 
 
@@ -308,7 +313,7 @@ class BinaryInstaller(Installer):
             
             msg.custom(f"    Downloading {self.name} binary...", color.cyan)
             
-            success = execute_cmd(
+            result = execute_cmd(
                 [
                     'wget',
                     '-q',
@@ -317,25 +322,27 @@ class BinaryInstaller(Installer):
                     url
                 ],
                 cwd=temp_path,
-                msg = (
+                message = (
                     f"\n=== {self.name} download started at {datetime.now()} ===\n"
                 ),
+                logger=self.logger,
             )
             
-            if not success:
+            if not result.success:
                 return False
             
-            success = execute_cmd(
+            result = execute_cmd(
                 [
                     'tar',
                     '-xzf',
                     f'{self.name}.tar.gz'
                 ],
                 cwd=temp_path,
-                msg = f"\n=== {self.name} extraction started ===\n",
+                message = f"\n=== {self.name} extraction started ===\n",
+                logger=self.logger,
             )
             
-            if not success:
+            if not result.success:
                 return False
             
             # Find and copy binary
@@ -351,9 +358,9 @@ class BinaryInstaller(Installer):
         # Handle GitHub CLI authentication if binary is "gh"
         if self.binary_name == "gh":
             target_binary = Path(self.installation_path) / self.binary_name
-            success = authenticate_github_cli(target_binary, self.log_file)
+            success = authenticate_github_cli(target_binary)
             if success:
-                return setup_github_ssh_key(target_binary, self.log_file)
+                return setup_github_ssh_key(target_binary)
             return success
             
         return success
@@ -364,7 +371,6 @@ class BinaryInstaller(Installer):
         target_dir: Path,
     ) -> bool:
         """Find the binary in extracted files and copy to target directory."""
-        # Look for binary in extracted directories
         binary_path = None
         for item in temp_path.rglob(self.binary_name):
             if item.is_file() and item.stat().st_mode & 0o111:  # Check if executable

@@ -1,0 +1,87 @@
+{
+  "binary_installer": {
+    "lazygit": {
+      "binary_name": "lazygit",
+      "version": "0.44.1",
+      "archive_pattern": "https://github.com/jesseduffield/lazygit/releases/download/v{version}/lazygit_{version}_Linux_x86_64.tar.gz"
+    },
+    "ripgrep": {
+      "binary_name": "rg",
+      "version": "14.1.1",
+      "archive_pattern": "https://github.com/BurntSushi/ripgrep/releases/download/{version}/ripgrep-{version}-x86_64-unknown-linux-musl.tar.gz"
+    },
+    "bat": {
+      "binary_name": "bat",
+      "version": "0.25.0",
+      "archive_pattern": "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-aarch64-unknown-linux-musl.tar.gz"
+    },
+    "fd": {
+      "binary_name": "fd",
+      "version": "v10.2.0",
+      "archive_pattern": "https://github.com/sharkdp/fd/releases/download/{version}/fd-{version}-x86_64-unknown-linux-musl.tar.gz"
+    },
+    "zellij": {
+      "binary_name": "zellij",
+      "version": "v0.42.2",
+      "archive_pattern": "https://github.com/zellij-org/zellij/releases/download/{version}/zellij-x86_64-unknown-linux-musl.tar.gz"
+    },
+    "gh": {
+      "binary_name": "gh",
+      "version": "2.74.2",
+      "archive_pattern": "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_linux_amd64.tar.gz"
+    },
+    "fzf": {
+      "binary_name": "fzf",
+      "version": "0.63.0",
+      "archive_pattern": "https://github.com/junegunn/fzf/releases/download/v{version}/fzf-{version}-linux_amd64.tar.gz"
+    }
+  },
+  "script_installer": {
+    "oh_my_bash": {
+      "script_url": "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh"
+    }
+  },
+  "source_installer": {
+    "vifm": {
+      "version": "v0.14.3",
+      "archive_pattern": "https://github.com/vifm/vifm/archive/refs/tags/{version}.tar.gz",
+      "binary_name": "vifm",
+      "required_deps": [
+        "wget",
+        "tar",
+        "make",
+        "gcc"
+      ]
+    },
+    "htop": {
+      "version": "3.4.1",
+      "archive_pattern": "https://github.com/htop-dev/htop/archive/refs/tags/{version}.tar.gz",
+      "binary_name": "htop",
+      "required_deps": [
+        "gcc",
+        "make",
+        "autoconf",
+        "automake",
+        "pkg-config"
+      ],
+      "run_autogen": true
+    }
+  },
+  "dotfiles_installer": {
+    "dotfiles": {
+      "source": "dotfiles/dotfiles",
+      "target": "~/",
+      "expand": true
+    },
+    "omb_config": {
+      "source": "dotfiles/oh-my-bash/custom",
+      "target": "~/.oh-my-bash/custom",
+      "expand": false
+    },
+    "dot_config": {
+      "source": "dotfiles/config",
+      "target": "~/.config/",
+      "expand": true
+    }
+  }
+} 

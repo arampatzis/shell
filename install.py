@@ -9,8 +9,9 @@ capabilities, and detailed logging.
 import argparse
 import logging
 import sys
+import json
 from pathlib import Path
-import yaml
+import traceback
 
 from installers.messages import message as msg
 from installers.messages import color
@@ -31,14 +32,14 @@ INSTALLERS_MAP = {
 
 
 def load_config():
-    """Load configuration from YAML file."""
-    config_file = Path("install_config.yaml")
+    """Load configuration from JSON file."""
+    config_file = Path("install_config.json")
     if not config_file.exists():
         msg.error(f"Configuration file {config_file} not found")
         sys.exit(1)
     
     with open(config_file, 'r') as f:
-        return yaml.safe_load(f)
+        return json.load(f)
 
 
 def setup_logging():
@@ -81,7 +82,7 @@ def install_all_tools(
         target_components = available_tools
     
     success = True
-        
+    
     for installer_name, installer_cls in INSTALLERS_MAP.items():
         if config.get(installer_name):
             for tool_name, tool_config in config[installer_name].items():
@@ -93,9 +94,17 @@ def install_all_tools(
                         force=force,
                         log_file=log_file
                     )
-                    if not installer.install():
+                    try:
+                        result = installer.install()
+                        success = success and result
+                    except Exception as e:
+                        logging.error("Unexpected error occurred:")
+                        logging.error(traceback.format_exc())
+                        msg.error(
+                            "An unexpected error occurred. Check logs for details."
+                        )
                         success = False
-                        
+
     msg.custom(f"\nDetailed logs written to {log_file}", color.orange)
     
     if success:

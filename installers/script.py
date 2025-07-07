@@ -27,17 +27,15 @@ class ScriptInstaller(Installer):
             color.orange
         )
 
-        if self.dry_run:
-            msg.custom(f"    Would install {self.name}")
-            return True
-
         msg.custom(
             f"    Downloading and running {self.name} installer...",
             color.cyan
         )
 
         install_cmd = ['bash', '-c', f'wget -qO - {self.script_url} | bash']
-        return execute_cmd(
+        result = execute_cmd(
             install_cmd,
-            message = f"Starting {self.name} installation at {datetime.now()}",
+            message = f"Starting {self.name} installation",
+            logger=self.logger,
         )
+        return result.success
