@@ -8,7 +8,7 @@ import logging
 from .messages import message as msg
 from .messages import color
 from .base import Installer
-from .tools import execute_cmd
+from .tools import Executor
 
 
 logger = logging.getLogger(__name__)
@@ -67,7 +67,7 @@ class SourceInstaller(Installer):
             try:
                 msg.custom(f"    Downloading {self.name} source...", color.cyan)
 
-                result = execute_cmd(
+                result = Executor().execute_cmd(
                     ["wget", "-q", "-O", str(temp_path / f"{self.name}.tar.gz"), url],
                     cwd=temp_path,
                     message=f"{self.name} download started",
@@ -76,7 +76,7 @@ class SourceInstaller(Installer):
                 if not result.success:
                     return False
 
-                result = execute_cmd(
+                result = Executor().execute_cmd(
                     ["tar", "-xzf", f"{self.name}.tar.gz"],
                     cwd=temp_path,
                     message=f"{self.name} source extraction started",
@@ -101,7 +101,7 @@ class SourceInstaller(Installer):
                 # Run autogen.sh if needed
                 if self.run_autogen:
                     msg.custom(f"    Running autogen.sh for {self.name}...", color.cyan)
-                    result = execute_cmd(
+                    result = Executor().execute_cmd(
                         ["./autogen.sh"],
                         cwd=source_dir,
                         message=f"{self.name} autogen.sh started",
@@ -115,7 +115,7 @@ class SourceInstaller(Installer):
                 if self.configure_args:
                     configure_cmd.extend(self.configure_args)
 
-                result = execute_cmd(
+                result = Executor().execute_cmd(
                     configure_cmd,
                     cwd=source_dir,
                     message=f"{self.name} configure started",
@@ -126,7 +126,7 @@ class SourceInstaller(Installer):
 
                 # Build
                 msg.custom(f"    Building {self.name}...", color.cyan)
-                result = execute_cmd(
+                result = Executor().execute_cmd(
                     ["make"],
                     cwd=source_dir,
                     message=f"{self.name} build started",
@@ -142,7 +142,7 @@ class SourceInstaller(Installer):
                 msg.custom(
                     f"    Installing {self.name} to {display_path}...", color.cyan
                 )
-                result = execute_cmd(
+                result = Executor().execute_cmd(
                     ["make", "install"],
                     cwd=source_dir,
                     message=f"{self.name} install started",

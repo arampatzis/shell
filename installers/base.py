@@ -28,8 +28,17 @@ class Installer(ABC):
     def __post_init__(self):
         """Create local installation directory."""
         self.log_file = Path(self.log_file).expanduser()
-        if isinstance(self.installation_path, str):
-            self.installation_path = Path(self.installation_path).expanduser()
+
+        self.installation_path = Path(self.installation_path).expanduser()
+
+        if not self.installation_path.exists():
+            self.installation_path.mkdir(parents=True, exist_ok=True)
+        else:
+            if not self.installation_path.is_dir():
+                msg.error(
+                    f"Installation path {self.installation_path} is not a directory"
+                )
+                raise NotADirectoryError(f"{self.installation_path} is not a directory")
 
     @abstractmethod
     def _install(self) -> bool:

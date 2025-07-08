@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from .messages import message as msg
 from .messages import color
 from .base import Installer
-from .tools import install_from_url
+from .tools import Executor
 
 
 @dataclass(kw_only=True)
@@ -28,7 +28,7 @@ class ScriptInstaller(Installer):
 
         msg.custom(f"    Downloading and running {self.name} installer...", color.cyan)
 
-        result = install_from_url(
+        result = Executor().install_from_url(
             self.script_url,
             message=f"Starting {self.name} installation",
         )
