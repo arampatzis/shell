@@ -49,7 +49,7 @@ if [[ $HOSTNAME == *"astakos"* ]]; then
     path_prepend "$HOME/.local/bin"
 fi
 
-if [[ $HOSTNAME == *"my-pc"* ]]; then
+if [[ $HOSTNAME == *"b301pc"* ]]; then
     path_prepend "$HOME/local/bin"
     path_prepend "$HOME/.local/bin"
 fi
