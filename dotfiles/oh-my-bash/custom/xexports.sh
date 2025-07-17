@@ -54,4 +54,9 @@ if [[ $HOSTNAME == *"b301pc"* ]]; then
     path_prepend "$HOME/.local/bin"
 fi
 
+if [[ $HOSTNAME == *"zulip-server"* ]]; then
+    path_prepend "$HOME/local/bin"
+    path_prepend "$HOME/.local/bin"
+fi
+
 echo "Done exporting variables."
