@@ -16,7 +16,30 @@ logger = logging.getLogger(__name__)
 
 @dataclass(kw_only=True)
 class SymlinkerInstaller(Installer):
-    """Handles file and directory symlinking operations."""
+    """
+    Handles symlinking operations for files and directories.
+
+    This installer is responsible for creating symbolic links from source files
+    or directories to specified target locations, with optional expansion of directory
+    contents and backup of existing files.
+
+    Attributes
+    ----------
+    source : str
+        The source file or directory to be symlinked.
+    target : str
+        The target path where the symlink will be created.
+    expand : bool
+        If True, link contents of the source directory individually into the 
+        target directory.
+    backup_dir : Path
+        Directory where existing files/directories will be backed up before
+        being replaced by symlinks.
+    operations_log : list
+        List for logging performed operations.
+    required_deps : list of str
+        List of required external dependencies (empty for symlinker).
+    """
 
     source: str = ""
     target: str = ""

@@ -85,6 +85,11 @@
       "source": "dotfiles/config",
       "target": "~/.config/",
       "expand": true
+    },
+    "ultisnips": {
+      "source": "dotfiles/vim-pluggins/ultisnips/",
+      "target": "~/.vim/my_snippets/",
+      "expand": true
     }
   }
 }
