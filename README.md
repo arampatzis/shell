@@ -7,8 +7,8 @@ A Python-based installer for development tools and dotfiles with JSON configurat
 Download and unzip the repository:
 ```bash
 wget https://github.com/arampatzis/shell/archive/refs/heads/master.zip
-unzip main.zip
-cd shell-main
+unzip master.zip
+cd shell-master
 ```
 Installation options:
 ```bash
