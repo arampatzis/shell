@@ -1,4 +1,5 @@
 {
+  "repo_ssh_url": "git@github.com:arampatzis/shell.git",
   "binary_installer": {
     "lazygit": {
       "binary_name": "lazygit",
@@ -13,17 +14,17 @@
     "bat": {
       "binary_name": "bat",
       "version": "0.25.0",
-      "archive_pattern": "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-aarch64-unknown-linux-musl.tar.gz"
+      "archive_pattern": "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-x86_64-unknown-linux-musl.tar.gz"
     },
     "fd": {
       "binary_name": "fd",
-      "version": "v10.2.0",
-      "archive_pattern": "https://github.com/sharkdp/fd/releases/download/{version}/fd-{version}-x86_64-unknown-linux-musl.tar.gz"
+      "version": "10.2.0",
+      "archive_pattern": "https://github.com/sharkdp/fd/releases/download/v{version}/fd-v{version}-x86_64-unknown-linux-musl.tar.gz"
     },
     "zellij": {
       "binary_name": "zellij",
-      "version": "v0.42.2",
-      "archive_pattern": "https://github.com/zellij-org/zellij/releases/download/{version}/zellij-x86_64-unknown-linux-musl.tar.gz"
+      "version": "0.42.2",
+      "archive_pattern": "https://github.com/zellij-org/zellij/releases/download/v{version}/zellij-x86_64-unknown-linux-musl.tar.gz"
     },
     "gh": {
       "binary_name": "gh",
@@ -38,10 +39,12 @@
   },
   "script_installer": {
     "oh_my_bash": {
-      "script_url": "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh"
+      "script_url": "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh",
+      "check_path": "~/.oh-my-bash"
     },
     "pyenv": {
-      "script_url": "https://pyenv.run"
+      "script_url": "https://pyenv.run",
+      "check_cmd": "pyenv"
     }
   },
   "source_installer": {

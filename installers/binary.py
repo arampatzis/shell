@@ -22,10 +22,10 @@ class BinaryInstaller(Installer):
     binary_name: str = ""
     version: str = ""
     archive_pattern: str = ""
+    repo_ssh_url: str = ""
 
     def __post_init__(self):
         """Post-init setup."""
-        print(self.installation_path)
         if not self.installation_path:
             self.installation_path = Path.home() / "local/bin"
         else:
@@ -96,7 +96,10 @@ class BinaryInstaller(Installer):
             setup = GitHubSSHSetup(gh_binary)
             success = setup.authenticate_cli()
             if success:
-                return setup.setup_ssh_key()
+                success = setup.setup_ssh_key()
+            if success and self.repo_ssh_url:
+                project_dir = Path(__file__).parent.parent
+                setup.setup_git_repo(project_dir, self.repo_ssh_url)
             return success
 
         return success

@@ -34,7 +34,7 @@ INSTALLERS_MAP = {
 
 def load_config():
     """Load configuration from JSON file."""
-    config_file = Path("install_config.json")
+    config_file = Path(__file__).parent / "install_config.json"
     if not config_file.exists():
         msg.error(f"Configuration file {config_file} not found")
         sys.exit(1)
@@ -81,6 +81,8 @@ def install_all_tools(
 
     config = load_config()
 
+    repo_ssh_url = config.get("repo_ssh_url", "")
+
     available_tools = []
     for tool in INSTALLERS_MAP.keys():
         available_tools.extend(config.get(tool, {}).keys())
@@ -103,8 +105,10 @@ def install_all_tools(
         if config.get(installer_name):
             for tool_name, tool_config in config[installer_name].items():
                 if tool_name in target_components:
+                    extra = {"repo_ssh_url": repo_ssh_url} if tool_name == "gh" else {}
                     installer = installer_cls(
                         **tool_config,
+                        **extra,
                         name=tool_name,
                         dry_run=dry_run,
                         force=force,

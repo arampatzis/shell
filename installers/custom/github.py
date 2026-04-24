@@ -252,6 +252,37 @@ class GitHubSSHSetup:
             logger.error(f"SSH config setup failed: {e}")
             return False
 
+    def setup_git_repo(self, project_dir: Path, repo_url: str) -> bool:
+        """Convert the project directory into a git repo linked to repo_url."""
+        if (project_dir / ".git").exists():
+            msg.custom("    Project is already a git repository, skipping.", color.yellow)
+            return True
+
+        msg.custom("\n    The project directory is not a git repository.", color.cyan)
+        answer = input(
+            f"    Convert it to a git repo linked to {repo_url}? [Y/n]: "
+        ).strip().lower()
+        if answer in ("n", "no"):
+            msg.custom("    Git repo setup skipped.", color.yellow)
+            return True
+
+        steps = [
+            (["git", "init"],                                   "git init"),
+            (["git", "remote", "add", "origin", repo_url],     "git remote add"),
+            (["git", "fetch", "origin"],                        "git fetch"),
+            (["git", "branch", "master", "origin/master"],     "git branch master"),
+        ]
+        for cmd, desc in steps:
+            result = Executor().execute_cmd(cmd, cwd=project_dir, message=desc)
+            if not result.success:
+                msg.error(f"    Git repo setup failed at: {desc}")
+                return False
+
+        msg.custom(
+            "    Git repo ready. Run 'git status' to see local changes.", color.green
+        )
+        return True
+
     def setup_ssh_key(self) -> bool:
         msg.custom("\n    Setting up SSH key for GitHub...", color.cyan)
         email = self.get_email_for_key()

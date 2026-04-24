@@ -7,6 +7,8 @@ echo "Exporting variables..."
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
+path_prepend "$HOME/.local/bin"
+
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -36,27 +38,27 @@ if [[ $HOSTNAME == *"epicurus"* ]]; then
   export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/Cellar/gsl/2.6/lib/"
 
   path_prepend "$HOME/local/bin"
-  path_prepend "$HOME/.local/bin"
 fi
 
 if [[ $HOSTNAME == *"astakos"* ]]; then
-
     export PYTHON_KEYRING_BACKEND="keyring.backends.null.Keyring"
-
     . "$HOME/.cargo/env"
-
     path_prepend "$HOME/local/bin"
-    path_prepend "$HOME/.local/bin"
 fi
 
 if [[ $HOSTNAME == *"b301pc"* ]]; then
     path_prepend "$HOME/local/bin"
-    path_prepend "$HOME/.local/bin"
 fi
 
 if [[ $HOSTNAME == *"zulip-server"* ]]; then
     path_prepend "$HOME/local/bin"
-    path_prepend "$HOME/.local/bin"
+fi
+
+if [[ $HOSTNAME == *"tafkoura"* ]]; then
+    path_prepend "$HOME/local/bin"
+    path_prepend "$HOME/go/bin"
+    export LS_COLORS="$(vivid generate gruvbox-dark)"
+    export EZA_COLORS="da=2;37:uu=32:gu=32:xx=2;37:sn=2;37:sb=2;37"
 fi
 
 echo "Done exporting variables."

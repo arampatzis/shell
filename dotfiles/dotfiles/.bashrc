@@ -1,14 +1,6 @@
 [[ $- == *i* ]] || return
 
-hostname -A &>/dev/null
-if [ $? == 0 ];then
-  HOST_NAME=`hostname -A`
-else
-  HOST_NAME=`hostname`
-fi
-export HOST_NAME
-
-echo "On machine: $HOST_NAME"
+echo "On machine: $HOSTNAME"
 
 # Path to your oh-my-bash installation.
 export OSH=$HOME/.oh-my-bash
@@ -16,7 +8,7 @@ export OSH=$HOME/.oh-my-bash
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 
-if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
+if [[ $HOSTNAME == *"euler"* ]]; then
   OSH_THEME=""
 else
   OSH_THEME="font"
@@ -100,8 +92,6 @@ source $OSH/oh-my-bash.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 vicd()
 {
