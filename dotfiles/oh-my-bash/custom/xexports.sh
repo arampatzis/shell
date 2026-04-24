@@ -8,6 +8,7 @@ export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
 path_prepend "$HOME/.local/bin"
+path_prepend "$HOME/local/bin"
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
@@ -46,16 +47,7 @@ if [[ $HOSTNAME == *"astakos"* ]]; then
     path_prepend "$HOME/local/bin"
 fi
 
-if [[ $HOSTNAME == *"b301pc"* ]]; then
-    path_prepend "$HOME/local/bin"
-fi
-
-if [[ $HOSTNAME == *"zulip-server"* ]]; then
-    path_prepend "$HOME/local/bin"
-fi
-
 if [[ $HOSTNAME == *"tafkoura"* ]]; then
-    path_prepend "$HOME/local/bin"
     path_prepend "$HOME/go/bin"
     export LS_COLORS="$(vivid generate gruvbox-dark)"
     export EZA_COLORS="da=2;37:uu=32:gu=32:xx=2;37:sn=2;37:sb=2;37"
