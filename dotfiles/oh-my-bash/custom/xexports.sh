@@ -59,6 +59,7 @@ if [[ $HOSTNAME == *"c2-hpc"* ]]; then
     export PYTHONUSERBASE=~/local
     export PIPX_HOME=~/local/pipx
     export PIPX_BIN_DIR=~/local/bin
+    module load EasyBuild/5.1.2  Python/3.11.3-GCCcore-12.3.0 poetry/1.7.1-GCCcore-12.3.0
 fi
 
 echo "Done exporting variables."
