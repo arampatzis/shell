@@ -24,9 +24,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'alpertuna/vim-header'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 Plug 'Vimjas/vim-python-pep8-indent'
 
 Plug 'dense-analysis/ale'
@@ -111,17 +108,6 @@ let g:ale_linters={
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
-
-"----------------------------------------------------------------------------
-" UltiSnip
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
 
 "----------------------------------------------------------------------------
 " gruvbox
