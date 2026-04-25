@@ -54,16 +54,19 @@ def setup_logger(
 
     formatter = logging.Formatter("[%(levelname)s] %(message)s")
 
-    # Console handler
+    # Console handler on the named logger (install.py messages only).
     console_handler = logging.StreamHandler(sys.stderr)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
-    # Optional: file logging
+    # File handler on the root logger so all installers.* submodule loggers
+    # (which propagate to root, not to "install") also write to the file.
     if log_to_file:
+        root = logging.getLogger()
+        root.setLevel(level)
         file_handler = logging.FileHandler(log_to_file)
         file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
+        root.addHandler(file_handler)
 
     return logger
 
