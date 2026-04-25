@@ -77,6 +77,15 @@ class TestSetupGitRepo:
         for call in MockExecutor.return_value.execute_cmd.call_args_list:
             assert call.kwargs["cwd"] == tmp_path
 
+    def test_keyboard_interrupt_returns_true(self, setup, tmp_path, monkeypatch):
+        monkeypatch.setattr("builtins.input", lambda _: "y")
+
+        with patch("installers.custom.github.Executor") as MockExecutor:
+            MockExecutor.return_value.execute_cmd.side_effect = KeyboardInterrupt
+            result = setup.setup_git_repo(tmp_path, REPO_URL)
+
+        assert result is True
+
     def test_stops_after_first_git_failure(self, setup, tmp_path, monkeypatch):
         monkeypatch.setattr("builtins.input", lambda _: "y")
         failure = MagicMock(success=False)

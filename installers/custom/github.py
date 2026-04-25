@@ -1,4 +1,5 @@
 import logging
+import os
 from pathlib import Path
 import re
 import socket
@@ -272,11 +273,18 @@ class GitHubSSHSetup:
             (["git", "fetch", "origin"],                        "git fetch"),
             (["git", "branch", "master", "origin/master"],     "git branch master"),
         ]
-        for cmd, desc in steps:
-            result = Executor().execute_cmd(cmd, cwd=project_dir, message=desc)
-            if not result.success:
-                msg.error(f"    Git repo setup failed at: {desc}")
-                return False
+        # Accept github.com host key automatically on first connect so git fetch
+        # does not hang waiting for a prompt it cannot display.
+        ssh_env = {**os.environ, "GIT_SSH_COMMAND": "ssh -o StrictHostKeyChecking=accept-new"}
+        try:
+            for cmd, desc in steps:
+                result = Executor().execute_cmd(cmd, cwd=project_dir, message=desc, env=ssh_env)
+                if not result.success:
+                    msg.error(f"    Git repo setup failed at: {desc}")
+                    return False
+        except KeyboardInterrupt:
+            msg.custom("\n    Git repo setup cancelled.", color.yellow)
+            return True
 
         msg.custom(
             "    Git repo ready. Run 'git status' to see local changes.", color.green
