@@ -51,7 +51,7 @@ class SymlinkerInstaller(Installer):
     def __post_init__(self):
         """Initialize backup directory after dataclass initialization."""
         super().__post_init__()
-        self.backup_dir.mkdir(parents=True, exist_ok=True)
+        self.backup_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
 
     def _sanitize_filename(self, name: str) -> str:
         """Sanitize component name for safe use in filenames."""

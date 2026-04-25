@@ -1,6 +1,6 @@
 """Script installer for tools that use git repositories with installer scripts."""
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from .messages import message as msg
 from .messages import color
@@ -12,9 +12,6 @@ from .tools import Executor
 class ScriptInstaller(Installer):
     """Handles installation from git repositories with installer scripts."""
 
-    target_dir: str = ""
-    installer_script: str = ""
-    installer_args: list = field(default_factory=list)
     script_url: str = ""
 
     def _install(self) -> bool:

@@ -82,8 +82,6 @@ aliases=(
 plugins=(
   git
   bashmarks
-  mountit
-  passwordless-ssh
   sudo
   colored-man-pages
 )

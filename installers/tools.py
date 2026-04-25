@@ -1,6 +1,8 @@
 from dataclasses import dataclass
+from pathlib import Path
 import subprocess
 import logging
+import tempfile
 from textwrap import indent
 
 from .messages import message as msg
@@ -71,6 +73,14 @@ class Executor:
         url: str,
         message: str = "Installing from remote script...",
     ) -> CommandResult:
-        """Install by downloading and piping a script from the given URL into bash."""
-        cmd = f"wget -qO - {url} | bash"
-        return self.execute_cmd(cmd, message=message, shell=True)
+        """Download script to a temp file then execute it — avoids shell=True."""
+        with tempfile.NamedTemporaryFile(suffix=".sh", delete=False) as f:
+            tmp = Path(f.name)
+        try:
+            result = self.execute_cmd(["wget", "-qO", str(tmp), url], message=message)
+            if not result.success:
+                return result
+            tmp.chmod(0o700)
+            return self.execute_cmd(["bash", str(tmp)], message=message)
+        finally:
+            tmp.unlink(missing_ok=True)

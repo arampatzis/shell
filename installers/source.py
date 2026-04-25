@@ -21,7 +21,6 @@ class SourceInstaller(Installer):
     version: str = ""
     archive_pattern: str = ""
     binary_name: str = ""
-    build_deps: list = field(default_factory=list)
     configure_args: list = field(default_factory=list)
     run_autogen: bool = False
 
