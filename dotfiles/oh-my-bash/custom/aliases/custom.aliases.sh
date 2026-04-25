@@ -19,9 +19,9 @@ alias vimrc='vim ~/.vimrc'
 
 alias vf='vifm . .'
 
-alias openalias='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh; source ~/.bashrc'
-alias openexports='vim ~/.oh-my-bash/custom/xexports.sh; source ~/.bashrc'
-alias opensystem='vim ~/.oh-my-bash/custom/system.sh; source ~/.bashrc'
+alias openalias='vim $OSH_CUSTOM/aliases/custom.aliases.sh; source ~/.bashrc'
+alias openexports='vim $OSH_CUSTOM/xexports.sh; source ~/.bashrc'
+alias opensystem='vim $OSH_CUSTOM/system.sh; source ~/.bashrc'
 
 
 if [[ $HOSTNAME == *"tafkoura"* ]]; then

@@ -39,12 +39,10 @@ fi
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Disable marking untracked files as dirty — keeps prompt fast on large repos.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -63,6 +61,7 @@ completions=(
   git
   ssh
   pip3
+  gh
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
@@ -85,6 +84,8 @@ plugins=(
   bashmarks
   mountit
   passwordless-ssh
+  sudo
+  colored-man-pages
 )
 
 source $OSH/oh-my-bash.sh

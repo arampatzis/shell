@@ -9,7 +9,3 @@ mountit() {
   mkdir -p .$1
   sshfs -o allow_other,defer_permissions,IdentityFile=~/.ssh/id_ed25519  garampat@$1.ethz.ch: .$1
 }
-
-unmountit() {
-  diskutil umount force .$1/
-}
