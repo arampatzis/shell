@@ -282,10 +282,11 @@ class GitHubSSHSetup:
         repo_url = https_url if choice == "2" else repo_ssh_url
 
         steps = [
-            (["git", "init"],                                   "git init"),
-            (["git", "remote", "add", "origin", repo_url],     "git remote add"),
-            (["git", "fetch", "origin"],                        "git fetch"),
-            (["git", "reset", "origin/master"],                 "git reset"),
+            (["git", "init"],                                                        "git init"),
+            (["git", "remote", "add", "origin", repo_url],                          "git remote add"),
+            (["git", "fetch", "origin"],                                             "git fetch"),
+            (["git", "reset", "origin/master"],                                      "git reset"),
+            (["git", "branch", "--set-upstream-to=origin/master", "master"],        "git set upstream"),
         ]
         # Accept the host key on first connect so git fetch does not hang
         # waiting for a prompt it cannot display (stdout is captured).

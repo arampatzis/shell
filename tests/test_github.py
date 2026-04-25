@@ -99,6 +99,7 @@ class TestSetupGitRepo:
         assert ["git", "init"] in executed_cmds
         assert ["git", "fetch", "origin"] in executed_cmds
         assert ["git", "reset", "origin/master"] in executed_cmds
+        assert ["git", "branch", "--set-upstream-to=origin/master", "master"] in executed_cmds
 
     def test_git_command_failure_returns_false(self, setup, tmp_path, monkeypatch):
         monkeypatch.setattr("builtins.input", make_inputs("y", "1"))
