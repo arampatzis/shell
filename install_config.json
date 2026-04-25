@@ -1,5 +1,4 @@
 {
-  "repo_ssh_url": "git@github.com:arampatzis/shell.git",
   "binary_installer": {
     "lazygit": {
       "binary_name": "lazygit",

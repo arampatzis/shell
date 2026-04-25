@@ -4,10 +4,10 @@ A Python-based installer for development tools and dotfiles with JSON configurat
 
 ## Quick Start
 
-Download and unzip the repository:
+Clone the repository:
 
 ```bash
-wget https://github.com/arampatzis/shell/archive/refs/heads/master.zip; unzip master.zip; cd shell-master
+git clone https://github.com/arampatzis/shell.git ~/projects/shell && cd ~/projects/shell
 ```
 
 Installation options:
@@ -35,9 +35,8 @@ Installation options:
 - **Dry Run Mode**: Preview changes without making them
 - **Force Installation**: Override existing installations
 - **Comprehensive Logging**: Detailed logs in `install.log`
-- **Multiple Sources**: GitHub releases, git clones, source builds
-- **Dotfile Management**: Symlink configuration files
-- **Error Handling**: Robust error handling with rollback capabilities
+- **Multiple Sources**: GitHub releases, script installers, source builds
+- **Dotfile Management**: Symlink configuration files with automatic backup
 - **Type Safety**: Full type hints and modern Python practices
 
 ## Migration Guide
@@ -69,4 +68,3 @@ New machines are unaffected — the installer creates `~/.omb-custom` directly.
 - **Python**: 3.11+
 - **Build Tools**: wget, tar, git, make, gcc, autoconf, automake, pkg-config
 - **Dependencies**: No dependencies for the installer
-

@@ -264,7 +264,9 @@ class GitHubSSHSetup:
     def setup_git_repo(self, project_dir: Path, repo_ssh_url: str) -> bool:
         """Convert the project directory into a git repo linked to repo_ssh_url."""
         if (project_dir / ".git").exists():
-            msg.custom("    Project is already a git repository, skipping.", color.yellow)
+            msg.custom(
+                "    Project is already a git repository, skipping.", color.yellow
+            )
             return True
 
         https_url = _ssh_to_https_url(repo_ssh_url)
@@ -282,18 +284,26 @@ class GitHubSSHSetup:
         repo_url = https_url if choice == "2" else repo_ssh_url
 
         steps = [
-            (["git", "init"],                                                        "git init"),
-            (["git", "remote", "add", "origin", repo_url],                          "git remote add"),
-            (["git", "fetch", "origin"],                                             "git fetch"),
-            (["git", "reset", "origin/master"],                                      "git reset"),
-            (["git", "branch", "--set-upstream-to=origin/master", "master"],        "git set upstream"),
+            (["git", "init"], "git init"),
+            (["git", "remote", "add", "origin", repo_url], "git remote add"),
+            (["git", "fetch", "origin"], "git fetch"),
+            (["git", "reset", "origin/master"], "git reset"),
+            (
+                ["git", "branch", "--set-upstream-to=origin/master", "master"],
+                "git set upstream",
+            ),
         ]
         # Accept the host key on first connect so git fetch does not hang
         # waiting for a prompt it cannot display (stdout is captured).
-        ssh_env = {**os.environ, "GIT_SSH_COMMAND": "ssh -o StrictHostKeyChecking=accept-new"}
+        ssh_env = {
+            **os.environ,
+            "GIT_SSH_COMMAND": "ssh -o StrictHostKeyChecking=accept-new",
+        }
         try:
             for cmd, desc in steps:
-                result = Executor().execute_cmd(cmd, cwd=project_dir, message=desc, env=ssh_env)
+                result = Executor().execute_cmd(
+                    cmd, cwd=project_dir, message=desc, env=ssh_env
+                )
                 if not result.success:
                     msg.error(f"    Git repo setup failed at: {desc}")
                     return False

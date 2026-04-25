@@ -30,7 +30,7 @@ class SymlinkerInstaller(Installer):
     target : str
         The target path where the symlink will be created.
     expand : bool
-        If True, link contents of the source directory individually into the 
+        If True, link contents of the source directory individually into the
         target directory.
     backup_dir : Path
         Directory where existing files/directories will be backed up before
@@ -243,4 +243,3 @@ class SymlinkerInstaller(Installer):
             msg.error(f"    Failed to create symlink {target_expanded.name}: {e}")
             logger.error(f"Failed to create symlink {target_expanded} -> {source}: {e}")
             return False
-

@@ -1,7 +1,6 @@
 """Tests for GitHubSSHSetup: setup_git_repo and get_email_for_key."""
 
 import pytest
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 from installers.custom.github import GitHubSSHSetup, _ssh_to_https_url
 
@@ -23,10 +22,16 @@ def setup(tmp_path):
 
 class TestSshToHttpsUrl:
     def test_converts_github_ssh_url(self):
-        assert _ssh_to_https_url("git@github.com:user/repo.git") == "https://github.com/user/repo.git"
+        assert (
+            _ssh_to_https_url("git@github.com:user/repo.git")
+            == "https://github.com/user/repo.git"
+        )
 
     def test_converts_other_host(self):
-        assert _ssh_to_https_url("git@gitlab.com:org/proj.git") == "https://gitlab.com/org/proj.git"
+        assert (
+            _ssh_to_https_url("git@gitlab.com:org/proj.git")
+            == "https://gitlab.com/org/proj.git"
+        )
 
     def test_returns_input_unchanged_if_not_ssh(self):
         url = "https://github.com/user/repo.git"
@@ -58,7 +63,9 @@ class TestSetupGitRepo:
             result = setup.setup_git_repo(tmp_path, SSH_URL)
 
         assert result is True
-        executed_cmds = [c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list]
+        executed_cmds = [
+            c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list
+        ]
         assert ["git", "remote", "add", "origin", SSH_URL] in executed_cmds
 
     def test_https_choice_uses_https_url(self, setup, tmp_path, monkeypatch):
@@ -71,7 +78,9 @@ class TestSetupGitRepo:
             result = setup.setup_git_repo(tmp_path, SSH_URL)
 
         assert result is True
-        executed_cmds = [c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list]
+        executed_cmds = [
+            c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list
+        ]
         assert ["git", "remote", "add", "origin", HTTPS_URL] in executed_cmds
 
     def test_default_choice_uses_ssh_url(self, setup, tmp_path, monkeypatch):
@@ -83,7 +92,9 @@ class TestSetupGitRepo:
             MockExecutor.return_value.execute_cmd.return_value = success
             setup.setup_git_repo(tmp_path, SSH_URL)
 
-        executed_cmds = [c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list]
+        executed_cmds = [
+            c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list
+        ]
         assert ["git", "remote", "add", "origin", SSH_URL] in executed_cmds
 
     def test_confirms_runs_all_git_commands(self, setup, tmp_path, monkeypatch):
@@ -95,11 +106,18 @@ class TestSetupGitRepo:
             result = setup.setup_git_repo(tmp_path, SSH_URL)
 
         assert result is True
-        executed_cmds = [c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list]
+        executed_cmds = [
+            c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list
+        ]
         assert ["git", "init"] in executed_cmds
         assert ["git", "fetch", "origin"] in executed_cmds
         assert ["git", "reset", "origin/master"] in executed_cmds
-        assert ["git", "branch", "--set-upstream-to=origin/master", "master"] in executed_cmds
+        assert [
+            "git",
+            "branch",
+            "--set-upstream-to=origin/master",
+            "master",
+        ] in executed_cmds
 
     def test_git_command_failure_returns_false(self, setup, tmp_path, monkeypatch):
         monkeypatch.setattr("builtins.input", make_inputs("y", "1"))
