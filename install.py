@@ -34,7 +34,7 @@ INSTALLERS_MAP = {
 
 def load_config():
     """Load configuration from JSON file."""
-    config_file = Path("install_config.json")
+    config_file = Path(__file__).parent / "install_config.json"
     if not config_file.exists():
         msg.error(f"Configuration file {config_file} not found")
         sys.exit(1)
@@ -54,16 +54,19 @@ def setup_logger(
 
     formatter = logging.Formatter("[%(levelname)s] %(message)s")
 
-    # Console handler
+    # Console handler on the named logger (install.py messages only).
     console_handler = logging.StreamHandler(sys.stderr)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
-    # Optional: file logging
+    # File handler on the root logger so all installers.* submodule loggers
+    # (which propagate to root, not to "install") also write to the file.
     if log_to_file:
+        root = logging.getLogger()
+        root.setLevel(level)
         file_handler = logging.FileHandler(log_to_file)
         file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
+        root.addHandler(file_handler)
 
     return logger
 
@@ -80,6 +83,8 @@ def install_all_tools(
     logger = setup_logger()
 
     config = load_config()
+
+    repo_ssh_url = config.get("repo_ssh_url", "")
 
     available_tools = []
     for tool in INSTALLERS_MAP.keys():
@@ -103,8 +108,10 @@ def install_all_tools(
         if config.get(installer_name):
             for tool_name, tool_config in config[installer_name].items():
                 if tool_name in target_components:
+                    extra = {"repo_ssh_url": repo_ssh_url} if tool_name == "gh" else {}
                     installer = installer_cls(
                         **tool_config,
+                        **extra,
                         name=tool_name,
                         dry_run=dry_run,
                         force=force,

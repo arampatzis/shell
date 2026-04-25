@@ -57,17 +57,18 @@ class Installer(ABC):
 
     def _check_installed(self, name: str) -> bool:
         """Check if the tool is already installed."""
+        installed = False
+        if self.check_cmd:
+            installed = bool(shutil.which(self.check_cmd))
+        elif self.check_path:
+            installed = Path(self.check_path).expanduser().exists()
 
-        if shutil.which(self.check_cmd):
+        if installed:
             if self.force:
-                msg.warning(
-                    f"    {self.check_cmd} already installed, forcing installation"
-                )
+                msg.warning(f"    {name} already installed, forcing installation")
                 return False
             else:
-                msg.warning(
-                    f"    {self.check_cmd} already installed, skipping installation"
-                )
+                msg.warning(f"    {name} already installed, skipping installation")
                 return True
         return False
 

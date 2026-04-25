@@ -16,7 +16,30 @@ logger = logging.getLogger(__name__)
 
 @dataclass(kw_only=True)
 class SymlinkerInstaller(Installer):
-    """Handles file and directory symlinking operations."""
+    """
+    Handles symlinking operations for files and directories.
+
+    This installer is responsible for creating symbolic links from source files
+    or directories to specified target locations, with optional expansion of directory
+    contents and backup of existing files.
+
+    Attributes
+    ----------
+    source : str
+        The source file or directory to be symlinked.
+    target : str
+        The target path where the symlink will be created.
+    expand : bool
+        If True, link contents of the source directory individually into the 
+        target directory.
+    backup_dir : Path
+        Directory where existing files/directories will be backed up before
+        being replaced by symlinks.
+    operations_log : list
+        List for logging performed operations.
+    required_deps : list of str
+        List of required external dependencies (empty for symlinker).
+    """
 
     source: str = ""
     target: str = ""
@@ -27,7 +50,7 @@ class SymlinkerInstaller(Installer):
 
     def __post_init__(self):
         """Initialize backup directory after dataclass initialization."""
-        # Always ensure backup directory exists (both dry-run and real)
+        super().__post_init__()
         self.backup_dir.mkdir(parents=True, exist_ok=True)
 
     def _sanitize_filename(self, name: str) -> str:
@@ -221,43 +244,3 @@ class SymlinkerInstaller(Installer):
             logger.error(f"Failed to create symlink {target_expanded} -> {source}: {e}")
             return False
 
-    def install_dotfiles_from_dir(
-        self, source_dir: Path, description: str = "files"
-    ) -> bool:
-        """Install dotfiles from a source directory."""
-        if not source_dir.exists():
-            msg.error(f"{description} directory {source_dir} not found")
-            logger.error(f"{description} directory {source_dir} not found")
-            return False
-
-        msg.custom(f"Installing {description}", color.cyan)
-
-        success = True
-        for dotfile in source_dir.glob(".*"):
-            if dotfile.is_file():
-                target = Path.home() / dotfile.name
-                if not self.create_symlink(dotfile, target):
-                    success = False
-
-        return success
-
-    def install_config_from_dir(
-        self, source_dir: Path, description: str = "config files"
-    ) -> bool:
-        """Install config files from a source directory to ~/.config."""
-        if not source_dir.exists():
-            msg.error(f"{description} directory {source_dir} not found")
-            logger.error(f"{description} directory {source_dir} not found")
-            return False
-
-        msg.custom(f"Installing {description}", color.cyan)
-
-        config_dir = Path.home() / ".config"
-        success = True
-
-        for item in source_dir.iterdir():
-            target = config_dir / item.name
-            if not self.create_symlink(item, target):
-                success = False
-
-        return success

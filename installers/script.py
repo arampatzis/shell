@@ -26,6 +26,13 @@ class ScriptInstaller(Installer):
             color.orange,
         )
 
+        if self.dry_run:
+            msg.custom(
+                f"    Would download and run {self.name} installer from {self.script_url}",
+                color.cyan,
+            )
+            return True
+
         msg.custom(f"    Downloading and running {self.name} installer...", color.cyan)
 
         result = Executor().install_from_url(

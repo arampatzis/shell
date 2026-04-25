@@ -1,4 +1,5 @@
 import logging
+import os
 from pathlib import Path
 import re
 import socket
@@ -34,6 +35,14 @@ def get_ip_address():
 
 short_hostname = get_short_hostname()
 ip = get_ip_address()
+
+
+def _ssh_to_https_url(ssh_url: str) -> str:
+    """git@github.com:user/repo.git → https://github.com/user/repo.git"""
+    match = re.match(r"git@([^:]+):(.+)", ssh_url)
+    if match:
+        return f"https://{match.group(1)}/{match.group(2)}"
+    return ssh_url
 
 
 class GitHubSSHSetup:
@@ -251,6 +260,51 @@ class GitHubSSHSetup:
             msg.custom(f"    Failed to configure SSH config: {e}", color.red)
             logger.error(f"SSH config setup failed: {e}")
             return False
+
+    def setup_git_repo(self, project_dir: Path, repo_ssh_url: str) -> bool:
+        """Convert the project directory into a git repo linked to repo_ssh_url."""
+        if (project_dir / ".git").exists():
+            msg.custom("    Project is already a git repository, skipping.", color.yellow)
+            return True
+
+        https_url = _ssh_to_https_url(repo_ssh_url)
+
+        msg.custom("\n    The project directory is not a git repository.", color.cyan)
+        answer = input("    Convert it to a git repo? [Y/n]: ").strip().lower()
+        if answer in ("n", "no"):
+            msg.custom("    Git repo setup skipped.", color.yellow)
+            return True
+
+        msg.custom("    How should the remote be configured?", color.cyan)
+        msg.custom(f"    [1] SSH   (requires port 22):   {repo_ssh_url}", color.yellow)
+        msg.custom(f"    [2] HTTPS (works everywhere):   {https_url}", color.yellow)
+        choice = input("    Choice [1/2, default=1]: ").strip()
+        repo_url = https_url if choice == "2" else repo_ssh_url
+
+        steps = [
+            (["git", "init"],                                                        "git init"),
+            (["git", "remote", "add", "origin", repo_url],                          "git remote add"),
+            (["git", "fetch", "origin"],                                             "git fetch"),
+            (["git", "reset", "origin/master"],                                      "git reset"),
+            (["git", "branch", "--set-upstream-to=origin/master", "master"],        "git set upstream"),
+        ]
+        # Accept the host key on first connect so git fetch does not hang
+        # waiting for a prompt it cannot display (stdout is captured).
+        ssh_env = {**os.environ, "GIT_SSH_COMMAND": "ssh -o StrictHostKeyChecking=accept-new"}
+        try:
+            for cmd, desc in steps:
+                result = Executor().execute_cmd(cmd, cwd=project_dir, message=desc, env=ssh_env)
+                if not result.success:
+                    msg.error(f"    Git repo setup failed at: {desc}")
+                    return False
+        except KeyboardInterrupt:
+            msg.custom("\n    Git repo setup cancelled.", color.yellow)
+            return True
+
+        msg.custom(
+            "    Git repo ready. Run 'git status' to see local changes.", color.green
+        )
+        return True
 
     def setup_ssh_key(self) -> bool:
         msg.custom("\n    Setting up SSH key for GitHub...", color.cyan)

@@ -22,3 +22,18 @@ alias vf='vifm . .'
 alias openalias='vim ~/.oh-my-bash/custom/aliases/custom.aliases.sh; source ~/.bashrc'
 alias openexports='vim ~/.oh-my-bash/custom/xexports.sh; source ~/.bashrc'
 alias opensystem='vim ~/.oh-my-bash/custom/system.sh; source ~/.bashrc'
+
+
+if [[ $HOSTNAME == *"tafkoura"* ]]; then
+    # General 'ls' replacement with icons and directory grouping
+    alias ls='eza --icons --group-directories-first'
+
+    # Detailed list: permissions, human-readable size, and git status
+    alias ll='eza -lh --icons --git --group-directories-first'
+
+    # All files (including hidden), with a header row
+    alias la='eza -lah --icons --header --group-directories-first'
+
+    # Visual tree view (limited to 3 levels deep)
+    alias lt='eza --tree --level=3 --icons'
+fi

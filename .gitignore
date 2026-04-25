@@ -6,3 +6,4 @@
 *.log
 
 dotfiles/config/vifm/vifminfo.json
+dotfiles/config/vifm/vifminfo.json_*

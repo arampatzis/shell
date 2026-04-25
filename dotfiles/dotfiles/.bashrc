@@ -1,14 +1,6 @@
 [[ $- == *i* ]] || return
 
-hostname -A &>/dev/null
-if [ $? == 0 ];then
-  HOST_NAME=`hostname -A`
-else
-  HOST_NAME=`hostname`
-fi
-export HOST_NAME
-
-echo "On machine: $HOST_NAME"
+echo "On machine: $HOSTNAME"
 
 # Path to your oh-my-bash installation.
 export OSH=$HOME/.oh-my-bash
@@ -16,7 +8,7 @@ export OSH=$HOME/.oh-my-bash
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 
-if [[ $HOST_NAME == *"euler.ethz.ch"* ]]; then
+if [[ $HOSTNAME == *"euler"* ]]; then
   OSH_THEME=""
 else
   OSH_THEME="font"
@@ -59,8 +51,8 @@ fi
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $OSH/custom?
-# OSH_CUSTOM=/path/to/new-custom-folder
+# Custom folder outside OMB's git repo so OMB updates are never blocked.
+export OSH_CUSTOM="$HOME/.omb-custom"
 
 # Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
 # Custom completions may be added to ~/.oh-my-bash/custom/completions/
@@ -100,8 +92,6 @@ source $OSH/oh-my-bash.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 vicd()
 {

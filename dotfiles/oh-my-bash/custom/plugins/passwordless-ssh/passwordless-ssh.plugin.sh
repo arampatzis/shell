@@ -15,10 +15,10 @@ function passwordless_login {
 
   ip="$1"
 
-  file=$HOME/.ssh/id_rsa.pub
+  file=$HOME/.ssh/id_ed25519.pub
   if [ ! -f "$file" ]; then
     printf "The file $file, containing the public ssh key, does not exist.\n"
-    printf "Run 'ssh-keygen -t rsa'\n"
+    printf "Run 'ssh-keygen -t ed25519'\n"
     return 1
   fi
 
