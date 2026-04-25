@@ -285,7 +285,7 @@ class GitHubSSHSetup:
             (["git", "init"],                                   "git init"),
             (["git", "remote", "add", "origin", repo_url],     "git remote add"),
             (["git", "fetch", "origin"],                        "git fetch"),
-            (["git", "branch", "master", "origin/master"],     "git branch master"),
+            (["git", "reset", "origin/master"],                 "git reset"),
         ]
         # Accept the host key on first connect so git fetch does not hang
         # waiting for a prompt it cannot display (stdout is captured).

@@ -5,12 +5,13 @@ A Python-based installer for development tools and dotfiles with JSON configurat
 ## Quick Start
 
 Download and unzip the repository:
+
 ```bash
-wget https://github.com/arampatzis/shell/archive/refs/heads/master.zip
-unzip master.zip
-cd shell-master
+wget https://github.com/arampatzis/shell/archive/refs/heads/master.zip; unzip master.zip; cd shell-master
 ```
+
 Installation options:
+
 ```bash
 # Install everything
 ./install.py
@@ -27,8 +28,8 @@ Installation options:
 # Force reinstall
 ./install.py --force
 ```
-## Features
 
+## Features
 
 - **Selective Installation**: Install only the tools you need
 - **Dry Run Mode**: Preview changes without making them
@@ -68,3 +69,4 @@ New machines are unaffected — the installer creates `~/.omb-custom` directly.
 - **Python**: 3.11+
 - **Build Tools**: wget, tar, git, make, gcc, autoconf, automake, pkg-config
 - **Dependencies**: No dependencies for the installer
+

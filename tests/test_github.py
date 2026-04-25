@@ -98,7 +98,7 @@ class TestSetupGitRepo:
         executed_cmds = [c.args[0] for c in MockExecutor.return_value.execute_cmd.call_args_list]
         assert ["git", "init"] in executed_cmds
         assert ["git", "fetch", "origin"] in executed_cmds
-        assert ["git", "branch", "master", "origin/master"] in executed_cmds
+        assert ["git", "reset", "origin/master"] in executed_cmds
 
     def test_git_command_failure_returns_false(self, setup, tmp_path, monkeypatch):
         monkeypatch.setattr("builtins.input", make_inputs("y", "1"))
