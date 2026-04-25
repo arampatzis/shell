@@ -47,3 +47,6 @@
 [user]
 	name = G. Arampatzis
 	email = georgios.arampatzis@uoc.gr
+[credential]
+	helper = !gh auth git-credential
+	useHttpPath = true
