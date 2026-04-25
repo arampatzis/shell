@@ -39,6 +39,30 @@ Installation options:
 - **Error Handling**: Robust error handling with rollback capabilities
 - **Type Safety**: Full type hints and modern Python practices
 
+## Migration Guide
+
+### OMB custom directory (one-time, existing machines only)
+
+Previous versions symlinked your custom files into `~/.oh-my-bash/custom`, which is inside OMB's own git repo. This dirtied that repo and blocked OMB from auto-updating. The fix moves your custom files to `~/.omb-custom` (outside OMB's repo) and sets `OSH_CUSTOM` accordingly.
+
+Run this once on any machine that has the old setup:
+
+```bash
+rm ~/.oh-my-bash/custom
+git -C ~/.oh-my-bash checkout -- custom/
+./install.py --components omb_config
+```
+
+Verify it worked:
+
+```bash
+ls ~/.omb-custom/                          # your custom aliases, plugins, exports
+git -C ~/.oh-my-bash status               # clean — no deleted files
+source ~/.oh-my-bash/tools/upgrade.sh    # OMB update succeeds
+```
+
+New machines are unaffected — the installer creates `~/.omb-custom` directly.
+
 ## Requirements
 
 - **Python**: 3.11+

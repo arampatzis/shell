@@ -81,7 +81,7 @@
     },
     "omb_config": {
       "source": "dotfiles/oh-my-bash/custom",
-      "target": "~/.oh-my-bash/custom",
+      "target": "~/.omb-custom",
       "expand": false
     },
     "dot_config": {
