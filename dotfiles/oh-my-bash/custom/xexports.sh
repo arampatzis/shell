@@ -53,4 +53,10 @@ if [[ $HOSTNAME == *"tafkoura"* ]]; then
     export EZA_COLORS="da=2;37:uu=32:gu=32:xx=2;37:sn=2;37:sb=2;37"
 fi
 
+ 62 if [[ $HOSTNAME == *"c2-hpc"* ]]; then
+ 65     export PYTHONUSERBASE=~/local
+ 66     export PIPX_HOME=~/local/pipx
+ 67     export PIPX_BIN_DIR=~/local/bin
+ 68 fi
+
 echo "Done exporting variables."
