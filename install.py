@@ -21,6 +21,7 @@ from installers import (
     ScriptInstaller,
     SymlinkerInstaller,
     SourceInstaller,
+    GitIdentityInstaller,
 )
 
 
@@ -29,6 +30,7 @@ INSTALLERS_MAP = {
     "script_installer": ScriptInstaller,
     "source_installer": SourceInstaller,
     "dotfiles_installer": SymlinkerInstaller,
+    "identity_installer": GitIdentityInstaller,
 }
 
 

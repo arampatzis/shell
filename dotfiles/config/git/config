@@ -1,12 +1,11 @@
 [core]
 	editor = vim
 
-[user]
-	name = G. Arampatzis
-	email = georgios.arampatzis@uoc.gr
+[include]
+	path = ~/.config/git/local
 
 [init]
-	templateDir = ~/.git-template
+	templateDir = ~/.config/git/template
 
 [pull]
 	rebase = false

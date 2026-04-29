@@ -88,5 +88,8 @@
       "target": "~/.config/",
       "expand": true
     }
+  },
+  "identity_installer": {
+    "git_identity": {}
   }
 }

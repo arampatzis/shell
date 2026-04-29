@@ -1,0 +1,7 @@
+#!/bin/bash
+# Reject empty commit messages.
+msg=$(grep -v "^#" "$1" | sed '/^[[:space:]]*$/d')
+if [ -z "$msg" ]; then
+    echo "error: commit message must not be empty" >&2
+    exit 1
+fi

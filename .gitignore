@@ -5,5 +5,7 @@
 
 *.log
 
+dotfiles/config/git/local
+
 dotfiles/config/vifm/vifminfo.json
 dotfiles/config/vifm/vifminfo.json_*

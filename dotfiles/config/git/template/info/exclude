@@ -1,0 +1,3 @@
+# Per-repo local gitignore — not committed, not shared.
+# Use this to ignore files specific to your personal setup
+# that don't belong in the project's .gitignore.

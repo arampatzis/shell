@@ -5,6 +5,7 @@ from .binary import BinaryInstaller
 from .script import ScriptInstaller
 from .symlinker import SymlinkerInstaller
 from .source import SourceInstaller
+from .custom.git_identity import GitIdentityInstaller
 
 __all__ = [
     "Installer",
@@ -12,4 +13,5 @@ __all__ = [
     "ScriptInstaller",
     "SymlinkerInstaller",
     "SourceInstaller",
+    "GitIdentityInstaller",
 ]
