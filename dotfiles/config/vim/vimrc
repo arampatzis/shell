@@ -6,53 +6,60 @@ let mapleader = " "
 "----------------------------------------------------------------------------
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  source ~/.vim/autoload/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+if !empty(glob('~/.vim/autoload/plug.vim'))
+  source ~/.vim/autoload/plug.vim
 
-Plug 'morhetz/gruvbox'
+  call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+  Plug 'morhetz/gruvbox'
 
-Plug 'tomtom/tcomment_vim'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+  Plug 'tomtom/tcomment_vim'
 
-Plug 'Vimjas/vim-python-pep8-indent'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
-Plug 'ntpeters/vim-better-whitespace'
+  Plug 'Vimjas/vim-python-pep8-indent'
 
-Plug 'ervandew/supertab'
+  Plug 'ntpeters/vim-better-whitespace'
 
-call plug#end()
+  Plug 'ervandew/supertab'
 
-"----------------------------------------------------------------------------
-" gruvbox
-set bg=dark
-let g:gruvbox_contrast_dark = 'hard'
-autocmd VimEnter * colorscheme gruvbox
+  call plug#end()
 
-"----------------------------------------------------------------------------
-" airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
+  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \| PlugInstall --sync | source $MYVIMRC
+    \| endif
 
-"----------------------------------------------------------------------------
-" fzf
-nnoremap <silent> <Leader><Space> :Files<CR>
-nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
-nnoremap <silent> ;; :Buffers<CR>
-let $FZF_DEFAULT_OPTS='--reverse'
+  "----------------------------------------------------------------------------
+  " gruvbox
+  set bg=dark
+  let g:gruvbox_contrast_dark = 'hard'
+  autocmd VimEnter * colorscheme gruvbox
 
-"----------------------------------------------------------------------------
-" vim-better-whitespace
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
+  "----------------------------------------------------------------------------
+  " airline
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#fnamemod = ':t'
+
+  "----------------------------------------------------------------------------
+  " fzf
+  nnoremap <silent> <Leader><Space> :Files<CR>
+  nnoremap <silent> <Leader>. :Files <C-r>=expand("%:h")<CR>/<CR>
+  nnoremap <silent> ;; :Buffers<CR>
+  let $FZF_DEFAULT_OPTS='--reverse'
+
+  "----------------------------------------------------------------------------
+  " vim-better-whitespace
+  let g:better_whitespace_enabled=1
+  let g:strip_whitespace_on_save=1
+  let g:strip_whitespace_confirm=0
+
+endif
 
 "----------------------------------------------------------------------------
 " General settings
