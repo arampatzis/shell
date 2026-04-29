@@ -15,7 +15,7 @@ alias ll='ls -l'
 alias grep='grep -n --color=auto'
 
 alias bashrc='vim ~/.bashrc;  source ~/.bashrc'
-alias vimrc='vim ~/.vimrc'
+alias vimrc='vim ~/.config/vim/vimrc'
 
 alias vf='vifm . .'
 
