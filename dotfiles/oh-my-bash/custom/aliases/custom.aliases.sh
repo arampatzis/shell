@@ -12,7 +12,7 @@
 alias ls='ls  --group-directories-first --color --human-readable'
 alias ll='ls -l'
 
-alias grep='grep -n --color=always'
+alias grep='grep -n --color=auto'
 
 alias bashrc='vim ~/.bashrc;  source ~/.bashrc'
 alias vimrc='vim ~/.vimrc'

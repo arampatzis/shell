@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "**/config/git/config": "properties",
+    "**/config/git/ignore": "ignore",
+    "**/config/vim/vimrc": "viml"
+  }
+}

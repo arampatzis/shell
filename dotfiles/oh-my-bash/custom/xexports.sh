@@ -2,8 +2,6 @@ function path_prepend {
   [[ ":$PATH:" != *":$1:"* ]] && export PATH="$1:${PATH}"
 }
 
-echo "Exporting variables..."
-
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 export HISTCONTROL=ignoredups:erasedups
@@ -11,6 +9,8 @@ shopt -s histappend
 
 path_prepend "$HOME/.local/bin"
 path_prepend "$HOME/local/bin"
+
+export VIMINIT="source $HOME/.config/vim/vimrc"
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
@@ -61,5 +61,3 @@ if [[ $HOSTNAME == *"c2-hpc"* ]]; then
     export PIPX_BIN_DIR=~/local/bin
     module load EasyBuild/5.1.2  Python/3.11.3-GCCcore-12.3.0 poetry/1.7.1-GCCcore-12.3.0
 fi
-
-echo "Done exporting variables."

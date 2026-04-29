@@ -1,0 +1,75 @@
+[core]
+	editor = vim
+
+[user]
+	name = G. Arampatzis
+	email = georgios.arampatzis@uoc.gr
+
+[init]
+	templateDir = ~/.git-template
+
+[pull]
+	rebase = false
+
+[push]
+	default = current
+
+[fetch]
+	prune = true
+
+[merge]
+	tool = vimdiff
+
+[diff]
+	colorMoved = zebra
+
+[branch]
+	sort = -committerdate
+
+[safe]
+	directory = ~/
+
+[alias]
+	st  = status -sb
+	al  = add -A
+	cm  = commit -m
+	b   = branch
+	br  = branch -r
+	co  = checkout
+	sw  = switch
+	rs  = restore
+	last    = log -1 HEAD
+	undo    = reset --soft HEAD~1
+	amend   = commit --amend --no-edit
+	unstage = reset HEAD --
+
+	# Compact graph: hash, relative time, subject, author, refs
+	lg1 = log \
+		--graph \
+		--abbrev-commit \
+		--decorate \
+		--all \
+		--format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+
+	# Expanded graph: hash, full date, relative time, subject, author, refs
+	lg2 = log \
+		--graph \
+		--abbrev-commit \
+		--decorate \
+		--all \
+		--format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+
+	lg = !"git lg1"
+
+	# Compact one-line history with date
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+[filter "lfs"]
+	smudge  = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean   = git-lfs clean -- %f
+
+[credential]
+	helper = !gh auth git-credential
+	useHttpPath = true
