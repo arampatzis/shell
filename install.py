@@ -177,25 +177,25 @@ Examples:
     )
 
     parser.add_argument(
-        "--dry-run",
+        "-n", "--dry-run",
         action="store_true",
         help="Show what would be installed without making changes",
     )
 
     parser.add_argument(
-        "--force",
+        "-f", "--force",
         action="store_true",
         help="Force installation even if tools are already installed",
     )
 
     parser.add_argument(
-        "--components",
+        "-c", "--components",
         nargs="+",
-        help=("Specific components to install (use --list to see all available)"),
+        help="Specific components to install (use --list to see all available)",
     )
 
     parser.add_argument(
-        "--list", action="store_true", help="List available components and exit"
+        "-l", "--list", action="store_true", help="List available components and exit"
     )
 
     args = parser.parse_args()
