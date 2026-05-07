@@ -16,6 +16,14 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+export FZF_CTRL_R_OPTS="
+  --height 40%
+  --layout=reverse
+  --border rounded
+  --prompt '⟩ '
+  --info=inline
+"
+
 if [[ "$PATH" == *"pypoetry/virtualenvs"* ]]
 then
   # when we create a new shell from inside a poetry shell, we want the new shell to get

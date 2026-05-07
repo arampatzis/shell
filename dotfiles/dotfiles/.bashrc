@@ -84,6 +84,7 @@ plugins=(
   bashmarks
   sudo
   colored-man-pages
+  fzf
   admin
 )
 
