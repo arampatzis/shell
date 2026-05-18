@@ -88,6 +88,10 @@ plugins=(
   admin
 )
 
+# Ensure local bin is in PATH before OMB loads so plugins can find tools
+# installed there (e.g. fzf).
+export PATH="$HOME/.local/bin:$HOME/local/bin:$PATH"
+
 source $OSH/oh-my-bash.sh
 
 # You may need to manually set your language environment
