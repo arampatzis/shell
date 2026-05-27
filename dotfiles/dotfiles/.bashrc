@@ -8,7 +8,7 @@ export OSH=$HOME/.oh-my-bash
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 
-if [[ $HOSTNAME == *"euler"* ]]; then
+if [[ $HOSTNAME == *"euler"* ]] || [[ $HOSTNAME == hpc[0-9]* ]] || [[ $HOSTNAME == gpu[0-9]* ]]; then
   OSH_THEME=""
 else
   OSH_THEME="font"
@@ -92,11 +92,16 @@ plugins=(
 # installed there (e.g. fzf).
 export PATH="$HOME/.local/bin:$HOME/local/bin:$PATH"
 
-source $OSH/oh-my-bash.sh
-
-# You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+source $OSH/oh-my-bash.sh
+
+# OMB plugins/themes may reset locale; enforce the right value after load.
+if [[ $HOSTNAME == *"c2-hpc"* ]] || [[ $HOSTNAME == hpc[0-9]* ]] || [[ $HOSTNAME == gpu[0-9]* ]]; then
+    export LANG=C
+    export LC_ALL=C
+fi
 
 vicd()
 {

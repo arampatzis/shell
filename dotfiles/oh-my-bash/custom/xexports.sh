@@ -64,10 +64,15 @@ if [[ $HOSTNAME == *"tafkoura"* ]]; then
     eval "$(_MAILDIGEST_COMPLETE=bash_source maildigest)"
 fi
 
-if [[ $HOSTNAME == *"c2-hpc"* ]]; then
+if [[ $HOSTNAME == *"c2-hpc"* ]] || [[ $HOSTNAME == hpc[0-9]* ]] || [[ $HOSTNAME == gpu[0-9]* ]]; then
     export PYTHONUSERBASE=~/local
     export PIPX_HOME=~/local/pipx
     export PIPX_BIN_DIR=~/local/bin
     module load EasyBuild/5.1.2  Python/3.11.3-GCCcore-12.3.0 poetry/1.7.1-GCCcore-12.3.0
+
     eval "$(_HPC_COMPLETE=bash_source hpc)"
+
+# Compute nodes don't have en_US.UTF-8 locale installed; fall back to C.
+    export LANG=C
+    export LC_ALL=C
 fi
