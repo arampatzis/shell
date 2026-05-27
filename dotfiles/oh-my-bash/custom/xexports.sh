@@ -16,6 +16,14 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git/'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+export FZF_CTRL_R_OPTS="
+  --height 40%
+  --layout=reverse
+  --border rounded
+  --prompt '⟩ '
+  --info=inline
+"
+
 if [[ "$PATH" == *"pypoetry/virtualenvs"* ]]
 then
   # when we create a new shell from inside a poetry shell, we want the new shell to get
@@ -53,6 +61,7 @@ if [[ $HOSTNAME == *"tafkoura"* ]]; then
     path_prepend "$HOME/go/bin"
     export LS_COLORS="$(vivid generate gruvbox-dark)"
     export EZA_COLORS="da=2;37:uu=32:gu=32:xx=2;37:sn=2;37:sb=2;37"
+    eval "$(_MAILDIGEST_COMPLETE=bash_source maildigest)"
 fi
 
 if [[ $HOSTNAME == *"c2-hpc"* ]]; then

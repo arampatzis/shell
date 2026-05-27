@@ -1,5 +1,19 @@
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Override OMB's virtualenv prompt to show a fixed label for Poetry environments
+# instead of the full auto-generated virtualenv name (e.g. "clamp-abc123-py3.11").
+_omb_prompt_get_virtualenv() {
+    virtualenv=
+    [[ ${VIRTUAL_ENV-} ]] || return 1
+    local name
+    if [[ ${POETRY_ACTIVE-} == 1 ]]; then
+        name="x"
+    else
+        name=${VIRTUAL_ENV_PROMPT:-$(basename "$VIRTUAL_ENV")}
+    fi
+    _omb_prompt_format virtualenv "$name" OMB_PROMPT_VIRTUALENV:VIRTUALENV_THEME_PROMPT
+}
+
 # List all custom OMB plugin functions with their descriptions.
 help_plugins() {
     local plugin_dir="$OSH_CUSTOM/plugins"
