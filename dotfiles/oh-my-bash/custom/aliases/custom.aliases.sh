@@ -36,4 +36,11 @@ if [[ $HOSTNAME == *"tafkoura"* ]]; then
 
     # Visual tree view (limited to 3 levels deep)
     alias lt='eza --tree --level=3 --icons'
+
+    # OMB's ls.aliases.sh defines several aliases (l, L, lk, lh, lo, lu, lr)
+    # using flags like -t, -S, -F that are incompatible with eza. Override the
+    # useful ones and remove the rest so eza never receives invalid flags.
+    alias l='eza -lah --icons --group-directories-first'
+    alias L='eza -lah --icons --group-directories-first --reverse'
+    unalias dir lc lk lh lm lo lr lu 2>/dev/null
 fi
